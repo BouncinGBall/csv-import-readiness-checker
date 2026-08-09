@@ -218,15 +218,17 @@
           <strong>Нужен готовый к импорту файл?</strong>
           <p id="offerText">Один CSV/XLSX до 10 000 строк, нормализация, кандидаты в дубли, mapping, журнал READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CRM.</p>
         </div>
-        <a class="cta" id="offerCta" href="mailto:uria198816@gmail.com?subject=CRM%20data%20cleanup%20pilot&amp;body=%D0%9D%D1%83%D0%B6%D0%B5%D0%BD%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20scope%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20CSV%20%D0%B8%D0%BB%D0%B8%20XLSX.%20%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%3A%20">Запросить scope</a>
+        <a class="cta" id="offerCta" href="mailto:uria198816@gmail.com">Согласовать письменно</a>
       </div>
 
+      <p class="footnote">В письмо попадут только агрегаты мини-проверки и вопросы для scope - без содержимого строк.</p>
       <p class="footnote">Мини-чек не объединяет записи, не определяет бизнес-правила дублей и не изменяет файл. Перед реальным импортом нужен тест на небольшой выборке.</p>
     </section>
   </main>
 
   <script type="module">
     import { MAX_ROWS, analyzeCsv, nonEmptyLines } from './src/checker-core.js';
+    import { buildScopeRequest } from './src/scope-request.js';
 
     const input = document.getElementById('csvInput');
     const counter = document.getElementById('rowCounter');
@@ -236,6 +238,7 @@
     const formatMetricLabel = document.getElementById('formatMetricLabel');
     const offerText = document.getElementById('offerText');
     const offerCta = document.getElementById('offerCta');
+    let lastResult = null;
 
     const syntheticSample = [
       'name,email,phone,company',
@@ -267,11 +270,7 @@
       offerText.textContent = catalog
         ? 'Один CSV/XLSX до 10 000 товаров: артикулы, категории, цены, остатки, URL изображений, кандидаты в дубли, mapping, READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CMS.'
         : 'Один CSV/XLSX до 10 000 строк, нормализация, кандидаты в дубли, mapping, журнал READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CRM.';
-      const subject = catalog ? 'Подготовка товарного CSV - пилот' : 'CRM data cleanup pilot';
-      const body = catalog
-        ? 'Нужен письменный scope для одного товарного CSV или XLSX. Примерное число товаров: '
-        : 'Нужен письменный scope для одного CSV или XLSX. Примерное число строк: ';
-      offerCta.href = `mailto:uria198816@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      offerCta.href = buildScopeRequest(activeProfile(), lastResult).mailto;
     }
 
     function updateCounter() {
@@ -311,6 +310,8 @@
         item.textContent = finding.message;
         findings.appendChild(item);
       });
+      lastResult = result;
+      offerCta.href = buildScopeRequest(result.profile, result).mailto;
       results.hidden = false;
     }
 
@@ -319,6 +320,8 @@
       try {
         render(analyzeCsv(input.value, { profile: activeProfile() }));
       } catch (error) {
+        lastResult = null;
+        offerCta.href = buildScopeRequest(activeProfile()).mailto;
         showError(error instanceof Error ? error.message : 'Фрагмент не удалось проверить.');
       }
     }
@@ -331,13 +334,16 @@
     });
     document.getElementById('clearButton').addEventListener('click', () => {
       input.value = '';
+      lastResult = null;
       errorBox.hidden = true;
       results.hidden = true;
+      offerCta.href = buildScopeRequest(activeProfile()).mailto;
       updateCounter();
       input.focus();
     });
     document.querySelectorAll('input[name="profile"]').forEach((radio) => radio.addEventListener('change', () => {
       input.value = '';
+      lastResult = null;
       errorBox.hidden = true;
       results.hidden = true;
       updateProfileUi();
