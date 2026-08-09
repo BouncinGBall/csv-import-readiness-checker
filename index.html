@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Локальная проверка обезличенного CSV перед импортом в CRM">
+  <title>CSV Import Readiness Checker</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17243b;
+      --muted: #5f6b7a;
+      --line: #dbe3ee;
+      --paper: #fff;
+      --soft: #f5f8fc;
+      --brand: #2954d1;
+      --brand-dark: #193b9f;
+      --good: #16794b;
+      --warn: #9b6100;
+      --bad: #b22828;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-width: 280px;
+      background: #edf2f9;
+      color: var(--ink);
+      font: 15px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .checker {
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: 0 14px 40px rgb(27 45 77 / 8%);
+    }
+
+    h1 { margin: 0 0 6px; font-size: clamp(24px, 4vw, 34px); line-height: 1.15; }
+    .intro { margin: 0 0 16px; color: var(--muted); }
+
+    .privacy {
+      margin: 0 0 18px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--warn);
+      border-radius: 8px;
+      background: #fff8e8;
+      color: #664500;
+    }
+
+    label { display: block; margin-bottom: 7px; font-weight: 750; }
+
+    textarea {
+      width: 100%;
+      min-height: 190px;
+      resize: vertical;
+      padding: 13px;
+      border: 1px solid #b9c6d8;
+      border-radius: 10px;
+      background: #fbfcfe;
+      color: var(--ink);
+      font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    textarea:focus { outline: 3px solid rgb(41 84 209 / 16%); border-color: var(--brand); }
+
+    .meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 6px; color: var(--muted); font-size: 12px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+
+    button, .cta {
+      min-height: 42px;
+      padding: 10px 15px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .primary, .cta { background: var(--brand); color: #fff; }
+    .primary:hover, .cta:hover { background: var(--brand-dark); }
+    .secondary { border-color: var(--line); background: var(--soft); color: var(--ink); }
+
+    .error { margin-top: 15px; padding: 11px 13px; border-radius: 9px; background: #fff0f0; color: var(--bad); font-weight: 650; }
+    .results { margin-top: 22px; }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--soft);
+    }
+
+    .score {
+      display: grid;
+      place-items: center;
+      width: 100px;
+      height: 100px;
+      border: 9px solid var(--good);
+      border-radius: 50%;
+      background: #fff;
+      font-size: 28px;
+      font-weight: 850;
+    }
+
+    .summary h2 { margin: 0 0 5px; font-size: 21px; }
+    .summary p { margin: 0; color: var(--muted); }
+
+    .metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+    .metric { padding: 13px; border: 1px solid var(--line); border-radius: 11px; background: #fff; }
+    .metric strong { display: block; font-size: 23px; }
+    .metric span { color: var(--muted); font-size: 12px; }
+
+    .findings { margin: 13px 0 0; padding: 0; list-style: none; }
+    .findings li { margin-top: 7px; padding: 10px 12px; border-radius: 9px; background: var(--soft); }
+    .findings li[data-severity="error"] { border-left: 4px solid var(--bad); }
+    .findings li[data-severity="warning"] { border-left: 4px solid var(--warn); }
+    .findings li[data-severity="success"] { border-left: 4px solid var(--good); }
+
+    .offer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-top: 18px;
+      padding: 17px;
+      border-radius: 14px;
+      background: #eaf0ff;
+    }
+
+    .offer strong { display: block; margin-bottom: 3px; }
+    .offer p { margin: 0; color: #43516a; font-size: 13px; }
+    .cta { flex: none; text-align: center; }
+    .footnote { margin: 12px 0 0; color: var(--muted); font-size: 12px; }
+    [hidden] { display: none !important; }
+
+    @media (max-width: 760px) {
+      .checker { margin: 0; padding: 18px; border-radius: 0; }
+      .summary { grid-template-columns: 1fr; text-align: center; }
+      .score { margin: 0 auto; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .offer { align-items: stretch; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="checker">
+    <h1>CSV Import Readiness Checker</h1>
+    <p class="intro">Быстрая структурная проверка небольшого CSV-фрагмента перед импортом в CRM.</p>
+
+    <p class="privacy"><strong>Приватность:</strong> не вставляйте реальные имена, клиентские записи, пароли или другие персональные данные. Используйте только синтетический или обезличенный фрагмент. Всё обрабатывается локально в браузере и никуда не отправляется.</p>
+
+    <label for="csvInput">Обезличенный CSV, до 50 строк данных</label>
+    <textarea id="csvInput" spellcheck="false" autocomplete="off" placeholder="name,email,phone,company&#10;Sample A,user@example.com,+79990000000,Example LLC"></textarea>
+    <div class="meta">
+      <span>Поддерживаются запятая, точка с запятой, табуляция и |</span>
+      <span id="rowCounter">0 / 50 строк</span>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="runButton" type="button">Проверить</button>
+      <button class="secondary" id="sampleButton" type="button">Синтетический пример</button>
+      <button class="secondary" id="clearButton" type="button">Очистить</button>
+    </div>
+
+    <div class="error" id="errorBox" role="alert" hidden></div>
+
+    <section class="results" id="results" aria-live="polite" hidden>
+      <div class="summary">
+        <div class="score" id="score">100</div>
+        <div>
+          <h2 id="verdict">Структура близка к готовой</h2>
+          <p id="summaryText"></p>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric"><strong id="rowMetric">0</strong><span>строк данных</span></div>
+        <div class="metric"><strong id="missingMetric">0</strong><span>пустых ячеек</span></div>
+        <div class="metric"><strong id="duplicateMetric">0</strong><span>точных дублей</span></div>
+        <div class="metric"><strong id="formatMetric">0</strong><span>email / телефон</span></div>
+        <div class="metric"><strong id="widthMetric">0</strong><span>строк другой ширины</span></div>
+      </div>
+
+      <ul class="findings" id="findings"></ul>
+
+      <div class="offer">
+        <div>
+          <strong>Нужен готовый к импорту файл?</strong>
+          <p>Один CSV/XLSX до 10 000 строк, нормализация, кандидаты в дубли, mapping, журнал READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CRM.</p>
+        </div>
+        <a class="cta" href="mailto:uria198816@gmail.com?subject=CRM%20data%20cleanup%20pilot&amp;body=%D0%9D%D1%83%D0%B6%D0%B5%D0%BD%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20scope%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20CSV%20%D0%B8%D0%BB%D0%B8%20XLSX.%20%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%3A%20">Запросить scope</a>
+      </div>
+
+      <p class="footnote">Мини-чек не объединяет записи, не определяет бизнес-правила дублей и не изменяет файл. Перед реальным импортом нужен тест на небольшой выборке.</p>
+    </section>
+  </main>
+
+  <script type="module">
+    import { MAX_ROWS, analyzeCsv, nonEmptyLines } from './src/checker-core.js';
+
+    const input = document.getElementById('csvInput');
+    const counter = document.getElementById('rowCounter');
+    const errorBox = document.getElementById('errorBox');
+    const results = document.getElementById('results');
+    const findings = document.getElementById('findings');
+
+    const syntheticSample = [
+      'name,email,phone,company',
+      'Sample Alpha,alpha@example.com,+7 999 111-22-33,Example LLC',
+      'Sample Beta,beta.example.com,8 (999) 222-33-44,Example LLC',
+      'Sample Gamma,gamma@example.com,,Demo Inc',
+      'Sample Alpha,alpha@example.com,+7 999 111-22-33,Example LLC',
+      'Sample Delta,delta@example.com,123,Demo Inc',
+    ].join('\n');
+
+    function updateCounter() {
+      const count = Math.max(0, nonEmptyLines(input.value).length - 1);
+      counter.textContent = `${count} / ${MAX_ROWS} строк`;
+      counter.style.color = count > MAX_ROWS ? 'var(--bad)' : '';
+    }
+
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.hidden = false;
+      results.hidden = true;
+    }
+
+    function render(result) {
+      const verdicts = {
+        'structurally-close': ['Структура близка к готовой', 'Крупных структурных предупреждений нет, но всё ещё нужны бизнес-правила и проверка полного файла.'],
+        review: ['Нужна проверка перед импортом', 'Найдены проблемы, которые могут создать неполные, отклонённые или дублирующиеся записи CRM.'],
+        cleanup: ['Рекомендуется подготовка файла', 'Импорт такой структуры без исправлений несёт высокий риск проблем с качеством данных.'],
+      };
+      const [title, description] = verdicts[result.verdict];
+      const score = document.getElementById('score');
+      score.textContent = result.score;
+      score.style.borderColor = result.verdict === 'structurally-close' ? 'var(--good)' : result.verdict === 'review' ? 'var(--warn)' : 'var(--bad)';
+      document.getElementById('verdict').textContent = title;
+      document.getElementById('summaryText').textContent = description;
+      document.getElementById('rowMetric').textContent = result.dataRows;
+      document.getElementById('missingMetric').textContent = result.metrics.missingCells;
+      document.getElementById('duplicateMetric').textContent = result.metrics.duplicateRows;
+      document.getElementById('formatMetric').textContent = result.metrics.formatIssues;
+      document.getElementById('widthMetric').textContent = result.metrics.inconsistentRows;
+
+      findings.replaceChildren();
+      result.findings.forEach((finding) => {
+        const item = document.createElement('li');
+        item.dataset.severity = finding.severity;
+        item.textContent = finding.message;
+        findings.appendChild(item);
+      });
+      results.hidden = false;
+    }
+
+    function runCheck() {
+      errorBox.hidden = true;
+      try {
+        render(analyzeCsv(input.value));
+      } catch (error) {
+        showError(error instanceof Error ? error.message : 'Фрагмент не удалось проверить.');
+      }
+    }
+
+    document.getElementById('runButton').addEventListener('click', runCheck);
+    document.getElementById('sampleButton').addEventListener('click', () => {
+      input.value = syntheticSample;
+      updateCounter();
+      runCheck();
+    });
+    document.getElementById('clearButton').addEventListener('click', () => {
+      input.value = '';
+      errorBox.hidden = true;
+      results.hidden = true;
+      updateCounter();
+      input.focus();
+    });
+    input.addEventListener('input', updateCounter);
+    updateCounter();
+  </script>
+</body>
+</html>
