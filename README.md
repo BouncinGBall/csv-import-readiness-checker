@@ -52,6 +52,10 @@ npm test
 - [Запросить письменный scope по email](mailto:uria198816@gmail.com?subject=CRM%20data%20cleanup%20pilot)
 - [Оплата согласованного пилота](https://app.lava.top/products/3de6aa7f-0252-45db-b7d4-53a06e984e69/1a6ab36b-676b-4cc5-82e3-f42128fd7bea?currency=RUB)
 
+## AI Assistant Evaluation Pack
+
+В репозитории также есть отдельная страница `ai-eval.html` для фиксированного письменного пилота проверки одного AI-сценария. Scope: до 50 тест-кейсов, Run Log с фактическими ответами и evidence, severity, формульная сводка и один ретест за 5 900 ₽ в течение 24 часов. Публичный XLSX является синтетическим примером на собственном mock-стенде, а не клиентским кейсом.
+
 ## English
 
 This is a local-only structural checker for a small anonymized CSV sample before CRM or product-catalog import. It detects delimiters, inconsistent row widths, missing cells, duplicate headers and exact rows, CRM email/phone issues, and catalog SKU/price/stock/image-URL issues. It does not upload or modify data and does not infer business deduplication rules.

@@ -155,6 +155,17 @@
     .offer p { margin: 0; color: #43516a; font-size: 13px; }
     .cta { flex: none; text-align: center; }
     .footnote { margin: 12px 0 0; color: var(--muted); font-size: 12px; }
+    .related {
+      max-width: 920px;
+      margin: 18px auto 34px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .related a { color: var(--primary); font-weight: 750; }
     [hidden] { display: none !important; }
 
     @media (max-width: 760px) {
@@ -225,6 +236,10 @@
       <p class="footnote">Мини-чек не объединяет записи, не определяет бизнес-правила дублей и не изменяет файл. Перед реальным импортом нужен тест на небольшой выборке.</p>
     </section>
   </main>
+
+  <aside class="related">
+    Нужна проверка AI-ассистента, а не CSV? <a href="./ai-eval.html">Посмотреть фиксированный AI-eval пилот за 5 900 ₽</a>.
+  </aside>
 
   <script type="module">
     import { MAX_ROWS, analyzeCsv, nonEmptyLines } from './src/checker-core.js';
