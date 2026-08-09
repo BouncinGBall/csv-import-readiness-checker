@@ -1,6 +1,6 @@
 # CSV Import Readiness Checker
 
-Бесплатная локальная проверка небольшого обезличенного CSV-фрагмента перед импортом в amoCRM, Битрикс24 или другую CRM. Данные обрабатываются только в браузере: сервер, аналитика, cookies и внешние API не используются.
+Бесплатная локальная проверка небольшого обезличенного CSV-фрагмента перед импортом в amoCRM, Битрикс24, другую CRM или товарный каталог. Данные обрабатываются только в браузере: сервер, аналитика, cookies и внешние API не используются.
 
 [Открыть бесплатный мини-чек в браузере](https://bouncingball.github.io/csv-import-readiness-checker/)
 
@@ -12,6 +12,7 @@
 - пропущенные ячейки;
 - точные дубли строк без автоматического удаления;
 - базовый формат email и телефона;
+- для товарного профиля: наличие и повторы SKU/артикула, числовые цены и остатки, абсолютные URL изображений, распознавание категорий;
 - ячейки, похожие на формулы и начинающиеся с `=` или `@`;
 - не более 50 строк и 200 000 символов за одну проверку.
 
@@ -43,7 +44,7 @@ npm test
 
 ## Полная подготовка файла
 
-Если нужен не мини-чек, а готовый результат: один CSV/XLSX, один лист, до 10 000 строк, нормализация телефонов/email, кандидаты в дубли, mapping, журнал `READY/REVIEW/REJECT` и контрольные итоги. Фиксированная цена - 5 900 ₽, срок - 24 часа после оплаты и письменного согласования правил. Доступ к CRM и созвон не нужны.
+Если нужен не мини-чек, а готовый результат: один CSV/XLSX, один лист, до 10 000 строк или товаров. Для CRM - нормализация телефонов/email; для каталога - артикулы, категории, цены, остатки и URL изображений. В обоих профилях включены кандидаты в дубли, mapping, журнал `READY/REVIEW/REJECT` и контрольные итоги. Фиксированная цена - 5 900 ₽, срок - 24 часа после оплаты и письменного согласования правил. Доступ к CRM/CMS и созвон не нужны.
 
 - [Практический чек-лист и бесплатный браузерный мини-чек](https://sites.google.com/view/data-pilot-async/crm-csv-checklist)
 - [Запросить письменный scope по email](mailto:uria198816@gmail.com?subject=CRM%20data%20cleanup%20pilot)
@@ -51,7 +52,7 @@ npm test
 
 ## English
 
-This is a local-only structural checker for a small anonymized CSV sample before CRM import. It detects delimiters, inconsistent row widths, missing cells, duplicate headers and exact rows, basic email/phone issues, and formula-like values. It does not upload or modify data and does not infer business deduplication rules.
+This is a local-only structural checker for a small anonymized CSV sample before CRM or product-catalog import. It detects delimiters, inconsistent row widths, missing cells, duplicate headers and exact rows, CRM email/phone issues, and catalog SKU/price/stock/image-URL issues. It does not upload or modify data and does not infer business deduplication rules.
 
 ## License
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Локальная проверка обезличенного CSV перед импортом в CRM">
+  <meta name="description" content="Локальная проверка обезличенного CSV перед импортом в CRM или товарный каталог">
   <title>CSV Import Readiness Checker</title>
   <style>
     :root {
@@ -53,6 +53,20 @@
     }
 
     label { display: block; margin-bottom: 7px; font-weight: 750; }
+
+    .profile-picker { display: flex; flex-wrap: wrap; gap: 9px; margin: 0 0 16px; }
+    .profile-picker label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--soft);
+      cursor: pointer;
+    }
+    .profile-picker label:has(input:checked) { border-color: var(--brand); background: #eaf0ff; }
 
     textarea {
       width: 100%;
@@ -155,9 +169,15 @@
 <body>
   <main class="checker">
     <h1>CSV Import Readiness Checker</h1>
-    <p class="intro">Быстрая структурная проверка небольшого CSV-фрагмента перед импортом в CRM.</p>
+    <p class="intro">Быстрая структурная проверка небольшого CSV-фрагмента перед импортом в CRM или товарный каталог.</p>
 
     <p class="privacy"><strong>Приватность:</strong> не вставляйте реальные имена, клиентские записи, пароли или другие персональные данные. Используйте только синтетический или обезличенный фрагмент. Всё обрабатывается локально в браузере и никуда не отправляется.</p>
+
+    <label>Профиль проверки</label>
+    <div class="profile-picker" role="radiogroup" aria-label="Профиль проверки">
+      <label><input type="radio" name="profile" value="crm" checked> CRM-контакты</label>
+      <label><input type="radio" name="profile" value="catalog"> Товарный каталог</label>
+    </div>
 
     <label for="csvInput">Обезличенный CSV, до 50 строк данных</label>
     <textarea id="csvInput" spellcheck="false" autocomplete="off" placeholder="name,email,phone,company&#10;Sample A,user@example.com,+79990000000,Example LLC"></textarea>
@@ -187,7 +207,7 @@
         <div class="metric"><strong id="rowMetric">0</strong><span>строк данных</span></div>
         <div class="metric"><strong id="missingMetric">0</strong><span>пустых ячеек</span></div>
         <div class="metric"><strong id="duplicateMetric">0</strong><span>точных дублей</span></div>
-        <div class="metric"><strong id="formatMetric">0</strong><span>email / телефон</span></div>
+        <div class="metric"><strong id="formatMetric">0</strong><span id="formatMetricLabel">email / телефон</span></div>
         <div class="metric"><strong id="widthMetric">0</strong><span>строк другой ширины</span></div>
       </div>
 
@@ -196,9 +216,9 @@
       <div class="offer">
         <div>
           <strong>Нужен готовый к импорту файл?</strong>
-          <p>Один CSV/XLSX до 10 000 строк, нормализация, кандидаты в дубли, mapping, журнал READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CRM.</p>
+          <p id="offerText">Один CSV/XLSX до 10 000 строк, нормализация, кандидаты в дубли, mapping, журнал READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CRM.</p>
         </div>
-        <a class="cta" href="mailto:uria198816@gmail.com?subject=CRM%20data%20cleanup%20pilot&amp;body=%D0%9D%D1%83%D0%B6%D0%B5%D0%BD%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20scope%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20CSV%20%D0%B8%D0%BB%D0%B8%20XLSX.%20%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%3A%20">Запросить scope</a>
+        <a class="cta" id="offerCta" href="mailto:uria198816@gmail.com?subject=CRM%20data%20cleanup%20pilot&amp;body=%D0%9D%D1%83%D0%B6%D0%B5%D0%BD%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20scope%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20CSV%20%D0%B8%D0%BB%D0%B8%20XLSX.%20%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D0%BD%D0%BE%D0%B5%20%D1%87%D0%B8%D1%81%D0%BB%D0%BE%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%3A%20">Запросить scope</a>
       </div>
 
       <p class="footnote">Мини-чек не объединяет записи, не определяет бизнес-правила дублей и не изменяет файл. Перед реальным импортом нужен тест на небольшой выборке.</p>
@@ -213,6 +233,9 @@
     const errorBox = document.getElementById('errorBox');
     const results = document.getElementById('results');
     const findings = document.getElementById('findings');
+    const formatMetricLabel = document.getElementById('formatMetricLabel');
+    const offerText = document.getElementById('offerText');
+    const offerCta = document.getElementById('offerCta');
 
     const syntheticSample = [
       'name,email,phone,company',
@@ -222,6 +245,34 @@
       'Sample Alpha,alpha@example.com,+7 999 111-22-33,Example LLC',
       'Sample Delta,delta@example.com,123,Demo Inc',
     ].join('\n');
+
+    const catalogSample = [
+      'артикул;категория;цена;остаток;фото',
+      'SKU-001;Обувь;3990;5;https://example.com/sku-001.jpg',
+      'SKU-002;Обувь;free;-1;sku-002.jpg',
+      'SKU-001;Обувь;3990;2;https://example.com/sku-001-new.jpg',
+      ';Аксессуары;990;7;https://example.com/no-sku.jpg',
+    ].join('\n');
+
+    function activeProfile() {
+      return document.querySelector('input[name="profile"]:checked').value;
+    }
+
+    function updateProfileUi() {
+      const catalog = activeProfile() === 'catalog';
+      input.placeholder = catalog
+        ? 'артикул;категория;цена;остаток;фото\nSKU-001;Обувь;3990;5;https://example.com/sku-001.jpg'
+        : 'name,email,phone,company\nSample A,user@example.com,+79990000000,Example LLC';
+      formatMetricLabel.textContent = catalog ? 'ошибок каталога' : 'email / телефон';
+      offerText.textContent = catalog
+        ? 'Один CSV/XLSX до 10 000 товаров: артикулы, категории, цены, остатки, URL изображений, кандидаты в дубли, mapping, READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CMS.'
+        : 'Один CSV/XLSX до 10 000 строк, нормализация, кандидаты в дубли, mapping, журнал READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CRM.';
+      const subject = catalog ? 'Подготовка товарного CSV - пилот' : 'CRM data cleanup pilot';
+      const body = catalog
+        ? 'Нужен письменный scope для одного товарного CSV или XLSX. Примерное число товаров: '
+        : 'Нужен письменный scope для одного CSV или XLSX. Примерное число строк: ';
+      offerCta.href = `mailto:uria198816@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
 
     function updateCounter() {
       const count = Math.max(0, nonEmptyLines(input.value).length - 1);
@@ -266,7 +317,7 @@
     function runCheck() {
       errorBox.hidden = true;
       try {
-        render(analyzeCsv(input.value));
+        render(analyzeCsv(input.value, { profile: activeProfile() }));
       } catch (error) {
         showError(error instanceof Error ? error.message : 'Фрагмент не удалось проверить.');
       }
@@ -274,7 +325,7 @@
 
     document.getElementById('runButton').addEventListener('click', runCheck);
     document.getElementById('sampleButton').addEventListener('click', () => {
-      input.value = syntheticSample;
+      input.value = activeProfile() === 'catalog' ? catalogSample : syntheticSample;
       updateCounter();
       runCheck();
     });
@@ -285,7 +336,15 @@
       updateCounter();
       input.focus();
     });
+    document.querySelectorAll('input[name="profile"]').forEach((radio) => radio.addEventListener('change', () => {
+      input.value = '';
+      errorBox.hidden = true;
+      results.hidden = true;
+      updateProfileUi();
+      updateCounter();
+    }));
     input.addEventListener('input', updateCounter);
+    updateProfileUi();
     updateCounter();
   </script>
 </body>
