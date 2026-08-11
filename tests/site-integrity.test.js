@@ -29,13 +29,14 @@ test('enterprise AI release gate has explicit scope, price and boundaries', () =
 
 test('enterprise AI page has a working contact-form contract and email fallback', () => {
   const html = readFileSync(resolve(root, 'ai-release-gate.html'), 'utf8');
-  assert.match(html, /<form[^>]+id="release-request-form"[^>]+action="https:\/\/formsubmit\.co\/uria198816@gmail\.com"[^>]+method="post"/);
-  assert.match(html, /name="email"[^>]+type="email"[^>]+required/);
-  assert.match(html, /name="release_risk"[^>]+required/);
-  assert.match(html, /name="_honey"/);
+  assert.match(html, /<form[^>]+id="release-request-form"[^>]+action="https:\/\/docs\.google\.com\/forms\/d\/e\/[^"/]+\/formResponse"[^>]+method="post"[^>]+target="request-form-target"/);
+  assert.match(html, /name="entry\.1690196027"[^>]+type="email"[^>]+required/);
+  assert.match(html, /name="entry\.764456503"[^>]+required/);
+  assert.match(html, /id="company-site"[^>]+name="website"/);
   assert.match(html, /role="status"[^>]+aria-live="polite"/);
-  assert.match(html, /name="_next" value="https:\/\/bouncingball\.github\.io\/csv-import-readiness-checker\/ai-release-gate\.html\?sent=1#contact"/);
-  assert.doesNotMatch(html, /preventDefault\(\)|formsubmit\.co\/ajax\//);
+  assert.match(html, /<iframe[^>]+name="request-form-target"[^>]+hidden/);
+  assert.match(html, /target\?\.addEventListener\('load'/);
+  assert.doesNotMatch(html, /formsubmit\.co/i);
   assert.equal((html.match(/mailto:uria198816@gmail\.com/g) || []).length, 1);
 });
 

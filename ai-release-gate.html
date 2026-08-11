@@ -290,22 +290,19 @@
         <p>В ответ получите границы первого этапа, нужные доступы, количество прогонов, срок, цену и способ приёмки. Для оценки не нужны пароли, секреты и реальные данные клиентов.</p>
       </div>
 
-      <form class="request-form" id="release-request-form" action="https://formsubmit.co/uria198816@gmail.com" method="post">
-        <input type="hidden" name="_subject" value="Новая заявка: AI Agent Release Gate">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://bouncingball.github.io/csv-import-readiness-checker/ai-release-gate.html?sent=1#contact">
-        <div class="honey" aria-hidden="true"><label for="company-site">Не заполняйте это поле</label><input id="company-site" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+      <form class="request-form" id="release-request-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfKcxiQEqQgYwHp0mQMi-ZactJKWxOmlYgcXMTPEpgASiIOiA/formResponse" method="post" target="request-form-target">
+        <div class="honey" aria-hidden="true"><label for="company-site">Не заполняйте это поле</label><input id="company-site" type="text" name="website" tabindex="-1" autocomplete="off"></div>
 
-        <div class="field"><label for="request-name">Имя *</label><input id="request-name" name="name" autocomplete="name" required></div>
-        <div class="field"><label for="request-email">Рабочая почта *</label><input id="request-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
-        <div class="field"><label for="request-company">Компания</label><input id="request-company" name="company" autocomplete="organization"></div>
-        <div class="field"><label for="request-product">Сайт или тестовый продукт</label><input id="request-product" name="product_url" type="url" inputmode="url" placeholder="https://"></div>
-        <div class="field full"><label for="request-format">Что нужно проверить *</label><select id="request-format" name="request_type" required><option value="" selected disabled>Выберите ближайший вариант</option><option>Один релиз AI-агента</option><option>Сравнение двух конфигураций</option><option>Регулярный regression gate</option><option>Пока не уверен — нужен письменный разбор</option></select></div>
-        <div class="field full"><label for="request-risk">Критичный процесс или риск *</label><textarea id="request-risk" name="release_risk" required placeholder="Например: ответ по базе знаний → классификация обращения → действие в CRM → передача оператору"></textarea><small>Достаточно процесса, ожидаемого результата и примера сбоя. Не вставляйте ключи API и персональные данные.</small></div>
+        <div class="field"><label for="request-name">Имя *</label><input id="request-name" name="entry.650434794" autocomplete="name" required></div>
+        <div class="field"><label for="request-email">Рабочая почта *</label><input id="request-email" name="entry.1690196027" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="field"><label for="request-company">Компания</label><input id="request-company" name="entry.553932952" autocomplete="organization"></div>
+        <div class="field"><label for="request-product">Сайт или тестовый продукт</label><input id="request-product" name="entry.1104428072" type="url" inputmode="url" placeholder="https://"></div>
+        <div class="field full"><label for="request-format">Что нужно проверить *</label><select id="request-format" name="entry.1053497883" required><option value="" selected disabled>Выберите ближайший вариант</option><option>Один релиз AI-агента</option><option>Сравнение двух конфигураций</option><option>Регулярный regression gate</option><option>Пока не уверен — нужен письменный разбор</option></select></div>
+        <div class="field full"><label for="request-risk">Критичный процесс или риск *</label><textarea id="request-risk" name="entry.764456503" required placeholder="Например: ответ по базе знаний → классификация обращения → действие в CRM → передача оператору"></textarea><small>Достаточно процесса, ожидаемого результата и примера сбоя. Не вставляйте ключи API и персональные данные.</small></div>
         <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>Согласен на использование этих данных только для ответа на заявку и подготовки письменного предложения.</span></label>
         <div class="form-footer"><button class="submit" type="submit">Получить письменный план</button><p class="form-status" id="form-status" role="status" aria-live="polite"></p></div>
       </form>
+      <iframe name="request-form-target" title="Служебная отправка заявки" hidden></iframe>
       <p class="email-fallback">Удобнее обычным письмом? <a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></p>
     </section>
   </main>
@@ -316,17 +313,44 @@
       const form = document.querySelector('#release-request-form');
       const status = document.querySelector('#form-status');
       const submit = form?.querySelector('button[type="submit"]');
+      const target = document.querySelector('iframe[name="request-form-target"]');
+      const honey = document.querySelector('#company-site');
+      let submitted = false;
+      let deliveryTimer;
 
-      if (new URLSearchParams(window.location.search).get('sent') === '1') {
-        status.textContent = 'Заявка отправлена. Ответ придёт на указанную почту.';
-        status.dataset.state = 'success';
-      }
-
-      form?.addEventListener('submit', () => {
+      form?.addEventListener('submit', (event) => {
         if (!form.checkValidity()) return;
+
+        if (honey.value) {
+          event.preventDefault();
+          form.reset();
+          status.textContent = 'Заявка отправлена. Ответ придёт на указанную почту.';
+          status.dataset.state = 'success';
+          return;
+        }
+
+        submitted = true;
         submit.disabled = true;
         status.textContent = 'Отправляем заявку…';
         status.dataset.state = 'pending';
+        clearTimeout(deliveryTimer);
+        deliveryTimer = setTimeout(() => {
+          if (!submitted) return;
+          submitted = false;
+          submit.disabled = false;
+          status.textContent = 'Не получилось подтвердить отправку. Попробуйте ещё раз или используйте почту ниже.';
+          status.dataset.state = 'error';
+        }, 15000);
+      });
+
+      target?.addEventListener('load', () => {
+        if (!submitted) return;
+        submitted = false;
+        clearTimeout(deliveryTimer);
+        form.reset();
+        submit.disabled = false;
+        status.textContent = 'Заявка отправлена. Ответ придёт на указанную почту.';
+        status.dataset.state = 'success';
       });
     })();
   </script>
