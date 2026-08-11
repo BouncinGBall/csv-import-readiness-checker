@@ -27,6 +27,17 @@ test('enterprise AI release gate has explicit scope, price and boundaries', () =
   assert.match(html, /письменный scope/i);
 });
 
+test('enterprise AI page exposes a verifiable synthetic evidence pack before the packages', () => {
+  const html = readFileSync(resolve(root, 'ai-release-gate.html'), 'utf8');
+  const evidencePosition = html.indexOf('id="evidence-demo"');
+  const packagesPosition = html.indexOf('id="packages"');
+  assert.ok(evidencePosition > 0, 'missing prominent evidence demo section');
+  assert.ok(evidencePosition < packagesPosition, 'evidence should appear before pricing packages');
+  assert.match(html, /href="\.\/downloads\/AI_Assistant_Evaluation_Pack_Demo\.xlsx" download/);
+  assert.match(html, /собственный синтетический пример/i);
+  assert.match(html, /не клиентский кейс/i);
+});
+
 test('enterprise AI page has a working contact-form contract and email fallback', () => {
   const html = readFileSync(resolve(root, 'ai-release-gate.html'), 'utf8');
   assert.match(html, /<form[^>]+id="release-request-form"[^>]+action="https:\/\/docs\.google\.com\/forms\/d\/e\/[^"/]+\/formResponse"[^>]+method="post"[^>]+target="request-form-target"/);

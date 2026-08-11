@@ -79,6 +79,21 @@
     .flow-row h3 { margin: 0 0 5px; font-size: 18px; }
     .flow-row p { margin: 0; color: var(--muted); line-height: 1.5; }
 
+    .evidence { display: grid; grid-template-columns: .92fr 1.08fr; gap: 18px; }
+    .evidence-copy { display: flex; min-height: 100%; flex-direction: column; padding: clamp(30px, 5vw, 52px); border-radius: 26px; background: var(--deep); color: #f6fff8; box-shadow: var(--shadow); }
+    .evidence-copy .kicker { color: var(--acid); }
+    .evidence-copy h2 { max-width: 650px; }
+    .evidence-copy p { margin: 18px 0 0; color: #cfe0d5; font-size: 17px; line-height: 1.6; }
+    .evidence-copy .actions { margin-top: auto; padding-top: 28px; }
+    .evidence-copy .secondary { border-color: rgba(255,255,255,.42); }
+    .evidence-panel { overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: var(--paper); }
+    .evidence-row { display: grid; grid-template-columns: 42px 1fr; gap: 15px; padding: 22px 25px; }
+    .evidence-row + .evidence-row { border-top: 1px solid var(--line); }
+    .evidence-icon { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 10px; background: var(--soft); color: var(--green); font-weight: 950; }
+    .evidence-row h3 { margin: 0 0 5px; font-size: 18px; }
+    .evidence-row p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .evidence-note { padding: 18px 25px; border-top: 1px solid var(--line); background: #e8eee9; color: #496057; font-size: 13px; line-height: 1.5; }
+
     .packages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
     .package { display: flex; min-height: 540px; flex-direction: column; padding: 27px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
     .package.featured { border-color: var(--deep); background: var(--deep); color: #fff; box-shadow: var(--shadow); transform: translateY(-8px); }
@@ -141,7 +156,7 @@
 
     @media (max-width: 900px) {
       .stats, .risks, .packages { grid-template-columns: 1fr 1fr; }
-      .section-head, .gate, .contact-head { grid-template-columns: 1fr; }
+      .section-head, .gate, .evidence, .contact-head { grid-template-columns: 1fr; }
       .package.featured { transform: none; }
     }
     @media (max-width: 650px) {
@@ -207,6 +222,25 @@
         <article class="flow-row"><span class="num">2</span><div><h3>Версионируемый набор проверок</h3><p>Обычные запросы, границы, конфликты, ошибочные входы и безопасные adversarial-примеры.</p></div></article>
         <article class="flow-row"><span class="num">3</span><div><h3>Runner и журнал</h3><p>Ответ, конфигурация, задержка, evidence, статус, критичность и причина решения сохраняются в одном формате.</p></div></article>
         <article class="flow-row"><span class="num">4</span><div><h3>Порог допуска и ретест</h3><p>Сводка показывает, что блокирует релиз, а повторный прогон подтверждает исправление без скрытой регрессии.</p></div></article>
+      </div>
+    </section>
+
+    <section class="evidence" id="evidence-demo">
+      <div class="evidence-copy">
+        <span class="kicker">Проверяемое демо</span>
+        <h2>Не просим верить описанию услуги.</h2>
+        <p>Скачайте рабочий синтетический evidence pack и проверьте структуру результата до обсуждения доступа или оплаты. Файл открывается в Excel и показывает, как фиксируются ожидание, фактический ответ, evidence, severity и итоговый вердикт.</p>
+        <div class="actions">
+          <a class="button primary" href="./downloads/AI_Assistant_Evaluation_Pack_Demo.xlsx" download>Скачать XLSX-демо</a>
+          <a class="button secondary" href="./ai-eval.html">Открыть описание демо</a>
+        </div>
+      </div>
+      <div class="evidence-panel" aria-label="Состав демонстрационного evidence pack">
+        <article class="evidence-row"><span class="evidence-icon">01</span><div><h3>Матрица проверок</h3><p>Вход, ожидаемое поведение, fail condition и приоритет для каждого безопасного тест-кейса.</p></div></article>
+        <article class="evidence-row"><span class="evidence-icon">02</span><div><h3>Run Log</h3><p>Фактический результат, evidence, статус, severity и причина решения в едином формате.</p></div></article>
+        <article class="evidence-row"><span class="evidence-icon">03</span><div><h3>Сводка для релиза</h3><p>PASS, FAIL, BLOCKED и критичные отклонения без необходимости читать весь журнал вручную.</p></div></article>
+        <article class="evidence-row"><span class="evidence-icon">04</span><div><h3>Контракт ретеста</h3><p>Те же входы и критерии используются повторно, чтобы исправление не скрывало новую регрессию.</p></div></article>
+        <div class="evidence-note">Это собственный синтетический пример на mock-стенде, а не клиентский кейс и не заявленный коммерческий результат.</div>
       </div>
     </section>
 
