@@ -94,6 +94,9 @@
     .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -.02em; text-decoration: none; }
     .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50% 50% 50% 12px; background: var(--green); color: var(--acid); font-size: 13px; transform: rotate(-7deg); }
     .brand-mark span { transform: rotate(7deg); }
+    .brand-copy { display: grid; gap: 1px; line-height: 1.05; }
+    .brand-copy strong { font-size: 16px; }
+    .brand-copy small { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
     nav { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; color: var(--muted); font-size: 14px; font-weight: 750; }
     nav a { text-decoration: none; }
     nav a:hover { color: var(--ink); }
@@ -258,8 +261,9 @@
     .contact-list { position: relative; z-index: 1; display: grid; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
     .contact-list li { position: relative; padding-left: 24px; font-weight: 750; }
     .contact-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 950; }
-    .contact .button { position: relative; z-index: 1; margin-top: 28px; border-color: var(--green); background: var(--green); color: #fff; }
-    .contact .button:hover { background: var(--green-2); }
+    .contact-email { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; margin-top: 28px; padding: 15px 20px; border: 2px solid var(--green); border-radius: 14px; background: var(--green); color: #fff; font-size: clamp(18px, 3vw, 26px); font-weight: 900; letter-spacing: -.02em; text-decoration: none; }
+    .contact-email::after { content: "↗"; color: var(--acid); }
+    .contact-email:hover { background: var(--green-2); }
     .contact-note { position: relative; z-index: 1; margin-top: 12px !important; color: #42604d; font-size: 13px !important; }
 
     footer { display: flex; justify-content: space-between; gap: 20px; padding: 32px 0 42px; color: var(--muted); font-size: 13px; }
@@ -316,13 +320,13 @@
   <header class="shell topbar">
     <a class="brand" href="./portfolio.html" aria-label="Data Pilot — главная портфолио">
       <span class="brand-mark"><span>DP</span></span>
-      Data Pilot
+      <span class="brand-copy"><strong>Data Pilot</strong><small>Системы автоматизации</small></span>
     </a>
     <nav aria-label="Основная навигация">
       <a href="#fit">Сценарии</a>
       <a href="#offers">Услуги и цены</a>
       <a href="#works">Работы</a>
-      <a class="nav-cta" href="mailto:uria198816@gmail.com?subject=Разбор%20процесса%20для%20автоматизации&amp;body=Что%20повторяется%20вручную%3A%0AПример%20входа%20без%20секретов%3A%0AКакой%20результат%20нужен%3A%0AОбъём%20или%20частота%3A%0AЖелаемый%20срок%3A">Разобрать процесс</a>
+      <a class="nav-cta" href="#contact">Контакты</a>
     </nav>
   </header>
 
@@ -333,7 +337,7 @@
         <h1>Автоматизирую один ручной процесс за 2–5 дней.</h1>
         <p class="lead">Перенос данных из PDF в Excel, сверка реестров, разбор заявок или проверка AI-ассистента — соберу и протестирую решение для этой рутины.</p>
         <div class="actions">
-          <a class="button primary" href="mailto:uria198816@gmail.com?subject=Разбор%20процесса%20для%20автоматизации&amp;body=Что%20повторяется%20вручную%3A%0AПример%20входа%20без%20секретов%3A%0AКакой%20результат%20нужен%3A%0AОбъём%20или%20частота%3A%0AЖелаемый%20срок%3A">Получить бесплатный разбор</a>
+          <a class="button primary" href="#contact">Получить бесплатный разбор</a>
           <a class="button secondary" href="#works">Посмотреть рабочие примеры</a>
         </div>
         <p class="microcopy">Один обезличенный пример → за 1 рабочий день получите цену, срок и список рисков.</p>
@@ -397,7 +401,7 @@
           </ul>
           <div class="offer-bottom">
             <div class="offer-price"><strong>от 15 000 ₽</strong><span>обычно 2–5 рабочих дней</span></div>
-            <a class="offer-link" href="mailto:uria198816@gmail.com?subject=Автоматизация%20документов%20или%20таблиц&amp;body=Что%20повторяется%20вручную%3A%0AПример%20входа%20без%20секретов%3A%0AКакой%20результат%20нужен%3A%0AОбъём%20или%20частота%3A">Разобрать мой процесс</a>
+            <a class="offer-link" href="#contact">Разобрать мой процесс</a>
           </div>
         </article>
 
@@ -413,7 +417,7 @@
           </ul>
           <div class="offer-bottom">
             <div class="offer-price"><strong>от 20 000 ₽</strong><span>обычно 3–7 рабочих дней</span></div>
-            <a class="offer-link" href="mailto:uria198816@gmail.com?subject=Бот%20или%20внутренний%20AI-инструмент&amp;body=Кто%20будет%20пользоваться%3A%0AЧто%20пользователь%20отправляет%3A%0AЧто%20должен%20получить%3A%0AКакие%20сервисы%20уже%20есть%3A">Разобрать сценарий</a>
+            <a class="offer-link" href="#contact">Разобрать сценарий</a>
           </div>
         </article>
 
@@ -429,7 +433,7 @@
           </ul>
           <div class="offer-bottom">
             <div class="offer-price"><strong>5 900 ₽</strong><span>24 часа после доступа и критериев</span></div>
-            <a class="offer-link" href="mailto:uria198816@gmail.com?subject=Проверка%20качества%20AI-ассистента&amp;body=Сценарий%20для%20проверки%3A%0AКак%20дать%20тестовый%20доступ%3A%0AЧто%20считается%20правильным%20ответом%3A%0AКритичный%20срок%3A">Проверить AI-ассистента</a>
+            <a class="offer-link" href="#contact">Проверить AI-ассистента</a>
           </div>
         </article>
       </div>
@@ -522,7 +526,7 @@
           </div>
           <div class="card-links">
             <a href="https://github.com/BouncinGBall/csv-import-readiness-checker/tree/main/projects/telegram-ai-intake-bot">Исходные файлы и тесты ↗</a>
-            <a href="mailto:uria198816@gmail.com?subject=Telegram%20AI%20Intake%20Bot&amp;body=Процесс%20для%20бота%3A%0AЧто%20пользователь%20отправляет%3A%0AЧто%20должен%20получить%3A">Обсудить внедрение ↗</a>
+            <a href="#contact">Обсудить внедрение ↗</a>
           </div>
         </article>
       </div>
@@ -590,22 +594,22 @@
       </div>
     </section>
 
-    <section class="contact">
-      <span class="section-kicker">Следующий шаг</span>
-      <h2>Получите бесплатный разбор одного процесса.</h2>
-      <p>Пришлите обезличенный пример входа и опишите нужный результат. В течение 1 рабочего дня отвечу письменно:</p>
+    <section class="contact" id="contact">
+      <span class="section-kicker">Контакты</span>
+      <h2>Есть повторяющаяся ручная работа? Напишите.</h2>
+      <p>Для предварительной оценки достаточно коротко указать:</p>
       <ul class="contact-list">
-        <li>что можно автоматизировать уже на первом этапе;</li>
-        <li>какие данные и доступы понадобятся;</li>
-        <li>сколько займёт работа и сколько она будет стоить.</li>
+        <li>что сейчас приходится делать вручную;</li>
+        <li>какие данные приходят на вход и что нужно получить;</li>
+        <li>примерный объём, частоту и желаемый срок.</li>
       </ul>
-      <a class="button" href="mailto:uria198816@gmail.com?subject=Разбор%20процесса%20для%20автоматизации&amp;body=Что%20повторяется%20вручную%3A%0AПример%20входа%20без%20секретов%3A%0AКакой%20результат%20нужен%3A%0AОбъём%20или%20частота%3A%0AЖелаемый%20срок%3A%0AБюджетный%20диапазон%20необязательно%3A">Отправить один пример</a>
-      <p class="contact-note">Предварительный разбор — 0 ₽. Разработка начинается только после согласования результата, цены и способа проверки готовности.</p>
+      <a class="contact-email" href="mailto:uria198816@gmail.com">uria198816@gmail.com</a>
+      <p class="contact-note">Предварительный разбор — 0 ₽. Не отправляйте в первом письме пароли, персональные данные клиентов и другие секреты.</p>
     </section>
   </main>
 
   <footer class="shell">
-    <p>© 2026 Data Pilot. AI-автоматизация с проверяемым результатом.</p>
+    <p>© 2026 Data Pilot · Системы автоматизации.</p>
     <p><a href="https://github.com/BouncinGBall/csv-import-readiness-checker">GitHub</a> · <a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></p>
   </footer>
 </body>

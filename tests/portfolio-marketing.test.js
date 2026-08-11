@@ -54,10 +54,17 @@ test('search and sharing metadata are complete', () => {
   assert.ok(existsSync(resolve(root, 'projects', 'portfolio-og.png')));
 });
 
-test('conversion links use a qualified written brief', () => {
-  const mailtoCount = (html.match(/mailto:uria198816@gmail\.com/g) || []).length;
-  assert.ok(mailtoCount >= 8);
-  assert.match(html, /Что%20повторяется%20вручную/);
-  assert.match(html, /Какой%20результат%20нужен/);
-  assert.match(html, /Пример%20входа%20без%20секретов/);
+test('brand is distinctive and immediately explained', () => {
+  assert.match(html, /<strong>Data Pilot<\/strong><small>Системы автоматизации<\/small>/);
+});
+
+test('conversion links converge on one clear contact block', () => {
+  const contactLinks = html.match(/href="#contact"/g) || [];
+  const directEmailLinks = html.match(/<a[^>]+href="mailto:uria198816@gmail\.com"/g) || [];
+  assert.ok(contactLinks.length >= 6);
+  assert.equal(directEmailLinks.length, 2);
+  assert.match(html, /<section class="contact" id="contact">/);
+  assert.match(html, /что сейчас приходится делать вручную/i);
+  assert.match(html, /примерный объём, частоту и желаемый срок/i);
+  assert.doesNotMatch(html, /brief\.html/);
 });
