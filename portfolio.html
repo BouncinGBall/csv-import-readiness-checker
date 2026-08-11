@@ -51,6 +51,7 @@
       --green-soft: #dcece2;
       --acid: #d9f75d;
       --orange: #f1723d;
+      --orange-text: #a63c17;
       --shadow: 0 22px 60px rgba(31, 45, 35, 0.10);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
@@ -113,7 +114,7 @@
     .microcopy { margin: 13px 0 0; color: #bcd1c4; font-size: 13px; line-height: 1.5; }
 
     .pilot-card { padding: 24px; border: 1px solid rgba(255,255,255,.45); border-radius: 24px; background: var(--paper); color: var(--ink); box-shadow: 0 18px 48px rgba(6, 25, 16, .24); transform: rotate(1.5deg); }
-    .pilot-card .label { color: var(--orange); font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .pilot-card .label { color: var(--orange-text); font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
     .pilot-card h2 { margin: 10px 0 20px; font-size: 29px; line-height: 1.08; letter-spacing: -.035em; }
     .pilot-flow { display: grid; gap: 10px; }
     .flow-row { display: grid; grid-template-columns: 82px 1fr; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }
@@ -132,7 +133,7 @@
 
     section { margin: 78px 0; scroll-margin-top: 92px; }
     .section-head { display: grid; grid-template-columns: .82fr 1.18fr; gap: 40px; align-items: end; margin-bottom: 30px; }
-    .section-kicker { color: var(--orange); font-size: 13px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+    .section-kicker { color: var(--orange-text); font-size: 13px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
     h2 { margin: 9px 0 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: -.045em; }
     .section-intro { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
 
@@ -184,13 +185,14 @@
     .chat-preview { display: grid; gap: 9px; min-height: 205px; padding: 18px; align-content: center; background: linear-gradient(145deg, #eaf4ef, #f8faf6); }
     .bubble { width: fit-content; max-width: 82%; padding: 10px 13px; border-radius: 14px 14px 14px 5px; background: #fff; color: #274035; font-size: 12px; line-height: 1.45; box-shadow: 0 6px 18px rgba(31,45,35,.08); }
     .bubble.user { margin-left: auto; border-radius: 14px 14px 5px 14px; background: var(--green); color: #fff; }
-    .bubble small { display: block; margin-top: 4px; color: #6d8175; font-size: 10px; }
+    .bubble small { display: block; margin-top: 4px; color: #52675b; font-size: 10px; }
     .bubble.user small { color: #c8ded1; }
     .card-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 16px; margin-top: auto; }
     .card-links a { font-weight: 850; text-underline-offset: 4px; }
 
     .process { display: grid; grid-template-columns: .78fr 1.22fr; gap: 18px; }
     .process-intro { padding: clamp(26px, 4vw, 42px); border-radius: 26px; background: var(--orange); color: #29130b; }
+    .process-intro .section-kicker { color: #29130b; }
     .process-intro h2 { margin-top: 8px; }
     .process-intro p { max-width: 450px; font-size: 17px; line-height: 1.55; }
     .process-signal { display: grid; gap: 8px; margin-top: 26px; padding: 18px; border-radius: 16px; background: rgba(255,255,255,.35); }
@@ -434,7 +436,7 @@
             <span class="fact">96 ч до follow-up</span>
           </div>
           <div class="work-visual">
-            <img src="./projects/ai-outreach-hub/outreach_dashboard.png?v=marketing-v1" alt="Dashboard AI Outreach Hub с KPI и этапами pipeline">
+            <img src="./projects/ai-outreach-hub/outreach_dashboard.png?v=marketing-v1" width="1528" height="492" alt="Dashboard AI Outreach Hub с KPI и этапами pipeline">
           </div>
           <div class="card-links">
             <a href="./projects/ai-outreach-hub/AI_Outreach_Hub.xlsx">Скачать рабочую книгу ↗</a>
