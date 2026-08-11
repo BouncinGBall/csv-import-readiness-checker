@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c2f26">
+  <meta name="description" content="Независимый release gate для текстовых AI-агентов: воспроизводимые проверки, пороги допуска, evidence pack, runner и ретест перед релизом.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://bouncingball.github.io/csv-import-readiness-checker/ai-release-gate.html">
+  <title>AI Agent Release Gate — независимая проверка перед релизом</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #142019;
+      --muted: #5d6962;
+      --paper: #fffdf7;
+      --canvas: #eeeee7;
+      --line: #d8ded8;
+      --deep: #0c2f26;
+      --green: #1c684e;
+      --acid: #d9f75d;
+      --orange: #f1713c;
+      --soft: #e1eee7;
+      --shadow: 0 22px 62px rgba(14, 45, 35, .12);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 290px; background: var(--canvas); color: var(--ink); }
+    a { color: inherit; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+    .shell { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+    .topbar { display: flex; min-height: 68px; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; text-decoration: none; }
+    .mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50% 50% 50% 12px; background: var(--deep); color: var(--acid); font-size: 12px; transform: rotate(-7deg); }
+    .mark span { transform: rotate(7deg); }
+    .brand-copy { display: grid; line-height: 1.05; }
+    .brand-copy small { color: var(--muted); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+    .back { color: var(--muted); font-size: 14px; font-weight: 750; text-underline-offset: 4px; }
+
+    .hero { position: relative; overflow: hidden; padding: clamp(38px, 7vw, 82px); border-radius: 34px; background: var(--deep); color: #f6fff8; box-shadow: var(--shadow); }
+    .hero::after { content: "PASS"; position: absolute; right: -32px; bottom: -26px; color: rgba(217,247,93,.08); font-size: clamp(100px, 20vw, 250px); font-weight: 950; letter-spacing: -.09em; }
+    .hero-copy { position: relative; z-index: 1; max-width: 930px; }
+    .eyebrow { color: var(--acid); font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 18px 0 17px; font-size: clamp(43px, 7.2vw, 82px); line-height: .95; letter-spacing: -.06em; }
+    .lead { max-width: 820px; margin: 0; color: #d5e6dc; font-size: clamp(18px, 2vw, 22px); line-height: 1.55; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 27px; }
+    .button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; padding: 0 20px; border-radius: 13px; font-weight: 850; text-decoration: none; }
+    .primary { background: var(--acid); color: #17311f; }
+    .secondary { border: 1px solid rgba(255,255,255,.35); color: #fff; }
+    .hero-note { margin: 14px 0 0; color: #a9c2b3; font-size: 13px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 18px 0 70px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--line); }
+    .stat { padding: 22px; background: var(--paper); }
+    .stat strong { display: block; color: var(--green); font-size: 25px; letter-spacing: -.04em; }
+    .stat span { color: var(--muted); font-size: 13px; }
+
+    section { margin: 68px 0; scroll-margin-top: 24px; }
+    .section-head { display: grid; grid-template-columns: .82fr 1.18fr; gap: 42px; align-items: end; margin-bottom: 28px; }
+    .kicker { color: #a63c17; font-size: 12px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+    h2 { margin: 9px 0 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: -.045em; }
+    .intro { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
+
+    .risks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .risk { padding: 27px; border: 1px solid var(--line); border-radius: 22px; background: var(--paper); }
+    .risk b { color: var(--green); font-size: 28px; }
+    .risk h3 { margin: 15px 0 9px; font-size: 22px; letter-spacing: -.025em; }
+    .risk p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .gate { display: grid; grid-template-columns: .85fr 1.15fr; gap: 18px; }
+    .gate-intro { padding: clamp(28px, 4vw, 44px); border-radius: 26px; background: var(--orange); color: #2d160c; }
+    .gate-intro .kicker { color: #2d160c; }
+    .gate-intro p { font-size: 17px; line-height: 1.6; }
+    .threshold { margin-top: 22px; padding: 17px; border-radius: 15px; background: rgba(255,255,255,.35); }
+    .threshold strong { display: block; margin-bottom: 6px; }
+    .flow { overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: var(--paper); }
+    .flow-row { display: grid; grid-template-columns: 48px 1fr; gap: 16px; padding: 23px 26px; }
+    .flow-row + .flow-row { border-top: 1px solid var(--line); }
+    .num { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 11px; background: var(--soft); color: var(--green); font-weight: 900; }
+    .flow-row h3 { margin: 0 0 5px; font-size: 18px; }
+    .flow-row p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+    .packages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .package { display: flex; min-height: 540px; flex-direction: column; padding: 27px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
+    .package.featured { border-color: var(--deep); background: var(--deep); color: #fff; box-shadow: var(--shadow); transform: translateY(-8px); }
+    .tag { width: fit-content; padding: 7px 10px; border-radius: 999px; background: var(--soft); color: var(--green); font-size: 11px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    .featured .tag { background: var(--acid); color: #17311f; }
+    .package h3 { margin: 20px 0 8px; font-size: 29px; line-height: 1.06; letter-spacing: -.035em; }
+    .package > p { margin: 0; color: var(--muted); line-height: 1.55; }
+    .featured > p { color: #d3e2d8; }
+    .package ul { display: grid; gap: 9px; margin: 23px 0; padding: 0; list-style: none; }
+    .package li { position: relative; padding-left: 21px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+    .package li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 900; }
+    .featured li { color: #e0ece4; }
+    .featured li::before { color: var(--acid); }
+    .price { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); }
+    .featured .price { border-color: rgba(255,255,255,.18); }
+    .price strong { display: block; font-size: 32px; letter-spacing: -.045em; }
+    .price span { color: var(--muted); font-size: 12px; }
+    .featured .price span { color: #c1d3c7; }
+
+    .matrix { overflow-x: auto; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
+    table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    th, td { padding: 17px 19px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #e8eee9; color: var(--green); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+    td { color: var(--muted); line-height: 1.5; }
+    td:first-child { color: var(--ink); font-weight: 800; }
+    tr:last-child td { border-bottom: 0; }
+
+    .boundaries { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .boundary { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
+    .boundary h3 { margin: 0 0 15px; font-size: 26px; }
+    .boundary ul { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.6; }
+    .boundary li + li { margin-top: 8px; }
+
+    .contact { position: relative; overflow: hidden; padding: clamp(36px, 7vw, 72px); border-radius: 30px; background: var(--acid); }
+    .contact::after { content: "→"; position: absolute; right: 4%; bottom: -26%; color: rgba(23,79,58,.12); font-size: 260px; font-weight: 900; }
+    .contact h2 { position: relative; z-index: 1; max-width: 820px; }
+    .contact p { position: relative; z-index: 1; max-width: 760px; color: #354f3e; font-size: 17px; line-height: 1.6; }
+    .email { position: relative; z-index: 1; display: inline-flex; margin-top: 10px; padding: 15px 20px; border-radius: 13px; background: var(--deep); color: #fff; font-size: clamp(18px, 3vw, 25px); font-weight: 900; text-decoration: none; }
+    footer { display: flex; justify-content: space-between; gap: 22px; padding: 28px 0 42px; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 900px) {
+      .stats, .risks, .packages { grid-template-columns: 1fr 1fr; }
+      .section-head, .gate { grid-template-columns: 1fr; }
+      .package.featured { transform: none; }
+    }
+    @media (max-width: 650px) {
+      .shell { width: min(100% - 20px, 1160px); }
+      .topbar { min-height: 60px; }
+      .back { font-size: 12px; }
+      .hero { padding: 34px 24px; border-radius: 24px; }
+      .stats, .risks, .packages, .boundaries { grid-template-columns: 1fr; }
+      .stat { padding: 17px; }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="./portfolio.html"><span class="mark"><span>DP</span></span><span class="brand-copy">Data Pilot<small>Системы автоматизации</small></span></a>
+    <a class="back" href="./portfolio.html">Портфолио и другие решения →</a>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">AI Agent Release Gate</span>
+        <h1>Проверяем AI-агента до того, как ошибки увидят клиенты.</h1>
+        <p class="lead">Независимый регрессионный контур для текстовых AI-агентов, RAG и действий через API: воспроизводимые прогоны, доказательства, пороги допуска и повторная проверка исправлений.</p>
+        <div class="actions">
+          <a class="button primary" href="#packages">Сравнить форматы</a>
+          <a class="button secondary" href="#contact">Запросить письменный scope</a>
+        </div>
+        <p class="hero-note">Работа начинается только после письменного scope, безопасного тестового доступа, критериев приёмки и оплаты.</p>
+      </div>
+    </section>
+
+    <div class="stats" aria-label="Параметры услуги">
+      <div class="stat"><strong>150–500</strong><span>зафиксированных результатов</span></div>
+      <div class="stat"><strong>2 конфигурации</strong><span>для сравнения до и после</span></div>
+      <div class="stat"><strong>5–10 дней</strong><span>в зависимости от контура</span></div>
+      <div class="stat"><strong>49–150 тыс. ₽</strong><span>фиксируется до старта</span></div>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <div><span class="kicker">Зачем отдельный gate</span><h2>Демо показывает удачный ответ. Релиз требует повторяемого результата.</h2></div>
+        <p class="intro">Один и тот же агент может уверенно отвечать на обычный вопрос и ломаться на конфликте источников, пустом результате API, смене формулировки или передаче диалога оператору.</p>
+      </div>
+      <div class="risks">
+        <article class="risk"><b>01</b><h3>Правдоподобная ошибка</h3><p>Ответ выглядит убедительно, но содержит выдуманный факт, цену, статус или действие, которого нет в источнике.</p></article>
+        <article class="risk"><b>02</b><h3>Сломанный переход</h3><p>Агент неверно классифицирует запрос, теряет контекст или не передаёт оператору историю и причину эскалации.</p></article>
+        <article class="risk"><b>03</b><h3>Тихая регрессия</h3><p>Новая модель, промпт или база знаний улучшает средний ответ, но ухудшает критичный редкий сценарий.</p></article>
+      </div>
+    </section>
+
+    <section class="gate">
+      <div class="gate-intro">
+        <span class="kicker">Контур допуска</span>
+        <h2>У каждого результата есть источник и вердикт.</h2>
+        <p>Сначала вместе фиксируем, что считается допустимым ответом и какой сбой блокирует релиз. После этого каждый прогон можно повторить и сравнить с предыдущей конфигурацией.</p>
+        <div class="threshold"><strong>Пример правила:</strong><span>0 Critical, не более 2 High, grounding pass ≥ 95%, корректная эскалация ≥ 98%.</span></div>
+      </div>
+      <div class="flow">
+        <article class="flow-row"><span class="num">1</span><div><h3>Карта процессов и рисков</h3><p>Фиксируем сценарии, источники, действия, варианты отказа и блокирующие условия.</p></div></article>
+        <article class="flow-row"><span class="num">2</span><div><h3>Версионируемый набор проверок</h3><p>Обычные запросы, границы, конфликты, ошибочные входы и безопасные adversarial-примеры.</p></div></article>
+        <article class="flow-row"><span class="num">3</span><div><h3>Runner и журнал</h3><p>Ответ, конфигурация, задержка, evidence, статус, критичность и причина решения сохраняются в одном формате.</p></div></article>
+        <article class="flow-row"><span class="num">4</span><div><h3>Порог допуска и ретест</h3><p>Сводка показывает, что блокирует релиз, а повторный прогон подтверждает исправление без скрытой регрессии.</p></div></article>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="section-head">
+        <div><span class="kicker">Фиксированные форматы</span><h2>От одного релиза до постоянного контура.</h2></div>
+        <p class="intro">Объём считается по процессам и зафиксированным результатам, а не по числу часов. Границы, доступы и способ приёмки записываются до старта.</p>
+      </div>
+      <div class="packages">
+        <article class="package">
+          <span class="tag">Release Gate</span>
+          <h3>Один релиз</h3>
+          <p>Для команды, которой нужно проверить ключевые пути перед выпуском.</p>
+          <ul>
+            <li>3 письменных процесса</li>
+            <li>до 150 кейсов и результатов</li>
+            <li>1 согласованная конфигурация</li>
+            <li>runner, Run Log и evidence pack</li>
+            <li>пороги допуска и 2 ретеста</li>
+          </ul>
+          <div class="price"><strong>49 000 ₽</strong><span>до 5 рабочих дней</span></div>
+        </article>
+
+        <article class="package featured">
+          <span class="tag">Основной формат</span>
+          <h3>Release Audit</h3>
+          <p>Для сравнения двух версий модели, промпта или базы знаний до релиза.</p>
+          <ul>
+            <li>4 письменных процесса</li>
+            <li>150 кейсов × 2 конфигурации</li>
+            <li>до 300 зафиксированных результатов</li>
+            <li>сравнение качества, отказов и задержки</li>
+            <li>runner, исходники, evidence и 2 ретеста</li>
+          </ul>
+          <div class="price"><strong>90 000 ₽</strong><span>до 7 рабочих дней</span></div>
+        </article>
+
+        <article class="package">
+          <span class="tag">Интегрируемый контур</span>
+          <h3>Continuous Gate</h3>
+          <p>Для регулярных релизов, когда проверка должна запускаться повторно без ручной пересборки.</p>
+          <ul>
+            <li>до 5 письменных процессов</li>
+            <li>до 500 результатов первого цикла</li>
+            <li>версионируемый датасет и runner</li>
+            <li>адаптер к согласованному API или CI</li>
+            <li>dashboard, пороги и регламент обновления</li>
+          </ul>
+          <div class="price"><strong>от 150 000 ₽</strong><span>7–10 рабочих дней после технического scope</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div><span class="kicker">Что проверяем</span><h2>Не только качество текста.</h2></div>
+        <p class="intro">Матрица собирается под реальный путь пользователя. Нерелевантные группы исключаются, чтобы не раздувать объём.</p>
+      </div>
+      <div class="matrix">
+        <table>
+          <thead><tr><th>Группа</th><th>Что может сломаться</th><th>Что остаётся в evidence</th></tr></thead>
+          <tbody>
+            <tr><td>Grounding и RAG</td><td>Выдуманные факты, устаревший источник, конфликт документов, отсутствие ответа.</td><td>Запрос, использованный контекст, ответ, ожидание и причина вердикта.</td></tr>
+            <tr><td>Классификация и routing</td><td>Неверный интент, очередь, ответственный, тег или стадия процесса.</td><td>Ожидаемый и фактический маршрут, severity и воспроизводимые входы.</td></tr>
+            <tr><td>Действия через API</td><td>Пустой результат, timeout, неверный параметр, повторное действие, частичный отказ.</td><td>Вход, безопасный тестовый ответ API, действие агента и fallback.</td></tr>
+            <tr><td>Эскалация человеку</td><td>Поздний handoff, потеря контекста, отсутствие резюме или ложное обещание.</td><td>Точка передачи, причина, сохранённый контекст и ожидаемая реакция.</td></tr>
+            <tr><td>Безопасное поведение</td><td>Разглашение скрытой инструкции, работа с лишними данными, обход запретов.</td><td>Безопасный синтетический кейс, ответ, правило и блокирующий порог.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="boundaries">
+      <article class="boundary"><h3>Нужно от команды</h3><ul><li>письменный scope и владелец критериев;</li><li>staging или тестовый API без реальных персональных данных;</li><li>версии модели, промпта и базы знаний;</li><li>согласованные пороги и тестовые ключи/лимиты.</li></ul></article>
+      <article class="boundary"><h3>Не входит</h3><ul><li>гарантия абсолютной точности AI;</li><li>security-пентест и нагрузочное тестирование;</li><li>работа с production-данными клиентов;</li><li>обучение модели и исправление продукта, если это не отдельный этап.</li></ul></article>
+    </section>
+
+    <section class="contact" id="contact">
+      <span class="kicker">Письменный scope</span>
+      <h2>Пришлите один процесс и критерий, который блокирует релиз.</h2>
+      <p>В ответ — границы проверки, нужные доступы, количество прогонов, фиксированная цена и способ приёмки. Для первичной оценки не нужны секреты и реальные данные клиентов.</p>
+      <a class="email" href="mailto:uria198816@gmail.com">uria198816@gmail.com</a>
+    </section>
+  </main>
+
+  <footer class="shell"><span>© 2026 Data Pilot · AI Agent Release Gate</span><span><a href="./ai-eval.html">Демо отчёта</a> · <a href="./portfolio.html">Портфолио</a></span></footer>
+</body>
+</html>

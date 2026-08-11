@@ -16,6 +16,17 @@ function walk(dir) {
 
 const htmlFiles = walk(root).filter((file) => extname(file).toLowerCase() === '.html');
 
+test('enterprise AI release gate has explicit scope, price and boundaries', () => {
+  const html = readFileSync(resolve(root, 'ai-release-gate.html'), 'utf8');
+  assert.match(html, /49 000 ₽/);
+  assert.match(html, /90 000 ₽/);
+  assert.match(html, /от 150 000 ₽/);
+  assert.match(html, /до 500 результатов/i);
+  assert.match(html, /Не входит/);
+  assert.match(html, /production-данными/i);
+  assert.match(html, /письменный scope/i);
+});
+
 function localReferences(html) {
   return [...html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)]
     .map((match) => match[1])
