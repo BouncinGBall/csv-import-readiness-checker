@@ -3,8 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Data Pilot — AI-внедрения, автоматизация процессов, обработка данных и async QA с проверяемым результатом.">
-  <title>Data Pilot — AI-внедрения и автоматизация процессов</title>
+  <meta name="theme-color" content="#174f3a">
+  <meta name="description" content="Автоматизация документов, таблиц и заявок: рабочий пилот за 2–5 дней, фиксированная цена, исходники и тесты. Оценка задачи за 1 рабочий день.">
+  <link rel="canonical" href="https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Data Pilot">
+  <meta property="og:title" content="AI-автоматизация ручных процессов — Data Pilot">
+  <meta property="og:description" content="Один ручной процесс превращается в проверяемый пилот за 2–5 дней. Фиксированный scope, исходники, тесты и понятная приёмка.">
+  <meta property="og:url" content="https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html">
+  <meta property="og:image" content="https://bouncingball.github.io/csv-import-readiness-checker/projects/portfolio-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Data Pilot — AI-автоматизация одного ручного процесса за 2–5 дней">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI-автоматизация ручных процессов — Data Pilot">
+  <meta name="twitter:description" content="Проверяемый AI-пилот за 2–5 дней: фиксированный результат, исходники и тесты.">
+  <meta name="twitter:image" content="https://bouncingball.github.io/csv-import-readiness-checker/projects/portfolio-og.png">
+  <title>AI-автоматизация ручных процессов — Data Pilot</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Data Pilot",
+    "url": "https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html",
+    "email": "mailto:uria198816@gmail.com",
+    "description": "Разработка проверяемых AI-пилотов для обработки документов, таблиц, заявок и тестирования AI-ассистентов.",
+    "knowsAbout": [
+      "AI automation",
+      "document processing",
+      "spreadsheet automation",
+      "AI assistant quality assurance",
+      "Telegram bots"
+    ]
+  }
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -14,6 +47,7 @@
       --canvas: #f1eee5;
       --line: #d9ddd2;
       --green: #174f3a;
+      --green-2: #236a4d;
       --green-soft: #dcece2;
       --acid: #d9f75d;
       --orange: #f1723d;
@@ -25,43 +59,110 @@
     html { scroll-behavior: smooth; }
     body { margin: 0; min-width: 290px; background: var(--canvas); color: var(--ink); }
     a { color: inherit; }
-    a:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
-
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
     .shell { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
-    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 76px; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -0.02em; text-decoration: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      border-bottom: 1px solid rgba(23, 33, 27, .08);
+      background: rgba(241, 238, 229, .88);
+      backdrop-filter: blur(16px);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -.02em; text-decoration: none; }
     .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50% 50% 50% 12px; background: var(--green); color: var(--acid); font-size: 13px; transform: rotate(-7deg); }
     .brand-mark span { transform: rotate(7deg); }
-    nav { display: flex; flex-wrap: wrap; gap: 18px; color: var(--muted); font-size: 14px; font-weight: 700; }
+    nav { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; color: var(--muted); font-size: 14px; font-weight: 750; }
     nav a { text-decoration: none; }
     nav a:hover { color: var(--ink); }
+    .nav-cta { padding: 9px 13px; border-radius: 10px; background: var(--green); color: #fff; }
+    .nav-cta:hover { color: #fff; background: var(--green-2); }
 
-    .hero { position: relative; overflow: hidden; min-height: 600px; padding: clamp(42px, 8vw, 96px); border: 1px solid #143d2e; border-radius: 34px; background: var(--green); color: #f8fff8; box-shadow: var(--shadow); }
-    .hero::before { content: ""; position: absolute; top: -155px; right: -85px; width: 460px; height: 460px; border: 1px solid rgba(217, 247, 93, .45); border-radius: 50%; box-shadow: 0 0 0 54px rgba(217, 247, 93, .08), 0 0 0 108px rgba(217, 247, 93, .05); }
-    .hero::after { content: ""; position: absolute; right: 9%; bottom: 8%; width: 150px; height: 150px; border-radius: 32px; background: var(--acid); transform: rotate(13deg); }
-    .hero-copy { position: relative; z-index: 1; max-width: 820px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 24px; color: #dff3e5; font-size: 13px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(290px, .7fr);
+      gap: clamp(30px, 6vw, 76px);
+      overflow: hidden;
+      min-height: 570px;
+      align-items: center;
+      padding: clamp(38px, 7vw, 82px);
+      border: 1px solid #143d2e;
+      border-radius: 34px;
+      background: var(--green);
+      color: #f8fff8;
+      box-shadow: var(--shadow);
+    }
+    .hero::before { content: ""; position: absolute; top: -190px; right: -130px; width: 520px; height: 520px; border: 1px solid rgba(217, 247, 93, .42); border-radius: 50%; box-shadow: 0 0 0 56px rgba(217, 247, 93, .07), 0 0 0 112px rgba(217, 247, 93, .04); }
+    .hero-copy, .pilot-card { position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 22px; color: #dff3e5; font-size: 12px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
     .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--acid); }
-    h1 { max-width: 860px; margin: 0; font-size: clamp(46px, 8vw, 88px); line-height: .96; letter-spacing: -.058em; }
-    .hero .lead { max-width: 700px; margin: 28px 0 0; color: #dce8df; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.55; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    h1 { max-width: 760px; margin: 0; font-size: clamp(45px, 6.7vw, 76px); line-height: .98; letter-spacing: -.055em; }
+    .hero .lead { max-width: 720px; margin: 26px 0 0; color: #dce8df; font-size: clamp(18px, 2vw, 22px); line-height: 1.55; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
     .button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; padding: 0 19px; border: 1px solid rgba(255,255,255,.3); border-radius: 13px; font-weight: 850; text-decoration: none; }
     .button.primary { border-color: var(--acid); background: var(--acid); color: #17311f; }
     .button.primary:hover { background: #e5ff7d; }
     .button.secondary:hover { background: rgba(255,255,255,.08); }
-    .hero-note { position: absolute; z-index: 1; right: 38px; bottom: 34px; width: 180px; color: #17311f; font-size: 13px; font-weight: 850; line-height: 1.35; transform: rotate(-3deg); }
+    .microcopy { margin: 13px 0 0; color: #bcd1c4; font-size: 13px; line-height: 1.5; }
 
-    .principles { display: grid; grid-template-columns: repeat(4, 1fr); margin: 22px 0 74px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,253,247,.72); }
+    .pilot-card { padding: 24px; border: 1px solid rgba(255,255,255,.45); border-radius: 24px; background: var(--paper); color: var(--ink); box-shadow: 0 18px 48px rgba(6, 25, 16, .24); transform: rotate(1.5deg); }
+    .pilot-card .label { color: var(--orange); font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .pilot-card h2 { margin: 10px 0 20px; font-size: 29px; line-height: 1.08; letter-spacing: -.035em; }
+    .pilot-flow { display: grid; gap: 10px; }
+    .flow-row { display: grid; grid-template-columns: 82px 1fr; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }
+    .flow-row strong { color: var(--green); font-size: 12px; text-transform: uppercase; }
+    .flow-row span { color: var(--muted); font-size: 14px; line-height: 1.45; }
+    .pilot-price { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-top: 18px; padding: 16px; border-radius: 15px; background: var(--green-soft); }
+    .pilot-price strong { display: block; font-size: 26px; letter-spacing: -.035em; }
+    .pilot-price span { color: var(--muted); font-size: 12px; }
+    .pilot-price b { color: var(--green); font-size: 12px; text-align: right; }
+
+    .principles { display: grid; grid-template-columns: repeat(4, 1fr); margin: 22px 0 74px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,253,247,.78); }
     .principle { padding: 20px; }
     .principle + .principle { border-left: 1px solid var(--line); }
-    .principle strong { display: block; margin-bottom: 4px; font-size: 15px; }
+    .principle strong { display: block; margin-bottom: 4px; font-size: 20px; letter-spacing: -.03em; }
     .principle span { color: var(--muted); font-size: 13px; line-height: 1.45; }
 
-    section { margin: 76px 0; }
-    .section-head { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: end; margin-bottom: 30px; }
+    section { margin: 78px 0; scroll-margin-top: 92px; }
+    .section-head { display: grid; grid-template-columns: .82fr 1.18fr; gap: 40px; align-items: end; margin-bottom: 30px; }
     .section-kicker { color: var(--orange); font-size: 13px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
     h2 { margin: 9px 0 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: -.045em; }
     .section-intro { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
+
+    .offer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .offer-card { display: flex; min-height: 455px; flex-direction: column; padding: 28px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); box-shadow: 0 16px 42px rgba(31,45,35,.05); }
+    .offer-card.featured { border-color: var(--green); background: var(--green); color: #fff; transform: translateY(-8px); box-shadow: var(--shadow); }
+    .offer-tag { width: fit-content; padding: 7px 10px; border-radius: 999px; background: var(--green-soft); color: var(--green); font-size: 11px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    .featured .offer-tag { background: var(--acid); color: #17311f; }
+    .offer-card h3 { margin: 22px 0 10px; font-size: 30px; line-height: 1.06; letter-spacing: -.035em; }
+    .offer-card > p { margin: 0; color: var(--muted); line-height: 1.58; }
+    .featured > p { color: #d5e5da; }
+    .offer-list { display: grid; gap: 10px; margin: 24px 0; padding: 0; list-style: none; }
+    .offer-list li { position: relative; padding-left: 22px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+    .offer-list li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 900; }
+    .featured .offer-list li { color: #e4efe7; }
+    .featured .offer-list li::before { color: var(--acid); }
+    .offer-bottom { margin-top: auto; }
+    .offer-price { margin-bottom: 17px; }
+    .offer-price strong { display: block; font-size: 30px; letter-spacing: -.04em; }
+    .offer-price span { color: var(--muted); font-size: 12px; }
+    .featured .offer-price span { color: #c6d8cb; }
+    .offer-link { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; border: 1px solid var(--green); border-radius: 12px; color: var(--green); font-weight: 850; text-decoration: none; }
+    .offer-link:hover { background: var(--green-soft); }
+    .featured .offer-link { border-color: var(--acid); background: var(--acid); color: #17311f; }
+    .offer-note { margin: 15px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .proof-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-bottom: 20px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--line); }
+    .proof-metric { padding: 18px 20px; background: var(--paper); }
+    .proof-metric strong { display: block; color: var(--green); font-size: 25px; letter-spacing: -.04em; }
+    .proof-metric span { color: var(--muted); font-size: 13px; }
 
     .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     .work-card { position: relative; display: flex; min-height: 440px; flex-direction: column; overflow: hidden; padding: clamp(25px, 4vw, 42px); border: 1px solid var(--line); border-radius: 26px; background: var(--paper); box-shadow: 0 16px 42px rgba(31,45,35,.06); }
@@ -88,16 +189,13 @@
     .card-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 16px; margin-top: auto; }
     .card-links a { font-weight: 850; text-underline-offset: 4px; }
 
-    .capabilities { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .capability { min-height: 210px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,253,247,.76); }
-    .capability .index { display: block; margin-bottom: 40px; color: var(--orange); font: 800 13px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    .capability h3 { margin: 0 0 9px; font-size: 20px; }
-    .capability p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-
-    .process { display: grid; grid-template-columns: .75fr 1.25fr; gap: 18px; }
+    .process { display: grid; grid-template-columns: .78fr 1.22fr; gap: 18px; }
     .process-intro { padding: clamp(26px, 4vw, 42px); border-radius: 26px; background: var(--orange); color: #29130b; }
-    .process-intro h2 { margin-top: 0; }
+    .process-intro h2 { margin-top: 8px; }
     .process-intro p { max-width: 450px; font-size: 17px; line-height: 1.55; }
+    .process-signal { display: grid; gap: 8px; margin-top: 26px; padding: 18px; border-radius: 16px; background: rgba(255,255,255,.35); }
+    .process-signal strong { font-size: 14px; }
+    .process-signal span { font-size: 13px; line-height: 1.45; }
     .steps { overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: var(--paper); }
     .step { display: grid; grid-template-columns: 50px 1fr; gap: 16px; padding: 25px 28px; }
     .step + .step { border-top: 1px solid var(--line); }
@@ -109,38 +207,61 @@
     .proof-card { padding: clamp(26px, 4vw, 42px); border: 1px solid var(--line); border-radius: 26px; background: var(--paper); }
     .proof-card h3 { margin: 0 0 14px; font-size: 28px; letter-spacing: -.025em; }
     .proof-card p { margin: 0; color: var(--muted); line-height: 1.65; }
-    .proof-card code { padding: 3px 6px; border-radius: 6px; background: #edf1eb; color: var(--green); }
+
+    .faq { display: grid; grid-template-columns: .72fr 1.28fr; gap: 32px; align-items: start; }
+    .faq-list { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
+    details { padding: 0 24px; }
+    details + details { border-top: 1px solid var(--line); }
+    summary { cursor: pointer; padding: 22px 34px 22px 0; font-size: 17px; font-weight: 850; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; margin-right: -30px; color: var(--green); font-size: 22px; }
+    details[open] summary::after { content: "−"; }
+    details p { margin: -6px 0 22px; color: var(--muted); line-height: 1.6; }
 
     .contact { position: relative; overflow: hidden; padding: clamp(36px, 7vw, 76px); border-radius: 30px; background: var(--acid); color: #16251b; }
     .contact::after { content: "↗"; position: absolute; right: 5%; bottom: -14%; color: rgba(23,79,58,.12); font-size: 250px; font-weight: 900; line-height: 1; }
-    .contact h2 { max-width: 780px; margin: 0; }
-    .contact p { max-width: 650px; margin: 18px 0 0; font-size: 18px; line-height: 1.6; }
+    .contact h2 { max-width: 850px; margin: 8px 0 0; }
+    .contact p { max-width: 690px; margin: 18px 0 0; font-size: 18px; line-height: 1.6; }
     .contact .button { position: relative; z-index: 1; margin-top: 28px; border-color: var(--green); background: var(--green); color: #fff; }
+    .contact .button:hover { background: var(--green-2); }
+    .contact-note { position: relative; z-index: 1; margin-top: 12px !important; color: #42604d; font-size: 13px !important; }
 
     footer { display: flex; justify-content: space-between; gap: 20px; padding: 32px 0 42px; color: var(--muted); font-size: 13px; }
     footer p { margin: 0; }
 
-    @media (max-width: 860px) {
-      .hero { min-height: 560px; }
-      .hero::after, .hero-note { display: none; }
-      .principles, .capabilities { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
+      .pilot-card { max-width: 620px; transform: none; }
+      .offer-grid { grid-template-columns: 1fr; }
+      .offer-card { min-height: auto; }
+      .offer-card.featured { transform: none; }
+      .section-head, .work-grid, .process, .faq { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .principles { grid-template-columns: repeat(2, 1fr); }
       .principle:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
       .principle:nth-child(4) { border-top: 1px solid var(--line); }
-      .section-head, .work-grid, .process { grid-template-columns: 1fr; }
+      .proof-strip { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 620px) {
       .shell { width: min(100% - 22px, 1160px); }
-      .topbar { align-items: flex-start; flex-direction: column; padding: 18px 2px; }
-      nav { gap: 12px; }
-      .hero { min-height: auto; padding: 40px 24px 48px; border-radius: 23px; }
-      h1 { font-size: clamp(42px, 14vw, 64px); }
-      .principles, .capabilities, .proof { grid-template-columns: 1fr; }
+      .topbar { position: static; align-items: flex-start; flex-direction: column; padding: 18px 2px; }
+      nav { width: 100%; gap: 12px; }
+      .nav-cta { margin-left: auto; }
+      .hero { min-height: auto; padding: 40px 24px 34px; border-radius: 23px; }
+      h1 { font-size: clamp(42px, 13vw, 59px); }
+      .pilot-card { padding: 20px; }
+      .pilot-price { align-items: start; flex-direction: column; }
+      .pilot-price b { text-align: left; }
+      .principles, .proof { grid-template-columns: 1fr; }
       .principle + .principle { border-top: 1px solid var(--line); border-left: 0; }
       .section-head { gap: 18px; }
       .work-card { min-height: 420px; border-radius: 22px; }
       .work-card::after { font-size: 82px; }
       .step { grid-template-columns: 40px 1fr; padding: 22px 18px; }
+      .contact::after { display: none; }
       footer { flex-direction: column; }
     }
 
@@ -154,53 +275,134 @@
       Data Pilot
     </a>
     <nav aria-label="Основная навигация">
+      <a href="#offers">Услуги и цены</a>
       <a href="#works">Работы</a>
-      <a href="#services">Что делаю</a>
-      <a href="#process">Процесс</a>
-      <a href="mailto:uria198816@gmail.com">Написать</a>
+      <a href="#process">Как работаем</a>
+      <a class="nav-cta" href="mailto:uria198816@gmail.com?subject=Оценка%20AI-пилота&amp;body=Ручной%20процесс%3A%0AПример%20входных%20данных%20без%20секретов%3A%0AЖелаемый%20результат%3A%0AОбъём%20и%20срок%3A">Получить оценку</a>
     </nav>
   </header>
 
   <main class="shell">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Async AI implementation studio</p>
-        <h1>AI-внедрения без тумана и бесконечных созвонов.</h1>
-        <p class="lead">Фиксированные пилоты для обработки документов, таблиц, заявок и проверки AI-ассистентов. Письменный scope, тесты, журнал решений и понятный результат.</p>
+        <p class="eyebrow">AI-автоматизация для бизнеса и продуктовых команд</p>
+        <h1>Один ручной процесс — в работающую автоматизацию за 2–5 дней.</h1>
+        <p class="lead">Документы, таблицы, заявки или AI-ассистент превращаются в проверяемый пилот. На выходе — рабочий сценарий, исходники, тесты и понятная приёмка.</p>
         <div class="actions">
-          <a class="button primary" href="#works">Посмотреть работы</a>
-          <a class="button secondary" href="mailto:uria198816@gmail.com?subject=Новая%20задача%20для%20Data%20Pilot&amp;body=Задача%3A%0AИсходные%20данные%3A%0AЖелаемый%20результат%3A%0AСрок%3A">Обсудить задачу письменно</a>
+          <a class="button primary" href="mailto:uria198816@gmail.com?subject=Оценка%20AI-пилота&amp;body=Ручной%20процесс%3A%0AПример%20входных%20данных%20без%20секретов%3A%0AЖелаемый%20результат%3A%0AОбъём%20и%20срок%3A">Получить план и цену</a>
+          <a class="button secondary" href="#works">Проверить живые работы</a>
         </div>
+        <p class="microcopy">Предварительная оценка — в течение 1 рабочего дня. Вся работа и приёмка могут пройти письменно.</p>
       </div>
-      <p class="hero-note">Никаких созвонов: scope, работа и приёмка проходят письменно.</p>
+
+      <aside class="pilot-card" aria-label="Что входит в пилот">
+        <span class="label">Формат первого проекта</span>
+        <h2>Пилот на одном процессе</h2>
+        <div class="pilot-flow">
+          <div class="flow-row"><strong>Вход</strong><span>Один обезличенный пример: PDF, таблица, заявка или диалог.</span></div>
+          <div class="flow-row"><strong>Решение</strong><span>Правила, AI-модель, API или бот — только то, что нужно для результата.</span></div>
+          <div class="flow-row"><strong>Выход</strong><span>Рабочий артефакт, тесты, инструкция и список известных ограничений.</span></div>
+        </div>
+        <div class="pilot-price">
+          <div><span>Автоматизация</span><strong>от 15 000 ₽</strong></div>
+          <b>Цена фиксируется<br>до старта</b>
+        </div>
+      </aside>
     </section>
 
-    <div class="principles" aria-label="Принципы работы">
-      <div class="principle"><strong>Точный scope</strong><span>Сначала фиксируем результат и критерии приёмки.</span></div>
-      <div class="principle"><strong>Проверяемый output</strong><span>Артефакты, тесты, логи и контрольные итоги.</span></div>
-      <div class="principle"><strong>Приватность</strong><span>Синтетические или обезличенные данные для демо.</span></div>
-      <div class="principle"><strong>Полностью async</strong><span>Без звонков, встреч и доступа сверх необходимого.</span></div>
+    <div class="principles" aria-label="Условия работы">
+      <div class="principle"><strong>1 рабочий день</strong><span>на письменный план, вопросы и фиксированную оценку</span></div>
+      <div class="principle"><strong>2–5 дней</strong><span>типичный срок ограниченного пилота на одном процессе</span></div>
+      <div class="principle"><strong>0 скрытых этапов</strong><span>scope, цена и критерии приёмки известны до старта</span></div>
+      <div class="principle"><strong>Исходники + тесты</strong><span>результат можно открыть, проверить и передать дальше</span></div>
     </div>
+
+    <section id="offers">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Стартовые пакеты</span>
+          <h2>Покупаете результат, а не часы разработки.</h2>
+        </div>
+        <p class="section-intro">Начинаем с одного измеримого сценария. Если задача шире, сначала выделяю пилот, который можно проверить отдельно и не раздувать объём до подтверждения ценности.</p>
+      </div>
+
+      <div class="offer-grid">
+        <article class="offer-card featured">
+          <span class="offer-tag">Основной формат</span>
+          <h3>Автоматизация документов и таблиц</h3>
+          <p>Для сверки, извлечения, классификации и подготовки данных, которые сейчас переносят вручную.</p>
+          <ul class="offer-list">
+            <li>один тип входных данных и один итоговый формат</li>
+            <li>журнал ошибок и очередь спорных случаев</li>
+            <li>контрольные примеры, тесты и инструкция</li>
+            <li>Python, JavaScript, Excel или Google Sheets</li>
+          </ul>
+          <div class="offer-bottom">
+            <div class="offer-price"><strong>от 15 000 ₽</strong><span>обычно 2–5 рабочих дней</span></div>
+            <a class="offer-link" href="mailto:uria198816@gmail.com?subject=Автоматизация%20документов%20или%20таблиц&amp;body=Что%20сейчас%20делается%20вручную%3A%0AФормат%20входа%3A%0AФормат%20результата%3A%0AПримерный%20объём%3A">Описать ручной процесс</a>
+          </div>
+        </article>
+
+        <article class="offer-card">
+          <span class="offer-tag">Заявки и процессы</span>
+          <h3>Бот или внутренний AI-инструмент</h3>
+          <p>Для приёма заявок, расчётов, маршрутизации и небольших сценариев между формой, почтой, таблицей или API.</p>
+          <ul class="offer-list">
+            <li>один законченный пользовательский сценарий</li>
+            <li>явные статусы, fallback и журнал действий</li>
+            <li>mock-режим до подключения реальных ключей</li>
+            <li>исходники и инструкция по запуску</li>
+          </ul>
+          <div class="offer-bottom">
+            <div class="offer-price"><strong>от 20 000 ₽</strong><span>обычно 3–7 рабочих дней</span></div>
+            <a class="offer-link" href="mailto:uria198816@gmail.com?subject=Бот%20или%20внутренний%20AI-инструмент&amp;body=Кто%20будет%20пользоваться%3A%0AЧто%20пользователь%20отправляет%3A%0AЧто%20должен%20получить%3A%0AКакие%20сервисы%20уже%20есть%3A">Получить оценку сценария</a>
+          </div>
+        </article>
+
+        <article class="offer-card">
+          <span class="offer-tag">Быстрый вход</span>
+          <h3>QA-пилот AI-ассистента</h3>
+          <p>Для команды, которой нужно до релиза увидеть сбои основного пути, края, ограничения и качество fallback.</p>
+          <ul class="offer-list">
+            <li>один сценарий и до 50 тест-кейсов</li>
+            <li>expected / actual, evidence и severity</li>
+            <li>сводка рисков и один письменный ретест</li>
+            <li>синтетические или обезличенные данные</li>
+          </ul>
+          <div class="offer-bottom">
+            <div class="offer-price"><strong>5 900 ₽</strong><span>24 часа после доступа и критериев</span></div>
+            <a class="offer-link" href="mailto:uria198816@gmail.com?subject=QA-пилот%20AI-ассистента&amp;body=Сценарий%20для%20проверки%3A%0AКак%20дать%20тестовый%20доступ%3A%0AЧто%20считается%20правильным%20ответом%3A%0AКритичный%20срок%3A">Заказать QA-пилот</a>
+          </div>
+        </article>
+      </div>
+      <p class="offer-note">Стартовые цены относятся к одному ограниченному сценарию. Инфраструктура, платные API и внешние подписки не включаются молча: необходимость и стоимость согласуются заранее.</p>
+    </section>
 
     <section id="works">
       <div class="section-head">
         <div>
-          <span class="section-kicker">Публичные работы</span>
-          <h2>Не скриншоты. Можно открыть и проверить.</h2>
+          <span class="section-kicker">Проверяемые работы</span>
+          <h2>Можно открыть, запустить и посмотреть код.</h2>
         </div>
-        <p class="section-intro">Здесь только то, что действительно существует. Клиентские работы появляются после приёмки и только в разрешённом или обезличенном виде.</p>
+        <p class="section-intro">Без декоративных мокапов и неподтверждённых процентов роста. Ниже — работающие инструменты, исходники, тесты и честно обозначенные ограничения.</p>
+      </div>
+
+      <div class="proof-strip" aria-label="Публичные доказательства">
+        <div class="proof-metric"><strong>4</strong><span>проекта доступны публично</span></div>
+        <div class="proof-metric"><strong>24</strong><span>автотеста в опубликованных инструментах</span></div>
+        <div class="proof-metric"><strong>0</strong><span>скрытых клиентских данных в демо</span></div>
       </div>
 
       <div class="work-grid">
         <article class="work-card" data-number="01">
-          <span class="status">Работает публично</span>
+          <span class="status">Живой инструмент</span>
           <h3>CSV Import Readiness Checker</h3>
-          <p>Локальный мини-аудит CSV перед импортом в CRM или товарный каталог. Находит пропуски, точные дубли, проблемы формата, нестабильную ширину строк и профильные ошибки каталога.</p>
+          <p>Проверяет небольшой CSV до импорта в CRM или товарный каталог: находит пропуски, дубли, нарушения структуры и профильные ошибки полей.</p>
           <div class="facts">
             <span class="fact">17 автотестов</span>
             <span class="fact">2 профиля проверки</span>
-            <span class="fact">данные не покидают браузер</span>
-            <span class="fact">open source</span>
+            <span class="fact">данные остаются в браузере</span>
+            <span class="fact">открытый код</span>
           </div>
           <div class="card-links">
             <a href="./">Запустить инструмент ↗</a>
@@ -209,13 +411,13 @@
         </article>
 
         <article class="work-card dark" data-number="02">
-          <span class="status">Демо услуги</span>
+          <span class="status">Демо результата</span>
           <h3>AI Assistant Evaluation Pack</h3>
-          <p>Фиксированный письменный пилот для одного сценария AI-ассистента: тестовая матрица, expected/actual, evidence, severity и один ретест после исправлений.</p>
+          <p>Показывает формат сдачи QA-пилота: тестовая матрица, expected / actual, доказательства, критичность, сводка рисков и ретест после исправлений.</p>
           <div class="facts">
             <span class="fact">до 50 тест-кейсов</span>
             <span class="fact">1 сценарий</span>
-            <span class="fact">24 ч после старта</span>
+            <span class="fact">1 письменный ретест</span>
           </div>
           <div class="card-links">
             <a href="./ai-eval.html">Открыть описание и демо ↗</a>
@@ -223,17 +425,16 @@
         </article>
 
         <article class="work-card dark" data-number="03">
-          <span class="status">Reference implementation</span>
+          <span class="status">Готово к развёртыванию</span>
           <h3>AI Outreach Hub</h3>
-          <p>Google Sheets-ready система точечного outreach: квалификация лидов по четырём шкалам, обязательный публичный источник, pipeline и журнал действий. Apps Script создаёт только Gmail-черновики и отдельно фиксирует ручную отправку.</p>
+          <p>Google Sheets-ready система точечного outreach: квалифицирует лиды, хранит публичный источник, ведёт pipeline и создаёт только Gmail-черновики без скрытой авторассылки.</p>
           <div class="facts">
-            <span class="fact">5 листов</span>
-            <span class="fact">draft-only</span>
-            <span class="fact">8 черновиков за запуск</span>
+            <span class="fact">5 рабочих листов</span>
+            <span class="fact">только черновики</span>
             <span class="fact">96 ч до follow-up</span>
           </div>
           <div class="work-visual">
-            <img src="./projects/ai-outreach-hub/outreach_dashboard.png?v=2d24597" alt="Dashboard AI Outreach Hub с KPI и pipeline по статусам">
+            <img src="./projects/ai-outreach-hub/outreach_dashboard.png?v=marketing-v1" alt="Dashboard AI Outreach Hub с KPI и этапами pipeline">
           </div>
           <div class="card-links">
             <a href="./projects/ai-outreach-hub/AI_Outreach_Hub.xlsx">Скачать рабочую книгу ↗</a>
@@ -242,83 +443,103 @@
         </article>
 
         <article class="work-card" data-number="04">
-          <span class="status">Reference implementation</span>
+          <span class="status">Исходники + тесты</span>
           <h3>Telegram AI Intake Bot</h3>
-          <p>Готовый к развёртыванию бот, который собирает письменный scope AI-пилота: вход, выход, объём, срок, бюджет и критерии приёмки. Есть mock-режим, локальное хранение и защита от сохранения токенов и паролей.</p>
+          <p>Собирает письменный scope проекта: вход, выход, объём, срок, бюджет и критерии приёмки. Работает в mock-режиме и не требует хостинга для демонстрации.</p>
           <div class="facts">
             <span class="fact">8 шагов intake</span>
             <span class="fact">7/7 тестов</span>
             <span class="fact">Node.js без зависимостей</span>
-            <span class="fact">без хостинга и токена в демо</span>
+            <span class="fact">локальное хранение</span>
           </div>
           <div class="work-visual chat-preview" aria-label="Пример письменного intake-диалога">
             <div class="bubble">Какой ручной процесс нужно автоматизировать?</div>
-            <div class="bubble user">Сверяем счета из PDF с реестром Excel.<small>письменный ответ клиента</small></div>
+            <div class="bubble user">Сверяем счета из PDF с реестром Excel.<small>ответ заказчика</small></div>
             <div class="bubble">Какой проверяемый результат должен получиться?</div>
             <div class="bubble user">Таблица расхождений и журнал ошибок.<small>scope сохраняется локально</small></div>
           </div>
           <div class="card-links">
             <a href="https://github.com/BouncinGBall/csv-import-readiness-checker/tree/main/projects/telegram-ai-intake-bot">Исходники и тесты ↗</a>
-            <a href="mailto:uria198816@gmail.com?subject=Telegram%20AI%20Intake%20Bot&amp;body=Хочу%20письменный%20пилот%20Telegram-бота%20для%20приёма%20заявок.%0A">Обсудить внедрение ↗</a>
+            <a href="mailto:uria198816@gmail.com?subject=Telegram%20AI%20Intake%20Bot&amp;body=Процесс%20для%20бота%3A%0AЧто%20пользователь%20отправляет%3A%0AЧто%20должен%20получить%3A">Обсудить внедрение ↗</a>
           </div>
         </article>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="section-head">
-        <div>
-          <span class="section-kicker">Компетенции</span>
-          <h2>Небольшой scope, законченный результат.</h2>
-        </div>
-        <p class="section-intro">Беру процессы, где можно письменно зафиксировать вход, автоматизированное действие, выход и критерии приёмки.</p>
-      </div>
-      <div class="capabilities">
-        <article class="capability"><span class="index">01 / AI OPS</span><h3>Документы и таблицы</h3><p>Извлечение, классификация, сверка и review-очереди с журналом ошибок и ручным контролем спорных случаев.</p></article>
-        <article class="capability"><span class="index">02 / WORKFLOWS</span><h3>Заявки и процессы</h3><p>Боты, формы, Gmail/Sheets-пайплайны и небольшие API-интеграции с явными состояниями и fallback.</p></article>
-        <article class="capability"><span class="index">03 / AI QA</span><h3>Проверка ассистентов</h3><p>Позитивные, негативные и краевые сценарии, evidence, severity, регрессия и ретест после исправлений.</p></article>
-        <article class="capability"><span class="index">04 / INTERNAL TOOLS</span><h3>Внутренние инструменты</h3><p>Калькуляторы, валидаторы, дашборды и операционные панели без лишней инфраструктуры.</p></article>
       </div>
     </section>
 
     <section class="process" id="process">
       <div class="process-intro">
         <span class="section-kicker">Как проходит работа</span>
-        <h2>Асинхронно от задачи до приёмки.</h2>
-        <p>У клиента всегда остаётся короткая письменная карта: что будет сделано, что не входит, какие входные данные нужны и как проверить готовность.</p>
+        <h2>Сначала доказываем ценность на одном процессе.</h2>
+        <p>Не нужно заранее писать большое ТЗ. Достаточно показать обезличенный пример входа и описать, что должно получиться на выходе.</p>
+        <div class="process-signal">
+          <strong>До оплаты вы знаете:</strong>
+          <span>результат, границы, срок, цену, нужные доступы и критерии приёмки.</span>
+        </div>
       </div>
       <div class="steps">
-        <article class="step"><span class="step-number">1</span><div><h3>Фиксируем границы</h3><p>Один результат, входные данные, формат сдачи, срок и критерии приёмки.</p></div></article>
-        <article class="step"><span class="step-number">2</span><div><h3>Работаем на безопасном примере</h3><p>Для диагностики используем синтетические или обезличенные данные, если реальные не обязательны.</p></div></article>
-        <article class="step"><span class="step-number">3</span><div><h3>Проверяем до отправки</h3><p>Автотесты, контрольные итоги, edge cases и ручная проверка итогового артефакта.</p></div></article>
-        <article class="step"><span class="step-number">4</span><div><h3>Сдаём с инструкцией</h3><p>Файлы, краткий отчёт, ограничения и воспроизводимый способ проверить результат.</p></div></article>
+        <article class="step"><span class="step-number">1</span><div><h3>Вы присылаете один пример</h3><p>PDF, таблицу, заявку, диалог или описание текущего ручного действия — без секретных данных.</p></div></article>
+        <article class="step"><span class="step-number">2</span><div><h3>Я возвращаю план и цену</h3><p>Одностраничный scope: что входит, что не входит, срок, формат сдачи и проверка готовности.</p></div></article>
+        <article class="step"><span class="step-number">3</span><div><h3>Собираю и проверяю пилот</h3><p>Рабочий сценарий проходит контрольные примеры, краевые случаи и ручную проверку итогового артефакта.</p></div></article>
+        <article class="step"><span class="step-number">4</span><div><h3>Вы принимаете по чек-листу</h3><p>Получаете файлы, исходники, тесты, инструкцию, ограничения и воспроизводимый способ проверки.</p></div></article>
       </div>
     </section>
 
     <section>
       <div class="proof">
         <article class="proof-card">
-          <h3>Что считается доказательством</h3>
-          <p>Не обещание «всё работает», а конкретика: тесты, валидные файлы, контрольные суммы, агрегированные метрики, до/после и известные ограничения.</p>
+          <span class="section-kicker">Снижаем риск</span>
+          <h3>Не внедрение «на веру», а короткий доказуемый пилот</h3>
+          <p>Сначала один сценарий на безопасных данных. Масштабирование имеет смысл только после того, как результат можно открыть, проверить и сравнить с критериями.</p>
         </article>
         <article class="proof-card">
-          <h3>Что не попадёт в портфолио</h3>
-          <p>Лиды без выполненной работы, закрытые данные, чужие материалы и неподтверждённые бизнес-эффекты. Кейсы публикуются только после фактической приёмки.</p>
+          <span class="section-kicker">Сохраняем контроль</span>
+          <h3>Решение остаётся у заказчика</h3>
+          <p>Передаю исходники, настройки, инструкции и известные ограничения. Платные API, хостинг и подписки не подключаются без отдельного согласования.</p>
         </article>
       </div>
     </section>
 
+    <section class="faq" id="faq">
+      <div>
+        <span class="section-kicker">Частые вопросы</span>
+        <h2>Что важно знать до старта.</h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>Как понять, подходит ли мой процесс для автоматизации?</summary>
+          <p>Если есть повторяемый вход, понятное действие и проверяемый выход — пилот обычно можно выделить. Пришлите один обезличенный пример; в ответ получите вопросы, границы и оценку.</p>
+        </details>
+        <details>
+          <summary>Нужны ли доступы к рабочей CRM или базе?</summary>
+          <p>Для первого пилота часто нет. Начинаем с тестовых, синтетических или обезличенных данных. Боевые доступы запрашиваются только когда без них нельзя проверить согласованный результат.</p>
+        </details>
+        <details>
+          <summary>Что именно я получу в конце?</summary>
+          <p>Согласованный рабочий артефакт, исходники или редактируемые файлы, контрольные тесты, краткую инструкцию и список ограничений. Формат заранее фиксируется в scope.</p>
+        </details>
+        <details>
+          <summary>Можно ли пройти весь проект письменно?</summary>
+          <p>Да. Задача, вопросы, согласование, промежуточные результаты и приёмка могут пройти в переписке. Это оставляет обеим сторонам точную историю решений.</p>
+        </details>
+        <details>
+          <summary>Что если задача окажется шире стартовой цены?</summary>
+          <p>До начала работы разделю её на этапы и укажу цену каждого. Можно заказать только первый независимый этап и продолжать после его приёмки.</p>
+        </details>
+      </div>
+    </section>
+
     <section class="contact">
-      <span class="section-kicker">Есть конкретная задача?</span>
-      <h2>Пришлите один ручной процесс и пример желаемого результата.</h2>
-      <p>В ответ получите письменный scope пилота, цену, срок, ограничения и критерии приёмки. Созвон не нужен.</p>
-      <a class="button" href="mailto:uria198816@gmail.com?subject=Новая%20async-задача&amp;body=Что%20нужно%20сделать%3A%0AКакие%20есть%20входные%20данные%3A%0AКак%20выглядит%20готовый%20результат%3A%0AЖелаемый%20срок%3A">Описать задачу письмом</a>
+      <span class="section-kicker">Следующий шаг</span>
+      <h2>Пришлите пример входа и желаемый результат.</h2>
+      <p>В течение 1 рабочего дня получите письменный план пилота: границы, срок, фиксированную цену, нужные доступы и критерии приёмки.</p>
+      <a class="button" href="mailto:uria198816@gmail.com?subject=Оценка%20AI-пилота&amp;body=Ручной%20процесс%3A%0AПример%20входных%20данных%20без%20секретов%3A%0AЖелаемый%20результат%3A%0AПримерный%20объём%3A%0AЖелаемый%20срок%3A%0AБюджетный%20диапазон%3A">Получить план и фиксированную цену</a>
+      <p class="contact-note">Можно начать без большого ТЗ. Достаточно одного безопасного примера и описания результата.</p>
     </section>
   </main>
 
   <footer class="shell">
-    <p>© 2026 Data Pilot. Публичная витрина проверяемых работ.</p>
-    <p><a href="https://github.com/BouncinGBall/csv-import-readiness-checker">GitHub</a> · <a href="mailto:uria198816@gmail.com">Email</a></p>
+    <p>© 2026 Data Pilot. AI-автоматизация с проверяемым результатом.</p>
+    <p><a href="https://github.com/BouncinGBall/csv-import-readiness-checker">GitHub</a> · <a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></p>
   </footer>
 </body>
 </html>
