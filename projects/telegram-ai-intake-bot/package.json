@@ -1,0 +1,15 @@
+{
+  "name": "async-ai-intake-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Deployable Telegram intake reference for asynchronous AI automation pilots",
+  "scripts": {
+    "start": "node src/index.mjs",
+    "mock": "node src/index.mjs --mock",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

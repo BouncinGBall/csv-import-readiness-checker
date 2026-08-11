@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Data Pilot — публичная витрина работающих инструментов, async QA и автоматизации данных.">
-  <title>Data Pilot — инструменты, QA и автоматизация данных</title>
+  <meta name="description" content="Data Pilot — AI-внедрения, автоматизация процессов, обработка данных и async QA с проверяемым результатом.">
+  <title>Data Pilot — AI-внедрения и автоматизация процессов</title>
   <style>
     :root {
       color-scheme: light;
@@ -63,7 +63,7 @@
     h2 { margin: 9px 0 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: -.045em; }
     .section-intro { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
 
-    .work-grid { display: grid; grid-template-columns: 1.18fr .82fr; gap: 18px; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     .work-card { position: relative; display: flex; min-height: 440px; flex-direction: column; overflow: hidden; padding: clamp(25px, 4vw, 42px); border: 1px solid var(--line); border-radius: 26px; background: var(--paper); box-shadow: 0 16px 42px rgba(31,45,35,.06); }
     .work-card.dark { border-color: #202f27; background: #1f2b24; color: #fff; }
     .work-card::after { content: attr(data-number); position: absolute; top: 18px; right: 25px; color: rgba(23,33,27,.08); font-size: 112px; font-weight: 950; line-height: 1; }
@@ -77,6 +77,14 @@
     .facts { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 30px; }
     .fact { padding: 8px 10px; border-radius: 9px; background: var(--green-soft); color: #234b36; font-size: 12px; font-weight: 800; }
     .dark .fact { background: rgba(217,247,93,.12); color: #e5f4b1; }
+    .work-visual { position: relative; z-index: 1; overflow: hidden; margin: 0 0 26px; border: 1px solid var(--line); border-radius: 16px; background: #eef3ed; }
+    .dark .work-visual { border-color: rgba(255,255,255,.18); background: #15201a; }
+    .work-visual img { display: block; width: 100%; height: auto; }
+    .chat-preview { display: grid; gap: 9px; min-height: 205px; padding: 18px; align-content: center; background: linear-gradient(145deg, #eaf4ef, #f8faf6); }
+    .bubble { width: fit-content; max-width: 82%; padding: 10px 13px; border-radius: 14px 14px 14px 5px; background: #fff; color: #274035; font-size: 12px; line-height: 1.45; box-shadow: 0 6px 18px rgba(31,45,35,.08); }
+    .bubble.user { margin-left: auto; border-radius: 14px 14px 5px 14px; background: var(--green); color: #fff; }
+    .bubble small { display: block; margin-top: 4px; color: #6d8175; font-size: 10px; }
+    .bubble.user small { color: #c8ded1; }
     .card-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 16px; margin-top: auto; }
     .card-links a { font-weight: 850; text-underline-offset: 4px; }
 
@@ -156,9 +164,9 @@
   <main class="shell">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Async data &amp; quality studio</p>
-        <h1>Цифровая работа, которую можно проверить.</h1>
-        <p class="lead">Небольшие инструменты, подготовка данных и функциональный QA с письменным scope, воспроизводимыми проверками и понятным результатом.</p>
+        <p class="eyebrow">Async AI implementation studio</p>
+        <h1>AI-внедрения без тумана и бесконечных созвонов.</h1>
+        <p class="lead">Фиксированные пилоты для обработки документов, таблиц, заявок и проверки AI-ассистентов. Письменный scope, тесты, журнал решений и понятный результат.</p>
         <div class="actions">
           <a class="button primary" href="#works">Посмотреть работы</a>
           <a class="button secondary" href="mailto:uria198816@gmail.com?subject=Новая%20задача%20для%20Data%20Pilot&amp;body=Задача%3A%0AИсходные%20данные%3A%0AЖелаемый%20результат%3A%0AСрок%3A">Обсудить задачу письменно</a>
@@ -213,6 +221,47 @@
             <a href="./ai-eval.html">Открыть описание и демо ↗</a>
           </div>
         </article>
+
+        <article class="work-card dark" data-number="03">
+          <span class="status">Reference implementation</span>
+          <h3>AI Outreach Hub</h3>
+          <p>Google Sheets-ready система точечного outreach: квалификация лидов по четырём шкалам, обязательный публичный источник, pipeline и журнал действий. Apps Script создаёт только Gmail-черновики и отдельно фиксирует ручную отправку.</p>
+          <div class="facts">
+            <span class="fact">5 листов</span>
+            <span class="fact">draft-only</span>
+            <span class="fact">8 черновиков за запуск</span>
+            <span class="fact">96 ч до follow-up</span>
+          </div>
+          <div class="work-visual">
+            <img src="./projects/ai-outreach-hub/outreach_dashboard.png" alt="Dashboard AI Outreach Hub с KPI и pipeline по статусам" loading="lazy">
+          </div>
+          <div class="card-links">
+            <a href="./projects/ai-outreach-hub/AI_Outreach_Hub.xlsx">Скачать рабочую книгу ↗</a>
+            <a href="./projects/ai-outreach-hub/OutreachHub.gs">Открыть Apps Script ↗</a>
+          </div>
+        </article>
+
+        <article class="work-card" data-number="04">
+          <span class="status">Reference implementation</span>
+          <h3>Telegram AI Intake Bot</h3>
+          <p>Готовый к развёртыванию бот, который собирает письменный scope AI-пилота: вход, выход, объём, срок, бюджет и критерии приёмки. Есть mock-режим, локальное хранение и защита от сохранения токенов и паролей.</p>
+          <div class="facts">
+            <span class="fact">8 шагов intake</span>
+            <span class="fact">7/7 тестов</span>
+            <span class="fact">Node.js без зависимостей</span>
+            <span class="fact">без хостинга и токена в демо</span>
+          </div>
+          <div class="work-visual chat-preview" aria-label="Пример письменного intake-диалога">
+            <div class="bubble">Какой ручной процесс нужно автоматизировать?</div>
+            <div class="bubble user">Сверяем счета из PDF с реестром Excel.<small>письменный ответ клиента</small></div>
+            <div class="bubble">Какой проверяемый результат должен получиться?</div>
+            <div class="bubble user">Таблица расхождений и журнал ошибок.<small>scope сохраняется локально</small></div>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/BouncinGBall/csv-import-readiness-checker/tree/main/projects/telegram-ai-intake-bot">Исходники и тесты ↗</a>
+            <a href="mailto:uria198816@gmail.com?subject=Telegram%20AI%20Intake%20Bot&amp;body=Хочу%20письменный%20пилот%20Telegram-бота%20для%20приёма%20заявок.%0A">Обсудить внедрение ↗</a>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -222,13 +271,13 @@
           <span class="section-kicker">Компетенции</span>
           <h2>Небольшой scope, законченный результат.</h2>
         </div>
-        <p class="section-intro">Беру задачи, которые можно точно описать, выполнить независимо и принять по объективным критериям.</p>
+        <p class="section-intro">Беру процессы, где можно письменно зафиксировать вход, автоматизированное действие, выход и критерии приёмки.</p>
       </div>
       <div class="capabilities">
-        <article class="capability"><span class="index">01 / DATA</span><h3>Очистка и сверка</h3><p>CSV/XLSX, нормализация, кандидаты в дубли, mapping, контрольные суммы и журнал исключений.</p></article>
-        <article class="capability"><span class="index">02 / REPORTS</span><h3>Отчёты и дашборды</h3><p>Понятные метрики, формулы, сводные таблицы, фильтры и документация обновления.</p></article>
-        <article class="capability"><span class="index">03 / QA</span><h3>Функциональный QA</h3><p>Позитивные, негативные и краевые сценарии, evidence, severity, регрессия и ретест.</p></article>
-        <article class="capability"><span class="index">04 / TOOLS</span><h3>Веб-инструменты</h3><p>Небольшие калькуляторы и валидаторы на HTML/CSS/JavaScript без лишней инфраструктуры.</p></article>
+        <article class="capability"><span class="index">01 / AI OPS</span><h3>Документы и таблицы</h3><p>Извлечение, классификация, сверка и review-очереди с журналом ошибок и ручным контролем спорных случаев.</p></article>
+        <article class="capability"><span class="index">02 / WORKFLOWS</span><h3>Заявки и процессы</h3><p>Боты, формы, Gmail/Sheets-пайплайны и небольшие API-интеграции с явными состояниями и fallback.</p></article>
+        <article class="capability"><span class="index">03 / AI QA</span><h3>Проверка ассистентов</h3><p>Позитивные, негативные и краевые сценарии, evidence, severity, регрессия и ретест после исправлений.</p></article>
+        <article class="capability"><span class="index">04 / INTERNAL TOOLS</span><h3>Внутренние инструменты</h3><p>Калькуляторы, валидаторы, дашборды и операционные панели без лишней инфраструктуры.</p></article>
       </div>
     </section>
 
@@ -261,8 +310,8 @@
 
     <section class="contact">
       <span class="section-kicker">Есть конкретная задача?</span>
-      <h2>Пришлите входные данные и желаемый результат.</h2>
-      <p>В ответ получите письменный scope, цену, срок и список того, что нужно для старта. Можно без созвона.</p>
+      <h2>Пришлите один ручной процесс и пример желаемого результата.</h2>
+      <p>В ответ получите письменный scope пилота, цену, срок, ограничения и критерии приёмки. Созвон не нужен.</p>
       <a class="button" href="mailto:uria198816@gmail.com?subject=Новая%20async-задача&amp;body=Что%20нужно%20сделать%3A%0AКакие%20есть%20входные%20данные%3A%0AКак%20выглядит%20готовый%20результат%3A%0AЖелаемый%20срок%3A">Описать задачу письмом</a>
     </section>
   </main>
