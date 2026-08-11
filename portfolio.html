@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Data Pilot — публичная витрина работающих инструментов, async QA и автоматизации данных.">
+  <title>Data Pilot — инструменты, QA и автоматизация данных</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17211b;
+      --muted: #5f6d63;
+      --paper: #fffdf7;
+      --canvas: #f1eee5;
+      --line: #d9ddd2;
+      --green: #174f3a;
+      --green-soft: #dcece2;
+      --acid: #d9f75d;
+      --orange: #f1723d;
+      --shadow: 0 22px 60px rgba(31, 45, 35, 0.10);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 290px; background: var(--canvas); color: var(--ink); }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+
+    .shell { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 76px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -0.02em; text-decoration: none; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50% 50% 50% 12px; background: var(--green); color: var(--acid); font-size: 13px; transform: rotate(-7deg); }
+    .brand-mark span { transform: rotate(7deg); }
+    nav { display: flex; flex-wrap: wrap; gap: 18px; color: var(--muted); font-size: 14px; font-weight: 700; }
+    nav a { text-decoration: none; }
+    nav a:hover { color: var(--ink); }
+
+    .hero { position: relative; overflow: hidden; min-height: 600px; padding: clamp(42px, 8vw, 96px); border: 1px solid #143d2e; border-radius: 34px; background: var(--green); color: #f8fff8; box-shadow: var(--shadow); }
+    .hero::before { content: ""; position: absolute; top: -155px; right: -85px; width: 460px; height: 460px; border: 1px solid rgba(217, 247, 93, .45); border-radius: 50%; box-shadow: 0 0 0 54px rgba(217, 247, 93, .08), 0 0 0 108px rgba(217, 247, 93, .05); }
+    .hero::after { content: ""; position: absolute; right: 9%; bottom: 8%; width: 150px; height: 150px; border-radius: 32px; background: var(--acid); transform: rotate(13deg); }
+    .hero-copy { position: relative; z-index: 1; max-width: 820px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 24px; color: #dff3e5; font-size: 13px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--acid); }
+    h1 { max-width: 860px; margin: 0; font-size: clamp(46px, 8vw, 88px); line-height: .96; letter-spacing: -.058em; }
+    .hero .lead { max-width: 700px; margin: 28px 0 0; color: #dce8df; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.55; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; padding: 0 19px; border: 1px solid rgba(255,255,255,.3); border-radius: 13px; font-weight: 850; text-decoration: none; }
+    .button.primary { border-color: var(--acid); background: var(--acid); color: #17311f; }
+    .button.primary:hover { background: #e5ff7d; }
+    .button.secondary:hover { background: rgba(255,255,255,.08); }
+    .hero-note { position: absolute; z-index: 1; right: 38px; bottom: 34px; width: 180px; color: #17311f; font-size: 13px; font-weight: 850; line-height: 1.35; transform: rotate(-3deg); }
+
+    .principles { display: grid; grid-template-columns: repeat(4, 1fr); margin: 22px 0 74px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,253,247,.72); }
+    .principle { padding: 20px; }
+    .principle + .principle { border-left: 1px solid var(--line); }
+    .principle strong { display: block; margin-bottom: 4px; font-size: 15px; }
+    .principle span { color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+    section { margin: 76px 0; }
+    .section-head { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: end; margin-bottom: 30px; }
+    .section-kicker { color: var(--orange); font-size: 13px; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+    h2 { margin: 9px 0 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: -.045em; }
+    .section-intro { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
+
+    .work-grid { display: grid; grid-template-columns: 1.18fr .82fr; gap: 18px; }
+    .work-card { position: relative; display: flex; min-height: 440px; flex-direction: column; overflow: hidden; padding: clamp(25px, 4vw, 42px); border: 1px solid var(--line); border-radius: 26px; background: var(--paper); box-shadow: 0 16px 42px rgba(31,45,35,.06); }
+    .work-card.dark { border-color: #202f27; background: #1f2b24; color: #fff; }
+    .work-card::after { content: attr(data-number); position: absolute; top: 18px; right: 25px; color: rgba(23,33,27,.08); font-size: 112px; font-weight: 950; line-height: 1; }
+    .work-card.dark::after { color: rgba(255,255,255,.07); }
+    .status { position: relative; z-index: 1; display: inline-flex; width: fit-content; align-items: center; gap: 8px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
+    .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #27a55f; box-shadow: 0 0 0 4px rgba(39,165,95,.12); }
+    .dark .status { border-color: rgba(255,255,255,.2); color: #c8d4cc; }
+    .work-card h3 { position: relative; z-index: 1; max-width: 560px; margin: 28px 0 13px; font-size: clamp(29px, 4vw, 44px); line-height: 1.04; letter-spacing: -.035em; }
+    .work-card p { position: relative; z-index: 1; max-width: 610px; margin: 0; color: var(--muted); line-height: 1.62; }
+    .work-card.dark p { color: #c8d4cc; }
+    .facts { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 30px; }
+    .fact { padding: 8px 10px; border-radius: 9px; background: var(--green-soft); color: #234b36; font-size: 12px; font-weight: 800; }
+    .dark .fact { background: rgba(217,247,93,.12); color: #e5f4b1; }
+    .card-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 16px; margin-top: auto; }
+    .card-links a { font-weight: 850; text-underline-offset: 4px; }
+
+    .capabilities { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .capability { min-height: 210px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,253,247,.76); }
+    .capability .index { display: block; margin-bottom: 40px; color: var(--orange); font: 800 13px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .capability h3 { margin: 0 0 9px; font-size: 20px; }
+    .capability p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+    .process { display: grid; grid-template-columns: .75fr 1.25fr; gap: 18px; }
+    .process-intro { padding: clamp(26px, 4vw, 42px); border-radius: 26px; background: var(--orange); color: #29130b; }
+    .process-intro h2 { margin-top: 0; }
+    .process-intro p { max-width: 450px; font-size: 17px; line-height: 1.55; }
+    .steps { overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: var(--paper); }
+    .step { display: grid; grid-template-columns: 50px 1fr; gap: 16px; padding: 25px 28px; }
+    .step + .step { border-top: 1px solid var(--line); }
+    .step-number { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--green-soft); color: var(--green); font-weight: 900; }
+    .step h3 { margin: 0 0 6px; font-size: 19px; }
+    .step p { margin: 0; color: var(--muted); line-height: 1.55; }
+
+    .proof { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .proof-card { padding: clamp(26px, 4vw, 42px); border: 1px solid var(--line); border-radius: 26px; background: var(--paper); }
+    .proof-card h3 { margin: 0 0 14px; font-size: 28px; letter-spacing: -.025em; }
+    .proof-card p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .proof-card code { padding: 3px 6px; border-radius: 6px; background: #edf1eb; color: var(--green); }
+
+    .contact { position: relative; overflow: hidden; padding: clamp(36px, 7vw, 76px); border-radius: 30px; background: var(--acid); color: #16251b; }
+    .contact::after { content: "↗"; position: absolute; right: 5%; bottom: -14%; color: rgba(23,79,58,.12); font-size: 250px; font-weight: 900; line-height: 1; }
+    .contact h2 { max-width: 780px; margin: 0; }
+    .contact p { max-width: 650px; margin: 18px 0 0; font-size: 18px; line-height: 1.6; }
+    .contact .button { position: relative; z-index: 1; margin-top: 28px; border-color: var(--green); background: var(--green); color: #fff; }
+
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 32px 0 42px; color: var(--muted); font-size: 13px; }
+    footer p { margin: 0; }
+
+    @media (max-width: 860px) {
+      .hero { min-height: 560px; }
+      .hero::after, .hero-note { display: none; }
+      .principles, .capabilities { grid-template-columns: repeat(2, 1fr); }
+      .principle:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+      .principle:nth-child(4) { border-top: 1px solid var(--line); }
+      .section-head, .work-grid, .process { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 22px, 1160px); }
+      .topbar { align-items: flex-start; flex-direction: column; padding: 18px 2px; }
+      nav { gap: 12px; }
+      .hero { min-height: auto; padding: 40px 24px 48px; border-radius: 23px; }
+      h1 { font-size: clamp(42px, 14vw, 64px); }
+      .principles, .capabilities, .proof { grid-template-columns: 1fr; }
+      .principle + .principle { border-top: 1px solid var(--line); border-left: 0; }
+      .section-head { gap: 18px; }
+      .work-card { min-height: 420px; border-radius: 22px; }
+      .work-card::after { font-size: 82px; }
+      .step { grid-template-columns: 40px 1fr; padding: 22px 18px; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="./portfolio.html" aria-label="Data Pilot — главная портфолио">
+      <span class="brand-mark"><span>DP</span></span>
+      Data Pilot
+    </a>
+    <nav aria-label="Основная навигация">
+      <a href="#works">Работы</a>
+      <a href="#services">Что делаю</a>
+      <a href="#process">Процесс</a>
+      <a href="mailto:uria198816@gmail.com">Написать</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Async data &amp; quality studio</p>
+        <h1>Цифровая работа, которую можно проверить.</h1>
+        <p class="lead">Небольшие инструменты, подготовка данных и функциональный QA с письменным scope, воспроизводимыми проверками и понятным результатом.</p>
+        <div class="actions">
+          <a class="button primary" href="#works">Посмотреть работы</a>
+          <a class="button secondary" href="mailto:uria198816@gmail.com?subject=Новая%20задача%20для%20Data%20Pilot&amp;body=Задача%3A%0AИсходные%20данные%3A%0AЖелаемый%20результат%3A%0AСрок%3A">Обсудить задачу письменно</a>
+        </div>
+      </div>
+      <p class="hero-note">Никаких созвонов: scope, работа и приёмка проходят письменно.</p>
+    </section>
+
+    <div class="principles" aria-label="Принципы работы">
+      <div class="principle"><strong>Точный scope</strong><span>Сначала фиксируем результат и критерии приёмки.</span></div>
+      <div class="principle"><strong>Проверяемый output</strong><span>Артефакты, тесты, логи и контрольные итоги.</span></div>
+      <div class="principle"><strong>Приватность</strong><span>Синтетические или обезличенные данные для демо.</span></div>
+      <div class="principle"><strong>Полностью async</strong><span>Без звонков, встреч и доступа сверх необходимого.</span></div>
+    </div>
+
+    <section id="works">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Публичные работы</span>
+          <h2>Не скриншоты. Можно открыть и проверить.</h2>
+        </div>
+        <p class="section-intro">Здесь только то, что действительно существует. Клиентские работы появляются после приёмки и только в разрешённом или обезличенном виде.</p>
+      </div>
+
+      <div class="work-grid">
+        <article class="work-card" data-number="01">
+          <span class="status">Работает публично</span>
+          <h3>CSV Import Readiness Checker</h3>
+          <p>Локальный мини-аудит CSV перед импортом в CRM или товарный каталог. Находит пропуски, точные дубли, проблемы формата, нестабильную ширину строк и профильные ошибки каталога.</p>
+          <div class="facts">
+            <span class="fact">17 автотестов</span>
+            <span class="fact">2 профиля проверки</span>
+            <span class="fact">данные не покидают браузер</span>
+            <span class="fact">open source</span>
+          </div>
+          <div class="card-links">
+            <a href="./">Запустить инструмент ↗</a>
+            <a href="https://github.com/BouncinGBall/csv-import-readiness-checker">Посмотреть код ↗</a>
+          </div>
+        </article>
+
+        <article class="work-card dark" data-number="02">
+          <span class="status">Демо услуги</span>
+          <h3>AI Assistant Evaluation Pack</h3>
+          <p>Фиксированный письменный пилот для одного сценария AI-ассистента: тестовая матрица, expected/actual, evidence, severity и один ретест после исправлений.</p>
+          <div class="facts">
+            <span class="fact">до 50 тест-кейсов</span>
+            <span class="fact">1 сценарий</span>
+            <span class="fact">24 ч после старта</span>
+          </div>
+          <div class="card-links">
+            <a href="./ai-eval.html">Открыть описание и демо ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Компетенции</span>
+          <h2>Небольшой scope, законченный результат.</h2>
+        </div>
+        <p class="section-intro">Беру задачи, которые можно точно описать, выполнить независимо и принять по объективным критериям.</p>
+      </div>
+      <div class="capabilities">
+        <article class="capability"><span class="index">01 / DATA</span><h3>Очистка и сверка</h3><p>CSV/XLSX, нормализация, кандидаты в дубли, mapping, контрольные суммы и журнал исключений.</p></article>
+        <article class="capability"><span class="index">02 / REPORTS</span><h3>Отчёты и дашборды</h3><p>Понятные метрики, формулы, сводные таблицы, фильтры и документация обновления.</p></article>
+        <article class="capability"><span class="index">03 / QA</span><h3>Функциональный QA</h3><p>Позитивные, негативные и краевые сценарии, evidence, severity, регрессия и ретест.</p></article>
+        <article class="capability"><span class="index">04 / TOOLS</span><h3>Веб-инструменты</h3><p>Небольшие калькуляторы и валидаторы на HTML/CSS/JavaScript без лишней инфраструктуры.</p></article>
+      </div>
+    </section>
+
+    <section class="process" id="process">
+      <div class="process-intro">
+        <span class="section-kicker">Как проходит работа</span>
+        <h2>Асинхронно от задачи до приёмки.</h2>
+        <p>У клиента всегда остаётся короткая письменная карта: что будет сделано, что не входит, какие входные данные нужны и как проверить готовность.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><span class="step-number">1</span><div><h3>Фиксируем границы</h3><p>Один результат, входные данные, формат сдачи, срок и критерии приёмки.</p></div></article>
+        <article class="step"><span class="step-number">2</span><div><h3>Работаем на безопасном примере</h3><p>Для диагностики используем синтетические или обезличенные данные, если реальные не обязательны.</p></div></article>
+        <article class="step"><span class="step-number">3</span><div><h3>Проверяем до отправки</h3><p>Автотесты, контрольные итоги, edge cases и ручная проверка итогового артефакта.</p></div></article>
+        <article class="step"><span class="step-number">4</span><div><h3>Сдаём с инструкцией</h3><p>Файлы, краткий отчёт, ограничения и воспроизводимый способ проверить результат.</p></div></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="proof">
+        <article class="proof-card">
+          <h3>Что считается доказательством</h3>
+          <p>Не обещание «всё работает», а конкретика: тесты, валидные файлы, контрольные суммы, агрегированные метрики, до/после и известные ограничения.</p>
+        </article>
+        <article class="proof-card">
+          <h3>Что не попадёт в портфолио</h3>
+          <p>Лиды без выполненной работы, закрытые данные, чужие материалы и неподтверждённые бизнес-эффекты. Кейсы публикуются только после фактической приёмки.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact">
+      <span class="section-kicker">Есть конкретная задача?</span>
+      <h2>Пришлите входные данные и желаемый результат.</h2>
+      <p>В ответ получите письменный scope, цену, срок и список того, что нужно для старта. Можно без созвона.</p>
+      <a class="button" href="mailto:uria198816@gmail.com?subject=Новая%20async-задача&amp;body=Что%20нужно%20сделать%3A%0AКакие%20есть%20входные%20данные%3A%0AКак%20выглядит%20готовый%20результат%3A%0AЖелаемый%20срок%3A">Описать задачу письмом</a>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <p>© 2026 Data Pilot. Публичная витрина проверяемых работ.</p>
+    <p><a href="https://github.com/BouncinGBall/csv-import-readiness-checker">GitHub</a> · <a href="mailto:uria198816@gmail.com">Email</a></p>
+  </footer>
+</body>
+</html>

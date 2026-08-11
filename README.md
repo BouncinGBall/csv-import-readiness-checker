@@ -4,6 +4,8 @@
 
 [Открыть бесплатный мини-чек в браузере](https://bouncingball.github.io/csv-import-readiness-checker/)
 
+[Открыть публичное портфолио Data Pilot](https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html)
+
 ## Что проверяет
 
 - разделитель: запятая, точка с запятой, табуляция или `|`;
