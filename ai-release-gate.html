@@ -322,31 +322,11 @@
         status.dataset.state = 'success';
       }
 
-      form?.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        if (!form.reportValidity()) return;
-
+      form?.addEventListener('submit', () => {
+        if (!form.checkValidity()) return;
         submit.disabled = true;
         status.textContent = 'Отправляем заявку…';
         status.dataset.state = 'pending';
-
-        try {
-          const endpoint = form.action.replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
-          const response = await fetch(endpoint, {
-            method: 'POST',
-            headers: { Accept: 'application/json' },
-            body: new FormData(form)
-          });
-          if (!response.ok) throw new Error('request_failed');
-          form.reset();
-          status.textContent = 'Заявка отправлена. Ответ придёт на указанную почту.';
-          status.dataset.state = 'success';
-        } catch {
-          status.textContent = 'Не получилось отправить. Попробуйте ещё раз или используйте почту ниже.';
-          status.dataset.state = 'error';
-        } finally {
-          submit.disabled = false;
-        }
       });
     })();
   </script>
