@@ -27,6 +27,17 @@ test('enterprise AI release gate has explicit scope, price and boundaries', () =
   assert.match(html, /письменный scope/i);
 });
 
+test('enterprise AI page has a working contact-form contract and email fallback', () => {
+  const html = readFileSync(resolve(root, 'ai-release-gate.html'), 'utf8');
+  assert.match(html, /<form[^>]+id="release-request-form"[^>]+action="https:\/\/formsubmit\.co\/uria198816@gmail\.com"[^>]+method="post"/);
+  assert.match(html, /name="email"[^>]+type="email"[^>]+required/);
+  assert.match(html, /name="release_risk"[^>]+required/);
+  assert.match(html, /name="_honey"/);
+  assert.match(html, /role="status"[^>]+aria-live="polite"/);
+  assert.match(html, /formsubmit\.co\/ajax\//);
+  assert.equal((html.match(/mailto:uria198816@gmail\.com/g) || []).length, 1);
+});
+
 function localReferences(html) {
   return [...html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)]
     .map((match) => match[1])

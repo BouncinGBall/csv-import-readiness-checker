@@ -112,16 +112,36 @@
     .boundary ul { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.6; }
     .boundary li + li { margin-top: 8px; }
 
-    .contact { position: relative; overflow: hidden; padding: clamp(36px, 7vw, 72px); border-radius: 30px; background: var(--acid); }
-    .contact::after { content: "→"; position: absolute; right: 4%; bottom: -26%; color: rgba(23,79,58,.12); font-size: 260px; font-weight: 900; }
-    .contact h2 { position: relative; z-index: 1; max-width: 820px; }
-    .contact p { position: relative; z-index: 1; max-width: 760px; color: #354f3e; font-size: 17px; line-height: 1.6; }
-    .email { position: relative; z-index: 1; display: inline-flex; margin-top: 10px; padding: 15px 20px; border-radius: 13px; background: var(--deep); color: #fff; font-size: clamp(18px, 3vw, 25px); font-weight: 900; text-decoration: none; }
+    .contact { position: relative; overflow: hidden; padding: clamp(34px, 6vw, 64px); border-radius: 30px; background: var(--acid); }
+    .contact::after { content: "→"; position: absolute; right: 2%; bottom: -20%; color: rgba(23,79,58,.09); font-size: 260px; font-weight: 900; pointer-events: none; }
+    .contact-head, .request-form, .email-fallback { position: relative; z-index: 1; }
+    .contact-head { display: grid; grid-template-columns: .9fr 1.1fr; gap: 36px; align-items: end; }
+    .contact h2 { max-width: 720px; }
+    .contact-head p { margin: 0; color: #354f3e; font-size: 17px; line-height: 1.6; }
+    .request-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; padding: clamp(22px, 4vw, 36px); border-radius: 22px; background: rgba(255,255,255,.76); box-shadow: 0 18px 45px rgba(37, 58, 42, .12); }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { color: #284634; font-size: 13px; font-weight: 850; }
+    .field input, .field select, .field textarea { width: 100%; min-height: 49px; padding: 12px 13px; border: 1px solid #9caf9f; border-radius: 11px; background: #fff; color: var(--ink); font: inherit; }
+    .field textarea { min-height: 126px; resize: vertical; line-height: 1.5; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--deep); outline: 3px solid rgba(12,47,38,.12); }
+    .field small { color: #58705f; font-size: 12px; line-height: 1.45; }
+    .consent { display: flex; grid-column: 1 / -1; gap: 10px; align-items: flex-start; color: #45604d; font-size: 12px; line-height: 1.5; }
+    .consent input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--deep); }
+    .form-footer { display: flex; grid-column: 1 / -1; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .submit { min-height: 52px; padding: 0 21px; border: 0; border-radius: 12px; background: var(--deep); color: #fff; cursor: pointer; font-weight: 900; }
+    .submit:hover { background: #164c3d; }
+    .submit:disabled { cursor: wait; opacity: .65; }
+    .form-status { min-height: 22px; margin: 0; color: #355442; font-size: 13px; font-weight: 750; }
+    .form-status[data-state="error"] { color: #8d2f18; }
+    .honey { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+    .email-fallback { margin: 18px 0 0; color: #48604f; font-size: 13px; text-align: center; }
+    .email-fallback a { font-weight: 850; text-underline-offset: 3px; }
     footer { display: flex; justify-content: space-between; gap: 22px; padding: 28px 0 42px; color: var(--muted); font-size: 13px; }
 
     @media (max-width: 900px) {
       .stats, .risks, .packages { grid-template-columns: 1fr 1fr; }
-      .section-head, .gate { grid-template-columns: 1fr; }
+      .section-head, .gate, .contact-head { grid-template-columns: 1fr; }
       .package.featured { transform: none; }
     }
     @media (max-width: 650px) {
@@ -129,7 +149,8 @@
       .topbar { min-height: 60px; }
       .back { font-size: 12px; }
       .hero { padding: 34px 24px; border-radius: 24px; }
-      .stats, .risks, .packages, .boundaries { grid-template-columns: 1fr; }
+      .stats, .risks, .packages, .boundaries, .request-form { grid-template-columns: 1fr; }
+      .field.full, .consent, .form-footer { grid-column: 1; }
       .stat { padding: 17px; }
       footer { flex-direction: column; }
     }
@@ -151,7 +172,7 @@
           <a class="button primary" href="#packages">Сравнить форматы</a>
           <a class="button secondary" href="#contact">Запросить письменный scope</a>
         </div>
-        <p class="hero-note">Работа начинается только после письменного scope, безопасного тестового доступа, критериев приёмки и оплаты.</p>
+        <p class="hero-note">Сначала фиксируем письменный scope и проверяемый первый этап. Оплата — по согласованным вехам или через безопасную сделку.</p>
       </div>
     </section>
 
@@ -264,13 +285,70 @@
     </section>
 
     <section class="contact" id="contact">
-      <span class="kicker">Письменный scope</span>
-      <h2>Пришлите один процесс и критерий, который блокирует релиз.</h2>
-      <p>В ответ — границы проверки, нужные доступы, количество прогонов, фиксированная цена и способ приёмки. Для первичной оценки не нужны секреты и реальные данные клиентов.</p>
-      <a class="email" href="mailto:uria198816@gmail.com">uria198816@gmail.com</a>
+      <div class="contact-head">
+        <div><span class="kicker">Письменный scope</span><h2>Опишите один процесс, который нельзя выпускать с ошибкой.</h2></div>
+        <p>В ответ получите границы первого этапа, нужные доступы, количество прогонов, срок, цену и способ приёмки. Для оценки не нужны пароли, секреты и реальные данные клиентов.</p>
+      </div>
+
+      <form class="request-form" id="release-request-form" action="https://formsubmit.co/uria198816@gmail.com" method="post">
+        <input type="hidden" name="_subject" value="Новая заявка: AI Agent Release Gate">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://bouncingball.github.io/csv-import-readiness-checker/ai-release-gate.html?sent=1#contact">
+        <div class="honey" aria-hidden="true"><label for="company-site">Не заполняйте это поле</label><input id="company-site" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+
+        <div class="field"><label for="request-name">Имя *</label><input id="request-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="request-email">Рабочая почта *</label><input id="request-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="field"><label for="request-company">Компания</label><input id="request-company" name="company" autocomplete="organization"></div>
+        <div class="field"><label for="request-product">Сайт или тестовый продукт</label><input id="request-product" name="product_url" type="url" inputmode="url" placeholder="https://"></div>
+        <div class="field full"><label for="request-format">Что нужно проверить *</label><select id="request-format" name="request_type" required><option value="" selected disabled>Выберите ближайший вариант</option><option>Один релиз AI-агента</option><option>Сравнение двух конфигураций</option><option>Регулярный regression gate</option><option>Пока не уверен — нужен письменный разбор</option></select></div>
+        <div class="field full"><label for="request-risk">Критичный процесс или риск *</label><textarea id="request-risk" name="release_risk" required placeholder="Например: ответ по базе знаний → классификация обращения → действие в CRM → передача оператору"></textarea><small>Достаточно процесса, ожидаемого результата и примера сбоя. Не вставляйте ключи API и персональные данные.</small></div>
+        <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>Согласен на использование этих данных только для ответа на заявку и подготовки письменного предложения.</span></label>
+        <div class="form-footer"><button class="submit" type="submit">Получить письменный план</button><p class="form-status" id="form-status" role="status" aria-live="polite"></p></div>
+      </form>
+      <p class="email-fallback">Удобнее обычным письмом? <a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></p>
     </section>
   </main>
 
   <footer class="shell"><span>© 2026 Data Pilot · AI Agent Release Gate</span><span><a href="./ai-eval.html">Демо отчёта</a> · <a href="./portfolio.html">Портфолио</a></span></footer>
+  <script>
+    (() => {
+      const form = document.querySelector('#release-request-form');
+      const status = document.querySelector('#form-status');
+      const submit = form?.querySelector('button[type="submit"]');
+
+      if (new URLSearchParams(window.location.search).get('sent') === '1') {
+        status.textContent = 'Заявка отправлена. Ответ придёт на указанную почту.';
+        status.dataset.state = 'success';
+      }
+
+      form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+
+        submit.disabled = true;
+        status.textContent = 'Отправляем заявку…';
+        status.dataset.state = 'pending';
+
+        try {
+          const endpoint = form.action.replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form)
+          });
+          if (!response.ok) throw new Error('request_failed');
+          form.reset();
+          status.textContent = 'Заявка отправлена. Ответ придёт на указанную почту.';
+          status.dataset.state = 'success';
+        } catch {
+          status.textContent = 'Не получилось отправить. Попробуйте ещё раз или используйте почту ниже.';
+          status.dataset.state = 'error';
+        } finally {
+          submit.disabled = false;
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
