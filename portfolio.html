@@ -191,6 +191,13 @@
     .signal:nth-child(n+3) { border-top: 1px solid var(--line); }
     .signal strong { display: block; margin-bottom: 8px; color: var(--green); font-size: 18px; letter-spacing: -.02em; }
     .signal span { color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .resource-card { display: flex; min-height: 250px; flex-direction: column; padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
+    .resource-card.acid { border-color: #bfdc48; background: var(--acid); }
+    .resource-card h3 { margin: 16px 0 10px; font-size: 29px; line-height: 1.08; letter-spacing: -.035em; }
+    .resource-card p { margin: 0; color: var(--muted); line-height: 1.58; }
+    .resource-card.acid p { color: #42604d; }
+    .resource-card a { margin-top: auto; padding-top: 24px; color: var(--green); font-weight: 900; text-underline-offset: 4px; }
 
     .proof-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-bottom: 20px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--line); }
     .proof-metric { padding: 18px 20px; background: var(--paper); }
@@ -295,7 +302,7 @@
       .offer-grid { grid-template-columns: 1fr; }
       .offer-card { min-height: auto; }
       .offer-card.featured { transform: none; }
-      .section-head, .work-grid, .process, .faq, .fit { grid-template-columns: 1fr; }
+      .section-head, .work-grid, .process, .faq, .fit, .resource-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 700px) {
@@ -461,6 +468,17 @@
         </article>
       </div>
       <p class="offer-note">Цены относятся к одному ограниченному сценарию. Хостинг, платные модели, внешние сервисы и подписки считаются отдельно и согласуются до старта. Если AI не нужен, так и напишем.</p>
+    </section>
+
+    <section id="resources">
+      <div class="section-head">
+        <div><span class="section-kicker">Разобраться до покупки</span><h2>Два бесплатных инструмента для первого решения.</h2></div>
+        <p class="section-intro">Ими можно пользоваться самостоятельно или переслать коллеге. Они не требуют регистрации и не обещают результат до проверки.</p>
+      </div>
+      <div class="resource-grid">
+        <article class="resource-card acid"><span class="offer-tag">Калькулятор</span><h3>Сколько часов в месяц съедает одна рутина?</h3><p>Посчитайте текущую ручную нагрузку — без выдуманного процента будущей экономии.</p><a href="./ai-opportunity-map.html">Посчитать в браузере →</a></article>
+        <article class="resource-card"><span class="offer-tag">Антихайп-гайд</span><h3>7 случаев, когда бизнесу не нужен AI</h3><p>Как отличить полезный AI-сценарий от обычной автоматизации, плохого процесса и лишней подписки.</p><a href="./when-not-to-use-ai.html">Проверить свой сценарий →</a></article>
+      </div>
     </section>
 
     <section id="works">
