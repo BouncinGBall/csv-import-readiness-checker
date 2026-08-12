@@ -650,7 +650,7 @@
         <div class="field"><label for="request-name">Имя *</label><input id="request-name" name="entry.650434794" autocomplete="name" required></div>
         <div class="field"><label for="request-email">Рабочая почта *</label><input id="request-email" name="entry.1690196027" type="email" autocomplete="email" inputmode="email" required></div>
         <div class="field"><label for="request-company">Компания</label><input id="request-company" name="entry.553932952" autocomplete="organization"></div>
-        <div class="field"><label for="request-product">Сайт или рабочий сервис</label><input id="request-product" name="entry.1104428072" type="url" inputmode="url" placeholder="https://"></div>
+        <div class="field"><label for="request-product">Сайт или рабочий сервис</label><input id="request-product" name="entry.1104428072" type="text" inputmode="url" autocomplete="url" placeholder="test.ru или https://test.ru"></div>
         <div class="field full"><label for="request-category">Что ближе всего? *</label><select id="request-category" required><option value="" selected disabled>Выберите без технических терминов</option><option>Письма и входящие заявки</option><option>Документы, таблицы и отчёты</option><option>Поиск ответов в знаниях компании</option><option>Контроль задач и ежедневные сводки</option><option>Другое — опишу своими словами</option></select></div>
         <input type="hidden" name="entry.1053497883" value="Пока не уверен — нужен письменный разбор">
         <div class="field full"><label for="request-process">Что сотрудники делают вручную? *</label><textarea id="request-process" name="entry.764456503" required placeholder="Например: каждый день читаем 40 заявок, переносим контакты в таблицу и вручную пишем типовой первый ответ"></textarea><small>Добавьте частоту и примерное время на один случай. Не вставляйте пароли, персональные данные клиентов и другие секреты.</small></div>
@@ -667,7 +667,9 @@
     <p>© 2026 Data Pilot · AI-внедрение и автоматизация.</p>
     <p><a href="https://github.com/BouncinGBall/csv-import-readiness-checker">GitHub</a> · <a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></p>
   </footer>
-  <script>
+  <script type="module">
+    import { normalizeWebsiteUrl } from './src/website-url.js';
+
     (() => {
       const form = document.querySelector('#business-ai-request');
       const status = document.querySelector('#business-form-status');
@@ -676,17 +678,26 @@
       const honey = document.querySelector('#company-site');
       const category = document.querySelector('#request-category');
       const process = document.querySelector('#request-process');
+      const product = document.querySelector('#request-product');
       let awaiting = false;
       let originalProcess = '';
 
       form?.addEventListener('submit', (event) => {
         if (!form.checkValidity()) return;
+        const normalizedProduct = normalizeWebsiteUrl(product?.value ?? '');
+        if (product?.value.trim() && !normalizedProduct) {
+          event.preventDefault();
+          product.setCustomValidity('Введите адрес сайта, например test.ru');
+          product.reportValidity();
+          return;
+        }
         if (honey?.value) {
           event.preventDefault();
           form.reset();
           status.textContent = 'Спасибо.';
           return;
         }
+        if (normalizedProduct) product.value = normalizedProduct;
         originalProcess = process.value;
         process.value = `Направление: ${category.value}.\n${originalProcess}`;
         awaiting = true;
@@ -702,6 +713,8 @@
           status.textContent = 'Подтверждение задержалось. Можно повторить или написать на почту ниже.';
         }, 15000);
       });
+
+      product?.addEventListener('input', () => product.setCustomValidity(''));
 
       target?.addEventListener('load', () => {
         if (!awaiting) return;

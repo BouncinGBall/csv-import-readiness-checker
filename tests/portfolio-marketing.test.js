@@ -65,6 +65,8 @@ test('conversion links converge on one clear contact block', () => {
   assert.equal(directEmailLinks.length, 2);
   assert.match(html, /<section class="contact" id="contact">/);
   assert.match(html, /id="business-ai-request"/);
+  assert.match(html, /id="request-product"[^>]+type="text"[^>]+placeholder="test\.ru или https:\/\/test\.ru"/);
+  assert.doesNotMatch(html, /id="request-product"[^>]+type="url"/);
   assert.match(html, /docs\.google\.com\/forms/);
   assert.match(html, /что сейчас приходится делать вручную/i);
   assert.match(html, /сколько раз это повторяется и сколько времени занимает/i);
