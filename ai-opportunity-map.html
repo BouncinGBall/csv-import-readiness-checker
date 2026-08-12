@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174f3a">
+  <meta name="description" content="Бесплатно посчитайте ручную нагрузку одного бизнес-процесса и получите понятную основу для безопасного AI-пилота.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://bouncingball.github.io/csv-import-readiness-checker/ai-opportunity-map.html">
+  <title>Карта AI-возможности для бизнеса — Data Pilot</title>
+  <style>
+    :root { color-scheme: light; --ink:#17211b; --muted:#5f6d63; --paper:#fffdf7; --canvas:#f1eee5; --line:#d9ddd2; --green:#174f3a; --green2:#236a4d; --soft:#dcece2; --acid:#d9f75d; --orange:#f1723d; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--canvas); color:var(--ink); }
+    a { color:inherit; }
+    .shell { width:min(1080px,calc(100% - 30px)); margin:0 auto; }
+    header { display:flex; min-height:70px; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:900; text-decoration:none; }
+    .mark { display:grid; width:34px; height:34px; place-items:center; border-radius:50% 50% 50% 12px; background:var(--green); color:var(--acid); font-size:12px; transform:rotate(-7deg); }
+    header nav { display:flex; gap:18px; color:var(--muted); font-size:14px; font-weight:750; }
+    .hero { display:grid; grid-template-columns:1.05fr .95fr; gap:28px; align-items:stretch; margin:22px 0 56px; }
+    .hero-copy { padding:clamp(32px,5vw,58px); border-radius:30px; background:var(--green); color:#fff; }
+    .eyebrow { color:var(--acid); font-size:12px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { margin:13px 0 18px; font-size:clamp(40px,5vw,62px); line-height:.99; letter-spacing:-.05em; }
+    .lead { margin:0; color:#dce8df; font-size:18px; line-height:1.55; }
+    .promise { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; overflow:hidden; margin-top:27px; border-radius:16px; background:rgba(255,255,255,.2); }
+    .promise div { padding:14px; background:rgba(255,255,255,.08); }
+    .promise strong { display:block; color:var(--acid); font-size:20px; }
+    .promise span { color:#dce8df; font-size:11px; line-height:1.35; }
+    .card { padding:clamp(25px,4vw,38px); border:1px solid var(--line); border-radius:30px; background:var(--paper); box-shadow:0 18px 50px rgba(31,45,35,.08); }
+    .card h2 { margin:0 0 8px; font-size:30px; letter-spacing:-.035em; }
+    .card > p { margin:0 0 22px; color:var(--muted); line-height:1.55; }
+    .fields { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    label { display:grid; gap:7px; color:#294436; font-size:13px; font-weight:850; }
+    label.full { grid-column:1 / -1; }
+    input, select { width:100%; min-height:48px; padding:11px 12px; border:1px solid #a5b5a8; border-radius:11px; background:#fff; color:var(--ink); font:inherit; }
+    input:focus, select:focus { border-color:var(--green); outline:3px solid rgba(23,79,58,.12); }
+    button { width:100%; min-height:51px; margin-top:18px; border:0; border-radius:12px; background:var(--acid); color:#17311f; font:inherit; font-weight:900; cursor:pointer; }
+    button:hover { background:#e5ff7d; }
+    .result { display:none; margin-top:20px; padding:20px; border-radius:16px; background:var(--soft); }
+    .result.visible { display:block; }
+    .result-value { display:block; color:var(--green); font-size:34px; font-weight:950; letter-spacing:-.04em; }
+    .result p { margin:7px 0 0; color:#42604d; line-height:1.5; }
+    .result a { display:inline-flex; margin-top:14px; font-weight:900; text-underline-offset:4px; }
+    .explain { margin:64px 0; }
+    .explain h2 { max-width:760px; margin:0 0 24px; font-size:clamp(34px,5vw,54px); line-height:1.04; letter-spacing:-.045em; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+    .item { padding:26px; border:1px solid var(--line); border-radius:22px; background:var(--paper); }
+    .item b { display:block; margin-bottom:8px; color:var(--green); font-size:19px; }
+    .item p { margin:0; color:var(--muted); line-height:1.55; }
+    .callout { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center; margin:54px 0; padding:clamp(28px,5vw,48px); border-radius:26px; background:var(--orange); color:#29130b; }
+    .callout h2 { margin:0; font-size:clamp(30px,4vw,46px); letter-spacing:-.04em; }
+    .callout p { margin:10px 0 0; line-height:1.55; }
+    .cta { display:inline-flex; min-height:51px; align-items:center; justify-content:center; padding:0 20px; border-radius:12px; background:var(--green); color:#fff; font-weight:900; text-decoration:none; white-space:nowrap; }
+    footer { display:flex; justify-content:space-between; gap:20px; padding:28px 0 40px; color:var(--muted); font-size:13px; }
+    @media(max-width:800px){ .hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.callout{grid-template-columns:1fr}.cta{width:100%} }
+    @media(max-width:560px){ header{align-items:flex-start;flex-direction:column;padding:16px 0}.fields,.promise{grid-template-columns:1fr}label.full{grid-column:1}.hero-copy,.card{border-radius:22px}footer{flex-direction:column} }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <a class="brand" href="./portfolio.html"><span class="mark">DP</span><span>Data Pilot</span></a>
+    <nav><a href="./portfolio.html#works">Примеры</a><a href="./portfolio.html#contact">Получить разбор</a></nav>
+  </header>
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Бесплатный расчёт · без регистрации</span>
+        <h1>Сколько времени съедает одна рутина?</h1>
+        <p class="lead">Посчитайте фактическую ручную нагрузку. Это честная отправная точка для AI-пилота — без обещаний выдуманной экономии.</p>
+        <div class="promise"><div><strong>1</strong><span>процесс за один расчёт</span></div><div><strong>0 ₽</strong><span>инструмент бесплатный</span></div><div><strong>0</strong><span>данных уходит с устройства</span></div></div>
+      </div>
+      <div class="card">
+        <h2>Калькулятор нагрузки</h2>
+        <p>Введите текущие значения. Расчёт выполняется только в вашем браузере.</p>
+        <form id="load-form">
+          <div class="fields">
+            <label class="full">Что повторяется?
+              <select id="process-type"><option>Разбор писем и заявок</option><option>Перенос данных из документов</option><option>Сверка таблиц или реестров</option><option>Поиск ответа в инструкциях</option><option>Подготовка регулярного отчёта</option><option>Другая повторяющаяся операция</option></select>
+            </label>
+            <label>Случаев в день<input id="cases" type="number" min="1" max="100000" step="1" value="20" required></label>
+            <label>Минут на случай<input id="minutes" type="number" min="0.1" max="1440" step="0.1" value="6" required></label>
+            <label>Рабочих дней в месяц<input id="days" type="number" min="1" max="31" step="1" value="22" required></label>
+            <label>Сотрудников в процессе<input id="people" type="number" min="1" max="10000" step="1" value="1" required></label>
+          </div>
+          <button type="submit">Посчитать ручную нагрузку</button>
+        </form>
+        <div class="result" id="result" aria-live="polite">
+          <span class="result-value" id="hours">44 часа в месяц</span>
+          <p id="explanation"></p>
+          <a href="./portfolio.html#contact">Получить бесплатную карту AI-возможности →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="explain">
+      <h2>Большая цифра ещё не означает, что всё нужно отдать AI.</h2>
+      <div class="grid">
+        <article class="item"><b>Сначала — повторяемость</b><p>Хороший кандидат имеет похожий вход, понятное действие и проверяемый выход.</p></article>
+        <article class="item"><b>Потом — риск ошибки</b><p>Платёж, удаление, юридический вывод и работа с персональными данными требуют отдельного контроля человека.</p></article>
+        <article class="item"><b>И только потом — пилот</b><p>Сравниваем небольшой набор реальных обезличенных примеров и расширяем процесс только после измерения.</p></article>
+      </div>
+    </section>
+
+    <section class="callout">
+      <div><h2>Не знаете, что из этого автоматизировать?</h2><p>Опишите рутину обычными словами. В ответ получите: что поручить системе, что оставить сотруднику, какую метрику взять и во сколько ориентировочно обойдётся первый пилот.</p></div>
+      <a class="cta" href="./portfolio.html#contact">Получить карту — 0 ₽</a>
+    </section>
+  </main>
+  <footer class="shell"><span>© 2026 Data Pilot · AI-внедрение для бизнеса.</span><a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></footer>
+  <script>
+    const form = document.querySelector('#load-form');
+    const result = document.querySelector('#result');
+    const hours = document.querySelector('#hours');
+    const explanation = document.querySelector('#explanation');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.checkValidity()) return;
+      const cases = Number(document.querySelector('#cases').value);
+      const minutes = Number(document.querySelector('#minutes').value);
+      const days = Number(document.querySelector('#days').value);
+      const people = Number(document.querySelector('#people').value);
+      const monthlyHours = cases * minutes * days * people / 60;
+      const formatted = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 }).format(monthlyHours);
+      hours.textContent = `${formatted} ч ручной работы в месяц`;
+      explanation.textContent = `Это текущая нагрузка для процесса «${document.querySelector('#process-type').value}». Возможный эффект нельзя честно назвать до пилота: часть случаев может требовать решения сотрудника.`;
+      result.classList.add('visible');
+    });
+  </script>
+</body>
+</html>
