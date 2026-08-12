@@ -37,7 +37,11 @@ test('portfolio mirrors four concrete buyer situations before presenting package
 });
 
 test('public proof remains specific and auditable', () => {
-  assert.equal((html.match(/class="work-card/g) || []).length, 4);
+  assert.equal((html.match(/class="work-card/g) || []).length, 5);
+  assert.match(html, /Оплаченный этап принят/);
+  assert.match(html, /Безопасная сделка/);
+  assert.match(html, /Материалы и персонаж заказчика не публикуются/);
+  assert.match(html, /не разработку художественного стиля/i);
   assert.match(html, /24[\s\S]{0,80}автотеста/i);
   assert.match(html, /17 автотестов/i);
   assert.match(html, /7\/7 тестов/i);
