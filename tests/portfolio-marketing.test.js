@@ -45,7 +45,7 @@ test('public proof remains specific and auditable', () => {
 });
 
 test('search and sharing metadata are complete', () => {
-  assert.match(html, /<title>AI-внедрение для бизнеса без технической путаницы — Data Pilot<\/title>/);
+  assert.match(html, /<title>С чего начать AI-внедрение в бизнесе — Data Pilot<\/title>/);
   assert.match(html, /rel="canonical"/);
   assert.match(html, /property="og:title"/);
   assert.match(html, /property="og:description"/);
@@ -72,6 +72,8 @@ test('conversion links converge on one clear contact block', () => {
 });
 
 test('portfolio is safe for non-technical AI-curious buyers', () => {
+  assert.match(html, /Пора внедрять AI — но с чего начать/);
+  assert.match(html, /первый шаг непонятен — это нормально/i);
   assert.match(html, /Разбираться в AI не нужно/);
   assert.match(html, /Если AI не нужен, так и напишем/);
   assert.match(html, /Человек в контуре/);
