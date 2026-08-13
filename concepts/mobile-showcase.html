@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Мобильный экран концепта</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:#101114;color:#f7f7f4;font-family:Inter,Arial,sans-serif}.board{position:relative;display:grid;grid-template-columns:1fr 560px;align-items:center;gap:90px;width:1600px;height:1000px;padding:84px 108px;overflow:hidden;background:radial-gradient(circle at 73% 50%,var(--glow),transparent 35%),#101114}.board:before{content:"";position:absolute;left:0;top:0;width:100%;height:9px;background:var(--accent)}.copy{position:relative;z-index:2}.eyebrow{color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.copy h1{max-width:700px;margin:24px 0;font-size:88px;line-height:.91;letter-spacing:-.07em}.copy p{max-width:580px;margin:0;color:#a7a8ae;font-size:22px;line-height:1.55}.facts{display:flex;gap:42px;margin-top:60px}.facts div{padding-top:15px;border-top:1px solid #45464d}.facts b{display:block;font-size:30px}.facts span{display:block;margin-top:8px;color:#8e9098;font-size:12px;letter-spacing:.1em;text-transform:uppercase}.device{position:relative;justify-self:center;width:462px;height:888px;padding:14px;border:2px solid #5d5f67;border-radius:58px;background:#050506;box-shadow:0 45px 120px #0009}.device:before{content:"";position:absolute;z-index:3;top:22px;left:50%;width:120px;height:28px;border-radius:99px;background:#050506;transform:translateX(-50%)}iframe{width:430px;height:856px;border:0;border-radius:43px;background:#fff}.label{position:absolute;right:34px;bottom:30px;color:#74767e;font-size:11px;letter-spacing:.15em;writing-mode:vertical-rl;text-transform:uppercase}
+  </style>
+</head>
+<body>
+  <main class="board">
+    <section class="copy"><div class="eyebrow">Адаптивный сценарий</div><h1 id="title">Сайт остаётся сильным на телефоне.</h1><p id="description">Ключевая информация, действие и характер проекта сохраняются на компактном экране без горизонтальной прокрутки.</p><div class="facts"><div><b>430 px</b><span>контрольный экран</span></div><div><b>1 → 1</b><span>логика без потерь</span></div></div></section>
+    <div class="device"><iframe id="preview" title="Мобильная версия концепта"></iframe></div><div class="label" id="label"></div>
+  </main>
+  <script>
+    const concepts={
+      atlas:{file:'atlas-ai.html',label:'ATLAS AI',accent:'#9dff63',glow:'#443b8c88'},
+      nord:{file:'nord-estate.html',label:'NORD ESTATE',accent:'#cfc7b8',glow:'#87908466'},
+      lumen:{file:'lumen-finance.html',label:'LUMEN CLOUD',accent:'#6f63ff',glow:'#6559ff66'},
+      forma:{file:'forma-interior.html',label:'FORMA',accent:'#d06a44',glow:'#b66e4866'},
+      volterra:{file:'volterra-energy.html',label:'VOLTERRA',accent:'#f0d600',glow:'#f0d60055'},
+      medora:{file:'medora-clinic.html',label:'MEDORA',accent:'#7f8eff',glow:'#6576f466'},
+      arden:{file:'arden-market.html',label:'ARDEN MARKET',accent:'#ef5539',glow:'#df4b3166'},
+      orbit:{file:'orbit-ops.html',label:'ORBIT OPS',accent:'#53f2b3',glow:'#23d59b55'}
+    };
+    const key=new URLSearchParams(location.search).get('c')||'atlas';
+    const item=concepts[key]||concepts.atlas;
+    document.documentElement.style.setProperty('--accent',item.accent);
+    document.documentElement.style.setProperty('--glow',item.glow);
+    document.querySelector('#preview').src=item.file;
+    document.querySelector('#label').textContent=`${item.label} · mobile concept`;
+  </script>
+</body>
+</html>
