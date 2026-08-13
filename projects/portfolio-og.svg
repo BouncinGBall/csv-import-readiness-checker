@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Ладится — сайты, сервисы и автоматизация для бизнеса</title>
+  <title id="title">Fox Box — сайты, AI и автоматизация для бизнеса</title>
   <desc id="desc">Понятное AI-внедрение и автоматизация повторяющихся бизнес-процессов.</desc>
-  <rect width="1200" height="630" fill="#174f3a"/>
-  <circle cx="1090" cy="5" r="244" fill="none" stroke="#d9f75d" stroke-opacity=".18" stroke-width="54"/>
-  <circle cx="1090" cy="5" r="189" fill="none" stroke="#d9f75d" stroke-opacity=".34" stroke-width="2"/>
-  <rect x="70" y="59" width="58" height="58" rx="16" fill="#d9f75d"/>
-  <path d="M84 105 96 78q3-7 6 0l12 27" fill="none" stroke="#174f3a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="151" y="101" fill="#fffdf7" font-family="Segoe UI, Arial, sans-serif" font-size="31" font-weight="800" letter-spacing=".5">Ладится</text>
-  <text x="70" y="230" fill="#dff3e5" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="2">САЙТЫ · СЕРВИСЫ · АВТОМАТИЗАЦИЯ</text>
-  <text x="70" y="326" fill="#fffdf7" font-family="Segoe UI, Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-2">Покажите одну рутину —</text>
-  <text x="70" y="411" fill="#fffdf7" font-family="Segoe UI, Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-2">найдём, где <tspan fill="#d9f75d">AI даст пользу</tspan></text>
+  <rect width="1200" height="630" fill="#7f2d19"/>
+  <circle cx="1090" cy="5" r="244" fill="none" stroke="#ffb24c" stroke-opacity=".18" stroke-width="54"/>
+  <circle cx="1090" cy="5" r="189" fill="none" stroke="#ffb24c" stroke-opacity=".34" stroke-width="2"/>
+  <rect x="70" y="59" width="58" height="58" rx="16" fill="#2a1710"/>
+  <path d="m99 70 21 12-21 13-21-13Z" fill="#ffb24c"/><path d="m78 82 21 13v18l-21-13Z" fill="#d95621"/><path d="m120 82-21 13v18l21-13Z" fill="#9d351c"/>
+  <text x="151" y="101" fill="#fff8ec" font-family="Segoe UI, Arial, sans-serif" font-size="31" font-weight="800" letter-spacing=".5">Fox Box</text>
+  <text x="70" y="230" fill="#f4d7bd" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="2">САЙТЫ · AI · АВТОМАТИЗАЦИЯ</text>
+  <text x="70" y="326" fill="#fff8ec" font-family="Segoe UI, Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-2">Покажите одну рутину —</text>
+  <text x="70" y="411" fill="#fff8ec" font-family="Segoe UI, Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-2">найдём, где <tspan fill="#ffb24c">AI даст пользу</tspan></text>
   <g font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">
-    <rect x="70" y="491" width="254" height="64" rx="16" fill="#fffdf7"/>
-    <text x="98" y="531" fill="#174f3a">Письменный план</text>
-    <rect x="340" y="491" width="240" height="64" rx="16" fill="#d9f75d"/>
-    <text x="369" y="531" fill="#174f3a">Пилот с метрикой</text>
-    <rect x="596" y="491" width="244" height="64" rx="16" fill="none" stroke="#d9f75d" stroke-width="2"/>
-    <text x="625" y="531" fill="#fffdf7">Контроль человека</text>
+    <rect x="70" y="491" width="254" height="64" rx="16" fill="#fff8ec"/>
+    <text x="98" y="531" fill="#7f2d19">Письменный план</text>
+    <rect x="340" y="491" width="240" height="64" rx="16" fill="#ffb24c"/>
+    <text x="369" y="531" fill="#7f2d19">Пилот с метрикой</text>
+    <rect x="596" y="491" width="244" height="64" rx="16" fill="none" stroke="#ffb24c" stroke-width="2"/>
+    <text x="625" y="531" fill="#fff8ec">Контроль человека</text>
   </g>
 </svg>

@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-  <title id="title">Ладится</title>
-  <desc id="desc">Знак в форме кириллической буквы Л, собранной из двух соединённых линий.</desc>
-  <rect width="512" height="512" rx="136" fill="#174f3a"/>
-  <path d="M116 374 230 142c10-21 42-21 52 0l114 232" fill="none" stroke="#d9f75d" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="256" cy="142" r="18" fill="#fffdf7"/>
-</svg>

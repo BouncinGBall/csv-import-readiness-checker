@@ -3,7 +3,7 @@ Add-Type -AssemblyName System.Drawing
 
 $assets = Join-Path $PSScriptRoot '..\assets'
 New-Item -ItemType Directory -Path $assets -Force | Out-Null
-$output = Join-Path $assets 'laditsya-avatar.png'
+$output = Join-Path $assets 'foxbox-avatar.png'
 $bitmap = New-Object System.Drawing.Bitmap 1024, 1024
 $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
 $graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias

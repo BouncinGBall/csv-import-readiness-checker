@@ -57,7 +57,7 @@ test('portfolio presents the multi-screen web concept collection honestly', () =
 });
 
 test('search and sharing metadata are complete', () => {
-  assert.match(html, /<title>С чего начать AI-внедрение в бизнесе — Ладится<\/title>/);
+  assert.match(html, /<title>С чего начать AI-внедрение в бизнесе — Fox Box<\/title>/);
   assert.match(html, /rel="canonical"/);
   assert.match(html, /property="og:title"/);
   assert.match(html, /property="og:description"/);
@@ -67,8 +67,8 @@ test('search and sharing metadata are complete', () => {
 });
 
 test('brand is distinctive and immediately explained', () => {
-  assert.match(html, /<strong>Ладится<\/strong><small>сайты · сервисы · автоматизация<\/small>/);
-  assert.match(html, /assets\/laditsya-mark\.svg/);
+  assert.match(html, /<strong>Fox Box<\/strong><small>сайты · AI · автоматизация<\/small>/);
+  assert.match(html, /assets\/foxbox-mark\.svg/);
 });
 
 test('conversion links converge on one clear contact block', () => {

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 300" role="img" aria-labelledby="title desc">
+  <title id="title">Fox Box</title>
+  <desc id="desc">Fox Box — сайты, AI и автоматизация.</desc>
+  <g transform="translate(20 20) scale(.5078)">
+    <rect width="512" height="512" rx="132" fill="#2a1710"/>
+    <path d="M256 80 425 178 256 276 87 178Z" fill="#ff9d36"/>
+    <path d="M256 80v196L87 178Z" fill="#ffbd64"/>
+    <path d="m87 178 169 98v164L87 342Z" fill="#d95621"/>
+    <path d="m425 178-169 98v164l169-98Z" fill="#9d351c"/>
+    <path d="m87 178 106-62 63 160Z" fill="#f47a2e"/>
+    <path d="m425 178-106-62-63 160Z" fill="#c7461e"/>
+    <path d="m193 116 63 160 63-160-63 36Z" fill="#fff1d5"/>
+    <path d="M256 276v164" stroke="#ffbd64" stroke-width="12"/>
+  </g>
+  <text x="330" y="145" fill="#2a1710" font-family="Segoe UI, Arial, sans-serif" font-size="112" font-weight="900" letter-spacing="-6">Fox Box</text>
+  <text x="337" y="205" fill="#765347" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="750" letter-spacing="2.2">САЙТЫ · AI · АВТОМАТИЗАЦИЯ</text>
+</svg>

@@ -54,6 +54,7 @@ test('enterprise AI page has a working contact-form contract and email fallback'
 function localReferences(html) {
   return [...html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)]
     .map((match) => match[1])
+    .filter((value) => !value.includes('${'))
     .filter((value) => !/^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(value));
 }
 

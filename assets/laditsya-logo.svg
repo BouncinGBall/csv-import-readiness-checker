@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 240" role="img" aria-labelledby="title desc">
-  <title id="title">Ладится</title>
-  <desc id="desc">Ладится — сайты, сервисы и автоматизация.</desc>
-  <rect x="20" y="20" width="200" height="200" rx="53" fill="#174f3a"/>
-  <path d="M65 166 110 74c4-8 17-8 21 0l44 92" fill="none" stroke="#d9f75d" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="120" cy="74" r="7" fill="#fffdf7"/>
-  <text x="260" y="126" fill="#17211b" font-family="Segoe UI, Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-3">Ладится</text>
-  <text x="265" y="176" fill="#5f6d63" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="1.4">САЙТЫ · СЕРВИСЫ · АВТОМАТИЗАЦИЯ</text>
-</svg>

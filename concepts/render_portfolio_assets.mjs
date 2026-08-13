@@ -29,6 +29,10 @@ for (const [slug, file] of concepts) {
   }
   await page.goto(`http://127.0.0.1:9317/concepts/mobile-showcase.html?c=${slug}`, { waitUntil: 'load' });
   await page.screenshot({ path: path.join(out, `${slug}-04-mobile.png`) });
+  const cover = await browser.newPage({ viewport: { width: 1024, height: 1024 }, deviceScaleFactor: 1 });
+  await cover.goto(`http://127.0.0.1:9317/concepts/fl-cover.html?c=${slug}`, { waitUntil: 'load' });
+  await cover.screenshot({ path: path.join(out, `${slug}-00-cover.png`) });
+  await cover.close();
 }
 
 await browser.close();

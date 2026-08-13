@@ -7,11 +7,11 @@ $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
 $graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
 $graphics.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::AntiAliasGridFit
 
-$green = [System.Drawing.Color]::FromArgb(23, 79, 58)
-$acid = [System.Drawing.Color]::FromArgb(217, 247, 93)
-$paper = [System.Drawing.Color]::FromArgb(255, 253, 247)
-$ink = [System.Drawing.Color]::FromArgb(23, 33, 27)
-$muted = [System.Drawing.Color]::FromArgb(207, 224, 212)
+$green = [System.Drawing.Color]::FromArgb(127, 45, 25)
+$acid = [System.Drawing.Color]::FromArgb(255, 178, 76)
+$paper = [System.Drawing.Color]::FromArgb(255, 248, 236)
+$ink = [System.Drawing.Color]::FromArgb(45, 28, 20)
+$muted = [System.Drawing.Color]::FromArgb(244, 215, 189)
 $graphics.Clear($green)
 
 $font = 'Segoe UI'
@@ -26,7 +26,7 @@ $paperBrush = New-Object System.Drawing.SolidBrush $paper
 $inkBrush = New-Object System.Drawing.SolidBrush $ink
 $mutedBrush = New-Object System.Drawing.SolidBrush $muted
 
-$graphics.DrawString('ЛАДИТСЯ  ·  САЙТЫ, СЕРВИСЫ И АВТОМАТИЗАЦИЯ', $brand, $acidBrush, 70, 54)
+$graphics.DrawString('FOX BOX  ·  САЙТЫ, AI И АВТОМАТИЗАЦИЯ', $brand, $acidBrush, 70, 54)
 $graphics.DrawString('Покажите одну рутину —', $hero, $whiteBrush, 64, 135)
 $graphics.DrawString('найдём, где AI даст пользу', $hero, $whiteBrush, 64, 201)
 $graphics.DrawString('Без необходимости разбираться в моделях и сервисах', $lead, $mutedBrush, 70, 288)
