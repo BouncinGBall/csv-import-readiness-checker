@@ -4,7 +4,7 @@
 
 [Открыть бесплатный мини-чек в браузере](https://bouncingball.github.io/csv-import-readiness-checker/)
 
-[Открыть публичное портфолио Data Pilot](https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html)
+[Открыть публичное портфолио «Ладится»](https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html)
 
 ## Что проверяет
 

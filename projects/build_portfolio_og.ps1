@@ -26,7 +26,7 @@ $paperBrush = New-Object System.Drawing.SolidBrush $paper
 $inkBrush = New-Object System.Drawing.SolidBrush $ink
 $mutedBrush = New-Object System.Drawing.SolidBrush $muted
 
-$graphics.DrawString('DATA PILOT  ·  AI-ВНЕДРЕНИЕ ДЛЯ БИЗНЕСА', $brand, $acidBrush, 70, 54)
+$graphics.DrawString('ЛАДИТСЯ  ·  САЙТЫ, СЕРВИСЫ И АВТОМАТИЗАЦИЯ', $brand, $acidBrush, 70, 54)
 $graphics.DrawString('Покажите одну рутину —', $hero, $whiteBrush, 64, 135)
 $graphics.DrawString('найдём, где AI даст пользу', $hero, $whiteBrush, 64, 201)
 $graphics.DrawString('Без необходимости разбираться в моделях и сервисах', $lead, $mutedBrush, 70, 288)

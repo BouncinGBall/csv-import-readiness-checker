@@ -48,8 +48,16 @@ test('public proof remains specific and auditable', () => {
   assert.match(html, /github\.com\/BouncinGBall\/csv-import-readiness-checker/);
 });
 
+test('portfolio presents the multi-screen web concept collection honestly', () => {
+  assert.match(html, /id="web-concepts"/);
+  assert.equal((html.match(/class="concept-card"/g) || []).length, 8);
+  assert.match(html, /собственные концепт-проекты, а не работы для вымышленных клиентов/i);
+  assert.match(html, /concepts\/atlas-ai\.html/);
+  assert.match(html, /concepts\/orbit-ops\.html/);
+});
+
 test('search and sharing metadata are complete', () => {
-  assert.match(html, /<title>С чего начать AI-внедрение в бизнесе — Data Pilot<\/title>/);
+  assert.match(html, /<title>С чего начать AI-внедрение в бизнесе — Ладится<\/title>/);
   assert.match(html, /rel="canonical"/);
   assert.match(html, /property="og:title"/);
   assert.match(html, /property="og:description"/);
@@ -59,7 +67,8 @@ test('search and sharing metadata are complete', () => {
 });
 
 test('brand is distinctive and immediately explained', () => {
-  assert.match(html, /<strong>Data Pilot<\/strong><small>AI-внедрение для бизнеса<\/small>/);
+  assert.match(html, /<strong>Ладится<\/strong><small>сайты · сервисы · автоматизация<\/small>/);
+  assert.match(html, /assets\/laditsya-mark\.svg/);
 });
 
 test('conversion links converge on one clear contact block', () => {

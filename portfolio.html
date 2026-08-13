@@ -9,29 +9,31 @@
   <link rel="canonical" href="https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Data Pilot">
-  <meta property="og:title" content="Покажите одну рутину — найдём полезное AI-внедрение — Data Pilot">
+  <meta property="og:site_name" content="Ладится">
+  <meta property="og:title" content="Покажите одну рутину — найдём полезное AI-внедрение — Ладится">
   <meta property="og:description" content="Слышали, что бизнесу пора внедрять AI, но не знаете, с чего начать? Найдём одну полезную рутину и проверим её небольшим пилотом.">
   <meta property="og:url" content="https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html">
   <meta property="og:image" content="https://bouncingball.github.io/csv-import-readiness-checker/projects/portfolio-og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Data Pilot — понятное AI-внедрение для бизнеса">
+  <meta property="og:image:alt" content="Ладится — сайты, сервисы и автоматизация для бизнеса">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Понятное AI-внедрение для бизнеса — Data Pilot">
+  <meta name="twitter:title" content="Понятное AI-внедрение для бизнеса — Ладится">
   <meta name="twitter:description" content="Один ручной процесс, безопасный пилот и сравнение до/после. Без необходимости разбираться в AI.">
   <meta name="twitter:image" content="https://bouncingball.github.io/csv-import-readiness-checker/projects/portfolio-og.png">
-  <title>С чего начать AI-внедрение в бизнесе — Data Pilot</title>
+  <title>С чего начать AI-внедрение в бизнесе — Ладится</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Data Pilot",
+    "name": "Ладится",
     "url": "https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html",
     "email": "mailto:uria198816@gmail.com",
-    "description": "Понятное внедрение AI и автоматизация повторяющихся бизнес-процессов через ограниченный пилот и измерение результата до расширения.",
+    "description": "Сайты, сервисы и понятная автоматизация повторяющихся бизнес-процессов через ограниченный пилот и измерение результата до расширения.",
     "knowsAbout": [
       "AI automation",
+      "web design",
+      "web application development",
       "document processing",
       "spreadsheet automation",
       "AI assistant quality assurance",
@@ -92,8 +94,7 @@
       backdrop-filter: blur(16px);
     }
     .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -.02em; text-decoration: none; }
-    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50% 50% 50% 12px; background: var(--green); color: var(--acid); font-size: 13px; transform: rotate(-7deg); }
-    .brand-mark span { transform: rotate(7deg); }
+    .brand-mark { display: block; width: 36px; height: 36px; border-radius: 10px; }
     .brand-copy { display: grid; gap: 1px; line-height: 1.05; }
     .brand-copy strong { font-size: 16px; }
     .brand-copy small { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
@@ -232,6 +233,16 @@
     .card-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 16px; margin-top: auto; }
     .card-links a { font-weight: 850; text-underline-offset: 4px; }
 
+    .concept-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .concept-card { overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: var(--paper); box-shadow: 0 16px 42px rgba(31,45,35,.06); }
+    .concept-preview { position: relative; display: block; overflow: hidden; aspect-ratio: 16 / 10; background: #080b11; }
+    .concept-preview iframe { width: 278%; height: 278%; border: 0; pointer-events: none; transform: scale(.36); transform-origin: 0 0; }
+    .concept-preview::after { content: "Открыть живой концепт ↗"; position: absolute; right: 18px; bottom: 18px; padding: 9px 12px; border-radius: 10px; background: rgba(255,253,247,.94); color: var(--ink); font-size: 12px; font-weight: 900; box-shadow: 0 8px 28px rgba(0,0,0,.2); }
+    .concept-body { padding: 22px 24px 25px; }
+    .concept-body h3 { margin: 7px 0 9px; font-size: 25px; letter-spacing: -.03em; }
+    .concept-body p { margin: 0; color: var(--muted); line-height: 1.55; }
+    .concept-meta { color: var(--green); font-size: 11px; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+
     .process { display: grid; grid-template-columns: .78fr 1.22fr; gap: 18px; }
     .process-intro { padding: clamp(26px, 4vw, 42px); border-radius: 26px; background: var(--orange); color: #29130b; }
     .process-intro .section-kicker { color: #29130b; }
@@ -302,7 +313,7 @@
       .offer-grid { grid-template-columns: 1fr; }
       .offer-card { min-height: auto; }
       .offer-card.featured { transform: none; }
-      .section-head, .work-grid, .process, .faq, .fit, .resource-grid { grid-template-columns: 1fr; }
+      .section-head, .work-grid, .concept-grid, .process, .faq, .fit, .resource-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 700px) {
@@ -347,13 +358,14 @@
 </head>
 <body>
   <header class="shell topbar">
-    <a class="brand" href="./portfolio.html" aria-label="Data Pilot — главная портфолио">
-      <span class="brand-mark"><span>DP</span></span>
-      <span class="brand-copy"><strong>Data Pilot</strong><small>AI-внедрение для бизнеса</small></span>
+    <a class="brand" href="./portfolio.html" aria-label="Ладится — главная портфолио">
+      <img class="brand-mark" src="./assets/laditsya-mark.svg" width="36" height="36" alt="">
+      <span class="brand-copy"><strong>Ладится</strong><small>сайты · сервисы · автоматизация</small></span>
     </a>
     <nav aria-label="Основная навигация">
       <a href="#fit">Что можно внедрить</a>
       <a href="#offers">Услуги и цены</a>
+      <a href="#web-concepts">Сайты</a>
       <a href="#works">Работы</a>
       <a class="nav-cta" href="#contact">Получить разбор</a>
     </nav>
@@ -591,6 +603,26 @@
       </div>
     </section>
 
+    <section id="web-concepts">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Сайты и интерфейсы</span>
+          <h2>Восемь многоэкранных концептов под разные задачи бизнеса.</h2>
+        </div>
+        <p class="section-intro">Это собственные концепт-проекты, а не работы для вымышленных клиентов. Каждый можно открыть как живую адаптивную страницу; в профилях также показаны четыре слайда с ключевыми экранами и логикой.</p>
+      </div>
+      <div class="concept-grid">
+        <article class="concept-card"><a class="concept-preview" href="./concepts/atlas-ai.html" aria-label="Открыть концепт ATLAS AI"><iframe src="./concepts/case-slide.html?c=atlas&s=1" title="Обложка концепта ATLAS AI" loading="lazy" tabindex="-1"></iframe></a><div class="concept-body"><span class="concept-meta">AI · продажи · CRM</span><h3>ATLAS AI</h3><p>AI-контур для обработки обращений, ответов по базе знаний и контроля результата.</p></div></article>
+        <article class="concept-card"><a class="concept-preview" href="./concepts/nord-estate.html" aria-label="Открыть концепт NORD ESTATE"><iframe src="./concepts/case-slide.html?c=nord&s=1" title="Обложка концепта NORD ESTATE" loading="lazy" tabindex="-1"></iframe></a><div class="concept-body"><span class="concept-meta">Недвижимость · каталог</span><h3>NORD ESTATE</h3><p>Премиальная витрина жилого проекта с подбором планировки и сценарием покупки.</p></div></article>
+        <article class="concept-card"><a class="concept-preview" href="./concepts/lumen-finance.html" aria-label="Открыть концепт LUMEN CLOUD"><iframe src="./concepts/case-slide.html?c=lumen&s=1" title="Обложка концепта LUMEN CLOUD" loading="lazy" tabindex="-1"></iframe></a><div class="concept-body"><span class="concept-meta">Fintech · B2B SaaS</span><h3>LUMEN CLOUD</h3><p>Управленческий сервис: деньги, договоры и дебиторка в одном интерфейсе.</p></div></article>
+        <article class="concept-card"><a class="concept-preview" href="./concepts/forma-interior.html" aria-label="Открыть концепт FORMA"><iframe src="./concepts/case-slide.html?c=forma&s=1" title="Обложка концепта FORMA" loading="lazy" tabindex="-1"></iframe></a><div class="concept-body"><span class="concept-meta">Интерьер · конфигуратор</span><h3>FORMA</h3><p>Конфигуратор мебели на заказ: материалы, размеры, бюджет и заявка дизайнеру.</p></div></article>
+        <article class="concept-card"><a class="concept-preview" href="./concepts/volterra-energy.html" aria-label="Открыть концепт VOLTERRA"><iframe src="./concepts/case-slide.html?c=volt&s=1" title="Обложка концепта VOLTERRA" loading="lazy" tabindex="-1"></iframe></a><div class="concept-body"><span class="concept-meta">Энергетика · корпоративный сайт</span><h3>VOLTERRA</h3><p>Сложные инженерные решения через отрасли, экономический эффект и доказательства.</p></div></article>
+        <article class="concept-card"><a class="concept-preview" href="./concepts/medora-clinic.html" aria-label="Открыть концепт MEDORA"><iframe src="./concepts/case-slide.html?c=medora&s=1" title="Обложка концепта MEDORA" loading="lazy" tabindex="-1"></iframe></a><div class="concept-body"><span class="concept-meta">Healthtech · личный кабинет</span><h3>MEDORA</h3><p>Спокойный путь пациента: выбор врача, подготовка, документы и назначения.</p></div></article>
+        <article class="concept-card"><a class="concept-preview" href="./concepts/arden-market.html" aria-label="Открыть концепт ARDEN MARKET"><iframe src="./concepts/case-slide.html?c=arden&s=1" title="Обложка концепта ARDEN MARKET" loading="lazy" tabindex="-1"></iframe></a><div class="concept-body"><span class="concept-meta">E-commerce · каталог</span><h3>ARDEN MARKET</h3><p>Редакционный интернет-магазин с быстрым каталогом и понятной покупкой.</p></div></article>
+        <article class="concept-card"><a class="concept-preview" href="./concepts/orbit-ops.html" aria-label="Открыть концепт ORBIT OPS"><iframe src="./concepts/case-slide.html?c=orbit&s=1" title="Обложка концепта ORBIT OPS" loading="lazy" tabindex="-1"></iframe></a><div class="concept-body"><span class="concept-meta">B2B-сервис · кабинет</span><h3>ORBIT OPS</h3><p>Заявки, документы, платежи и SLA в едином клиентском окне.</p></div></article>
+      </div>
+    </section>
+
     <section class="process" id="process">
       <div class="process-intro">
         <span class="section-kicker">Как проходит работа</span>
@@ -681,7 +713,7 @@
   </main>
 
   <footer class="shell">
-    <p>© 2026 Data Pilot · AI-внедрение и автоматизация.</p>
+    <p>© 2026 Ладится · сайты, сервисы и автоматизация.</p>
     <p><a href="https://github.com/BouncinGBall/csv-import-readiness-checker">GitHub</a> · <a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></p>
   </footer>
   <script type="module">

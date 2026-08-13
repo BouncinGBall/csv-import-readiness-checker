@@ -7,7 +7,7 @@
   <meta name="description" content="Независимый release gate для текстовых AI-агентов: воспроизводимые проверки, пороги допуска, evidence pack, runner и ретест перед релизом.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://bouncingball.github.io/csv-import-readiness-checker/ai-release-gate.html">
-  <title>AI Agent Release Gate — независимая проверка перед релизом</title>
+  <title>AI Agent Release Gate — независимая проверка перед релизом · Ладится</title>
   <style>
     :root {
       color-scheme: light;
@@ -32,8 +32,7 @@
     .shell { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
     .topbar { display: flex; min-height: 68px; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; text-decoration: none; }
-    .mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50% 50% 50% 12px; background: var(--deep); color: var(--acid); font-size: 12px; transform: rotate(-7deg); }
-    .mark span { transform: rotate(7deg); }
+    .mark { display: block; width: 34px; height: 34px; border-radius: 9px; }
     .brand-copy { display: grid; line-height: 1.05; }
     .brand-copy small { color: var(--muted); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
     .back { color: var(--muted); font-size: 14px; font-weight: 750; text-underline-offset: 4px; }
@@ -173,7 +172,7 @@
 </head>
 <body>
   <header class="shell topbar">
-    <a class="brand" href="./portfolio.html"><span class="mark"><span>DP</span></span><span class="brand-copy">Data Pilot<small>Системы автоматизации</small></span></a>
+    <a class="brand" href="./portfolio.html"><img class="mark" src="./assets/laditsya-mark.svg" width="34" height="34" alt=""><span class="brand-copy">Ладится<small>сайты · сервисы · автоматизация</small></span></a>
     <a class="back" href="./portfolio.html">Портфолио и другие решения →</a>
   </header>
 
@@ -341,7 +340,7 @@
     </section>
   </main>
 
-  <footer class="shell"><span>© 2026 Data Pilot · AI Agent Release Gate</span><span><a href="./ai-eval.html">Демо отчёта</a> · <a href="./portfolio.html">Портфолио</a></span></footer>
+  <footer class="shell"><span>© 2026 Ладится · AI Agent Release Gate</span><span><a href="./ai-eval.html">Демо отчёта</a> · <a href="./portfolio.html">Портфолио</a></span></footer>
   <script>
     (() => {
       const form = document.querySelector('#release-request-form');
