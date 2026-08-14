@@ -7,6 +7,7 @@ import test from 'node:test';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 const html = readFileSync(resolve(root, 'portfolio.html'), 'utf8');
+const languageScript = readFileSync(resolve(root, 'src', 'site-language.js'), 'utf8');
 
 test('portfolio opens with a plain-language AI outcome promise', () => {
   const h1 = [...html.matchAll(/<h1>([\s\S]*?)<\/h1>/g)];
@@ -66,6 +67,11 @@ test('search and sharing metadata are complete', () => {
   assert.match(html, /property="og:image"/);
   assert.match(html, /application\/ld\+json/);
   assert.ok(existsSync(resolve(root, 'projects', 'portfolio-og.png')));
+});
+
+test('mobile language switch stays in the header instead of covering page actions', () => {
+  assert.match(languageScript, /@media\(max-width:820px\).*\.topbar \.foxbox-language\{position:absolute/s);
+  assert.doesNotMatch(languageScript, /\.topbar \.foxbox-language\{position:fixed[^}]*bottom:/s);
 });
 
 test('brand is distinctive and immediately explained', () => {
