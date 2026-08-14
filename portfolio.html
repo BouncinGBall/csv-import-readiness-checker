@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#7f2d19">
-  <meta name="description" content="Понятное AI-внедрение для бизнеса: разберём одну рутину, соберём пилот и измерим результат до расширения. Не нужно разбираться в нейросетях.">
+  <meta name="description" content="Practical AI implementation for business: map one repetitive workflow, ship a bounded pilot and measure the result before scaling.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html">
-  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Fox Box">
-  <meta property="og:title" content="Покажите одну рутину — найдём полезное AI-внедрение — Fox Box">
-  <meta property="og:description" content="Слышали, что бизнесу пора внедрять AI, но не знаете, с чего начать? Найдём одну полезную рутину и проверим её небольшим пилотом.">
+  <meta property="og:title" content="Turn one repetitive workflow into a measurable AI pilot — Fox Box">
+  <meta property="og:description" content="Async AI automation and full-stack delivery with written milestones, tests and measurable acceptance criteria.">
   <meta property="og:url" content="https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html">
   <meta property="og:image" content="https://bouncingball.github.io/csv-import-readiness-checker/projects/portfolio-og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Fox Box — сайты, сервисы и автоматизация для бизнеса">
+  <meta property="og:image:alt" content="Fox Box — AI automation and full-stack product delivery">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Понятное AI-внедрение для бизнеса — Fox Box">
-  <meta name="twitter:description" content="Один ручной процесс, безопасный пилот и сравнение до/после. Без необходимости разбираться в AI.">
+  <meta name="twitter:title" content="Practical AI implementation for business — Fox Box">
+  <meta name="twitter:description" content="One manual workflow, one bounded pilot and a measurable before-and-after comparison.">
   <meta name="twitter:image" content="https://bouncingball.github.io/csv-import-readiness-checker/projects/portfolio-og.png">
-  <title>С чего начать AI-внедрение в бизнесе — Fox Box</title>
+  <title>AI Automation & Full-Stack Delivery — Fox Box</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -29,7 +29,7 @@
     "name": "Fox Box",
     "url": "https://bouncingball.github.io/csv-import-readiness-checker/portfolio.html",
     "email": "mailto:uria198816@gmail.com",
-    "description": "Сайты, сервисы и понятная автоматизация повторяющихся бизнес-процессов через ограниченный пилот и измерение результата до расширения.",
+    "description": "AI automation, full-stack web products and measurable workflow pilots delivered through written milestones.",
     "knowsAbout": [
       "AI automation",
       "web design",
@@ -44,13 +44,13 @@
         "@type": "Offer",
         "priceCurrency": "RUB",
         "price": "19000",
-        "itemOffered": {"@type": "Service", "name": "AI-пилот одного бизнес-процесса"}
+        "itemOffered": {"@type": "Service", "name": "Single-workflow AI pilot"}
       },
       {
         "@type": "Offer",
         "priceCurrency": "RUB",
         "price": "0",
-        "itemOffered": {"@type": "Service", "name": "Письменная карта AI-возможности"}
+        "itemOffered": {"@type": "Service", "name": "Written AI opportunity map"}
       }
     ]
   }
@@ -238,7 +238,7 @@
     .concept-preview { position: relative; display: block; overflow: hidden; aspect-ratio: 16 / 10; background: #080b11; }
     .concept-preview img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
     .concept-preview:hover img { transform: scale(1.025); }
-    .concept-preview::after { content: "Открыть живой концепт ↗"; position: absolute; right: 18px; bottom: 18px; padding: 9px 12px; border-radius: 10px; background: rgba(255,253,247,.94); color: var(--ink); font-size: 12px; font-weight: 900; box-shadow: 0 8px 28px rgba(0,0,0,.2); }
+    .concept-preview::after { content: "Open live concept ↗"; position: absolute; right: 18px; bottom: 18px; padding: 9px 12px; border-radius: 10px; background: rgba(255,253,247,.94); color: var(--ink); font-size: 12px; font-weight: 900; box-shadow: 0 8px 28px rgba(0,0,0,.2); }
     .concept-body { padding: 22px 24px 25px; }
     .concept-body h3 { margin: 7px 0 9px; font-size: 25px; letter-spacing: -.03em; }
     .concept-body p { margin: 0; color: var(--muted); line-height: 1.55; }
@@ -356,6 +356,7 @@
 
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
+  <script src="./src/site-language.js" defer></script>
 </head>
 <body>
   <header class="shell topbar">
@@ -476,7 +477,7 @@
           <div class="offer-bottom">
             <div class="offer-price"><strong>0 ₽</strong><span>ответ до 1 рабочего дня</span></div>
             <a class="offer-link" href="#contact">Описать мою рутину</a>
-            <a class="offer-details" href="./ai-release-gate.html">Уже разрабатываете AI? Проверка перед релизом →</a>
+            <a class="offer-details" href="#contact">Уже разрабатываете AI? Запросить письменный scope проверки →</a>
           </div>
         </article>
       </div>
@@ -536,11 +537,10 @@
             <span class="fact">17 автотестов</span>
             <span class="fact">2 профиля проверки</span>
             <span class="fact">данные остаются в браузере</span>
-            <span class="fact">открытый код</span>
+            <span class="fact">документированные проверки</span>
           </div>
           <div class="card-links">
             <a href="./">Запустить инструмент ↗</a>
-            <a href="https://github.com/BouncinGBall/csv-import-readiness-checker">Посмотреть код ↗</a>
           </div>
         </article>
 
@@ -555,8 +555,7 @@
             <span class="fact">1 повторная проверка</span>
           </div>
           <div class="card-links">
-            <a href="./ai-eval.html">Открыть описание и демо ↗</a>
-            <a href="./ai-release-gate.html">Release gate для команды ↗</a>
+            <a href="./downloads/AI_Assistant_Evaluation_Pack_Demo.xlsx" download>Скачать XLSX-демо ↗</a>
           </div>
         </article>
 
@@ -597,7 +596,6 @@
             <div class="bubble user">Таблица расхождений и журнал ошибок.<small>ответы сохраняются локально</small></div>
           </div>
           <div class="card-links">
-            <a href="https://github.com/BouncinGBall/csv-import-readiness-checker/tree/main/projects/telegram-ai-intake-bot">Исходные файлы и тесты ↗</a>
             <a href="#contact">Обсудить внедрение ↗</a>
           </div>
         </article>
@@ -715,7 +713,7 @@
 
   <footer class="shell">
     <p>© 2026 Fox Box · сайты, AI и автоматизация.</p>
-    <p><a href="https://github.com/BouncinGBall/csv-import-readiness-checker">GitHub</a> · <a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></p>
+    <p><a href="mailto:uria198816@gmail.com">uria198816@gmail.com</a></p>
   </footer>
   <script type="module">
     import { normalizeWebsiteUrl } from './src/website-url.js';
@@ -749,7 +747,9 @@
         }
         if (normalizedProduct) product.value = normalizedProduct;
         originalProcess = process.value;
-        process.value = `Направление: ${category.value}.\n${originalProcess}`;
+        process.value = document.documentElement.lang === 'ru'
+          ? `Направление: ${category.value}.\n${originalProcess}`
+          : `Direction: ${category.value}.\n${originalProcess}`;
         awaiting = true;
         submit.disabled = true;
         status.dataset.state = '';

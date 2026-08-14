@@ -45,7 +45,8 @@ test('public proof remains specific and auditable', () => {
   assert.match(html, /24[\s\S]{0,80}автотеста/i);
   assert.match(html, /17 автотестов/i);
   assert.match(html, /7\/7 тестов/i);
-  assert.match(html, /github\.com\/BouncinGBall\/csv-import-readiness-checker/);
+  assert.doesNotMatch(html, /github\.com\/BouncinGBall\/csv-import-readiness-checker/);
+  assert.match(html, /href="\.\/">Запустить инструмент/);
 });
 
 test('portfolio presents the multi-screen web concept collection honestly', () => {
@@ -57,7 +58,8 @@ test('portfolio presents the multi-screen web concept collection honestly', () =
 });
 
 test('search and sharing metadata are complete', () => {
-  assert.match(html, /<title>С чего начать AI-внедрение в бизнесе — Fox Box<\/title>/);
+  assert.match(html, /<title>AI Automation & Full-Stack Delivery — Fox Box<\/title>/);
+  assert.match(html, /<script src="\.\/src\/site-language\.js" defer><\/script>/);
   assert.match(html, /rel="canonical"/);
   assert.match(html, /property="og:title"/);
   assert.match(html, /property="og:description"/);

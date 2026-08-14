@@ -25,5 +25,6 @@
     document.querySelector('#eyebrow').textContent=`${item.name} · экран ${slide}`;document.querySelector('#title').textContent=content[0];document.querySelector('#description').textContent=content[1];document.querySelector('#url').textContent=`FOX BOX / CONCEPT ${key.toUpperCase()}`;document.querySelector('#badge').textContent='Концепт';document.querySelector('#index').textContent=`0${slide} / 04`;
     const frame=document.querySelector('#preview');frame.src=item.file;frame.addEventListener('load',()=>{const doc=frame.contentDocument;doc.documentElement.style.scrollBehavior='auto';const max=Math.max(0,doc.documentElement.scrollHeight-1000);frame.contentWindow.scrollTo(0,max*content[2])});
   </script>
+  <script src="../src/site-language.js"></script>
 </body>
 </html>

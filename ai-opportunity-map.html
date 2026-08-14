@@ -121,11 +121,15 @@
       const days = Number(document.querySelector('#days').value);
       const people = Number(document.querySelector('#people').value);
       const monthlyHours = cases * minutes * days * people / 60;
-      const formatted = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 }).format(monthlyHours);
-      hours.textContent = `${formatted} ч ручной работы в месяц`;
-      explanation.textContent = `Это текущая нагрузка для процесса «${document.querySelector('#process-type').value}». Возможный эффект нельзя честно назвать до пилота: часть случаев может требовать решения сотрудника.`;
+      const isRussian = document.documentElement.lang === 'ru';
+      const formatted = new Intl.NumberFormat(isRussian ? 'ru-RU' : 'en-US', { maximumFractionDigits: 1 }).format(monthlyHours);
+      hours.textContent = isRussian ? `${formatted} ч ручной работы в месяц` : `${formatted} hours of manual work per month`;
+      explanation.textContent = isRussian
+        ? `Это текущая нагрузка для процесса «${document.querySelector('#process-type').value}». Возможный эффект нельзя честно назвать до пилота: часть случаев может требовать решения сотрудника.`
+        : `This is the current workload for “${document.querySelector('#process-type').value}”. The potential impact cannot be claimed honestly before a pilot because some cases may still require human judgment.`;
       result.classList.add('visible');
     });
   </script>
+  <script src="./src/site-language.js"></script>
 </body>
 </html>

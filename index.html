@@ -253,6 +253,7 @@
     const formatMetricLabel = document.getElementById('formatMetricLabel');
     const offerText = document.getElementById('offerText');
     const offerCta = document.getElementById('offerCta');
+    const isRussian = document.documentElement.lang === 'ru';
     let lastResult = null;
 
     const syntheticSample = [
@@ -265,12 +266,27 @@
     ].join('\n');
 
     const catalogSample = [
-      'артикул;категория;цена;остаток;фото',
-      'SKU-001;Обувь;3990;5;https://example.com/sku-001.jpg',
-      'SKU-002;Обувь;free;-1;sku-002.jpg',
-      'SKU-001;Обувь;3990;2;https://example.com/sku-001-new.jpg',
-      ';Аксессуары;990;7;https://example.com/no-sku.jpg',
+      isRussian ? 'артикул;категория;цена;остаток;фото' : 'sku;category;price;stock;image',
+      isRussian ? 'SKU-001;Обувь;3990;5;https://example.com/sku-001.jpg' : 'SKU-001;Shoes;49;5;https://example.com/sku-001.jpg',
+      isRussian ? 'SKU-002;Обувь;free;-1;sku-002.jpg' : 'SKU-002;Shoes;free;-1;sku-002.jpg',
+      isRussian ? 'SKU-001;Обувь;3990;2;https://example.com/sku-001-new.jpg' : 'SKU-001;Shoes;49;2;https://example.com/sku-001-new.jpg',
+      isRussian ? ';Аксессуары;990;7;https://example.com/no-sku.jpg' : ';Accessories;12;7;https://example.com/no-sku.jpg',
     ].join('\n');
+
+    function scopeMailto(profile, result) {
+      if (isRussian) return buildScopeRequest(profile, result).mailto;
+      const profileName = profile === 'catalog' ? 'product catalog' : 'CRM contacts';
+      const summary = result
+        ? `Mini-check: ${result.score}/100; rows: ${result.dataRows}; empty cells: ${result.metrics.missingCells}; exact duplicates: ${result.metrics.duplicateRows}; format issues: ${result.metrics.formatIssues}.`
+        : 'Mini-check: not run.';
+      const body = [
+        'Hello,', '', 'I would like to scope preparation of one CSV/XLSX file in writing.',
+        `Profile: ${profileName}.`, summary, '',
+        'Target system:', 'Full row count:', 'Required fields:', 'Duplicate rule:', 'Deadline:', '',
+        'I will not attach real customer or personal data in the first message.',
+      ].join('\n');
+      return `mailto:uria198816@gmail.com?subject=${encodeURIComponent('CSV/XLSX import preparation — written scope')}&body=${encodeURIComponent(body)}`;
+    }
 
     function activeProfile() {
       return document.querySelector('input[name="profile"]:checked').value;
@@ -279,18 +295,22 @@
     function updateProfileUi() {
       const catalog = activeProfile() === 'catalog';
       input.placeholder = catalog
-        ? 'артикул;категория;цена;остаток;фото\nSKU-001;Обувь;3990;5;https://example.com/sku-001.jpg'
+        ? (isRussian ? 'артикул;категория;цена;остаток;фото\nSKU-001;Обувь;3990;5;https://example.com/sku-001.jpg' : 'sku;category;price;stock;image\nSKU-001;Shoes;49;5;https://example.com/sku-001.jpg')
         : 'name,email,phone,company\nSample A,user@example.com,+79990000000,Example LLC';
-      formatMetricLabel.textContent = catalog ? 'ошибок каталога' : 'email / телефон';
-      offerText.textContent = catalog
-        ? 'Один CSV/XLSX до 10 000 товаров: артикулы, категории, цены, остатки, URL изображений, кандидаты в дубли, mapping, READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CMS.'
-        : 'Один CSV/XLSX до 10 000 строк, нормализация, кандидаты в дубли, mapping, журнал READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CRM.';
-      offerCta.href = buildScopeRequest(activeProfile(), lastResult).mailto;
+      formatMetricLabel.textContent = isRussian ? (catalog ? 'ошибок каталога' : 'email / телефон') : (catalog ? 'catalog issues' : 'email / phone');
+      offerText.textContent = isRussian
+        ? (catalog
+          ? 'Один CSV/XLSX до 10 000 товаров: артикулы, категории, цены, остатки, URL изображений, кандидаты в дубли, mapping, READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CMS.'
+          : 'Один CSV/XLSX до 10 000 строк, нормализация, кандидаты в дубли, mapping, журнал READY/REVIEW/REJECT и контрольные итоги. 5 900 ₽, 24 часа после оплаты и письменного согласования. Без созвонов и доступа к CRM.')
+        : (catalog
+          ? 'One product CSV/XLSX with up to 10,000 rows: SKU, categories, prices, stock, image URLs, duplicate candidates, mapping, READY/REVIEW/REJECT log and control totals. $250, delivered within 24 hours after funding and written approval. No calls or CMS access.'
+          : 'One CSV/XLSX with up to 10,000 rows: normalization, duplicate candidates, mapping, READY/REVIEW/REJECT log and control totals. $250, delivered within 24 hours after funding and written approval. No calls or CRM access.');
+      offerCta.href = scopeMailto(activeProfile(), lastResult);
     }
 
     function updateCounter() {
       const count = Math.max(0, nonEmptyLines(input.value).length - 1);
-      counter.textContent = `${count} / ${MAX_ROWS} строк`;
+      counter.textContent = isRussian ? `${count} / ${MAX_ROWS} строк` : `${count} / ${MAX_ROWS} rows`;
       counter.style.color = count > MAX_ROWS ? 'var(--bad)' : '';
     }
 
@@ -301,10 +321,14 @@
     }
 
     function render(result) {
-      const verdicts = {
+      const verdicts = isRussian ? {
         'structurally-close': ['Структура близка к готовой', 'Крупных структурных предупреждений нет, но всё ещё нужны бизнес-правила и проверка полного файла.'],
         review: ['Нужна проверка перед импортом', 'Найдены проблемы, которые могут создать неполные, отклонённые или дублирующиеся записи CRM.'],
         cleanup: ['Рекомендуется подготовка файла', 'Импорт такой структуры без исправлений несёт высокий риск проблем с качеством данных.'],
+      } : {
+        'structurally-close': ['Structure is close to import-ready', 'No major structural warning was found, but business rules and full-file validation are still required.'],
+        review: ['Review before import', 'Issues were found that may create incomplete, rejected or duplicate records.'],
+        cleanup: ['File preparation recommended', 'Importing this structure without remediation creates a high data-quality risk.'],
       };
       const [title, description] = verdicts[result.verdict];
       const score = document.getElementById('score');
@@ -326,7 +350,7 @@
         findings.appendChild(item);
       });
       lastResult = result;
-      offerCta.href = buildScopeRequest(result.profile, result).mailto;
+      offerCta.href = scopeMailto(result.profile, result);
       results.hidden = false;
     }
 
@@ -336,8 +360,8 @@
         render(analyzeCsv(input.value, { profile: activeProfile() }));
       } catch (error) {
         lastResult = null;
-        offerCta.href = buildScopeRequest(activeProfile()).mailto;
-        showError(error instanceof Error ? error.message : 'Фрагмент не удалось проверить.');
+        offerCta.href = scopeMailto(activeProfile());
+        showError(error instanceof Error ? error.message : (isRussian ? 'Фрагмент не удалось проверить.' : 'The sample could not be checked.'));
       }
     }
 
@@ -352,7 +376,7 @@
       lastResult = null;
       errorBox.hidden = true;
       results.hidden = true;
-      offerCta.href = buildScopeRequest(activeProfile()).mailto;
+      offerCta.href = scopeMailto(activeProfile());
       updateCounter();
       input.focus();
     });
@@ -368,5 +392,6 @@
     updateProfileUi();
     updateCounter();
   </script>
+  <script src="./src/site-language.js"></script>
 </body>
 </html>
