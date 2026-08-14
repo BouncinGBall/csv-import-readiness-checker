@@ -53,6 +53,8 @@ test('public proof remains specific and auditable', () => {
 test('portfolio presents the multi-screen web concept collection honestly', () => {
   assert.match(html, /id="web-concepts"/);
   assert.equal((html.match(/class="concept-card"/g) || []).length, 8);
+  assert.equal((html.match(/-01-home-en\.png/g) || []).length, 8);
+  assert.equal((html.match(/data-ru-src=/g) || []).length, 8);
   assert.match(html, /собственные концепт-проекты, а не работы для вымышленных клиентов/i);
   assert.match(html, /concepts\/atlas-ai\.html/);
   assert.match(html, /concepts\/orbit-ops\.html/);
@@ -70,8 +72,10 @@ test('search and sharing metadata are complete', () => {
 });
 
 test('mobile language switch stays in the header instead of covering page actions', () => {
-  assert.match(languageScript, /@media\(max-width:820px\).*\.topbar \.foxbox-language\{position:absolute/s);
-  assert.doesNotMatch(languageScript, /\.topbar \.foxbox-language\{position:fixed[^}]*bottom:/s);
+  assert.match(languageScript, /\.foxbox-language\.floating\{position:relative/);
+  assert.doesNotMatch(languageScript, /\.foxbox-language\.floating\{position:fixed/);
+  assert.match(languageScript, /\.topbar \.foxbox-language\{position:static/);
+  assert.doesNotMatch(languageScript, /\.topbar \.foxbox-language\{position:(?:fixed|absolute)/s);
 });
 
 test('brand is distinctive and immediately explained', () => {

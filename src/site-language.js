@@ -509,7 +509,9 @@
   ]);
 
   const NORMALIZED_EN = new Map([...EN].map(([key, value]) => [key.replace(/\s+/g, ' ').trim(), value]));
-  const language = new URLSearchParams(window.location.search).get('lang') === 'ru' ? 'ru' : 'en';
+  const query = new URLSearchParams(window.location.search);
+  const language = query.get('lang') === 'ru' ? 'ru' : 'en';
+  const previewMode = query.get('preview') === '1';
   document.documentElement.lang = language;
 
   const translateValue = (value) => {
@@ -544,7 +546,7 @@
 
   const addSwitcher = () => {
     const style = document.createElement('style');
-    style.textContent = '.foxbox-language{display:inline-flex;align-items:center;gap:3px;padding:3px;border:1px solid rgba(127,45,25,.28);border-radius:999px;background:rgba(255,248,236,.94);color:#2d1c14;font:800 11px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;box-shadow:0 7px 22px rgba(45,28,20,.10)}.foxbox-language a{display:grid;place-items:center;min-width:34px;height:29px;padding:0 8px;border-radius:999px;color:inherit;text-decoration:none}.foxbox-language a[aria-current="true"]{background:#7f2d19;color:#fff}.foxbox-language.floating{position:fixed;z-index:1000;top:14px;right:14px}.topbar .foxbox-language{flex:0 0 auto}@media(max-width:820px){.topbar{position:relative}.topbar .foxbox-language{position:absolute;z-index:2;right:2px;top:14px;bottom:auto;box-shadow:0 7px 22px rgba(45,28,20,.10)}}';
+    style.textContent = '.foxbox-language{display:inline-flex;align-items:center;gap:3px;padding:3px;border:1px solid rgba(127,45,25,.28);border-radius:999px;background:rgba(255,248,236,.94);color:#2d1c14;font:800 11px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;box-shadow:0 7px 22px rgba(45,28,20,.10)}.foxbox-language a{display:grid;place-items:center;min-width:34px;height:29px;padding:0 8px;border-radius:999px;color:inherit;text-decoration:none}.foxbox-language a[aria-current="true"]{background:#7f2d19;color:#fff}.foxbox-language.floating{position:relative;z-index:1000;width:max-content;margin:10px 10px 10px auto}.topbar .foxbox-language{position:static;flex:0 0 auto}@media(max-width:620px){.topbar .foxbox-language{align-self:flex-end;margin:0 0 2px}}';
     if (language === 'ru') style.textContent += '.concept-preview::after{content:"Открыть живой концепт ↗"}';
     document.head.append(style);
     const switcher = document.createElement('span');
@@ -553,7 +555,7 @@
     switcher.innerHTML = `<a href="${languageUrl('en')}" lang="en" aria-current="${language === 'en'}">EN</a><a href="${languageUrl('ru')}" lang="ru" aria-current="${language === 'ru'}">RU</a>`;
     const topbar = document.querySelector('.topbar');
     if (topbar) topbar.insertBefore(switcher, topbar.querySelector('nav'));
-    else document.body.append(switcher);
+    else document.body.insertBefore(switcher, document.body.firstChild);
   };
 
   const preserveRussianNavigation = () => {
@@ -568,9 +570,17 @@
     }
   };
 
+  const selectLocalizedPreviews = () => {
+    if (language !== 'ru') return;
+    for (const image of document.querySelectorAll('img[data-ru-src]')) {
+      image.setAttribute('src', image.dataset.ruSrc);
+    }
+  };
+
+  selectLocalizedPreviews();
   translateTree(document);
   preserveRussianNavigation();
-  addSwitcher();
+  if (!previewMode) addSwitcher();
 
   if (language === 'en') {
     const observer = new MutationObserver((records) => {
