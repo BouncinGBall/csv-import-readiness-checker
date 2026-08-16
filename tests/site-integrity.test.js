@@ -71,6 +71,20 @@ test('Docker Swarm proof is reproducible, bounded and backed by public evidence'
   assert.doesNotMatch(runner, /foxbox-controlled-proof-only/);
 });
 
+test('Listing Bot proof publishes the complete synthetic artifact set', () => {
+  const proofRoot = resolve(root, 'projects', 'listing-bot-proof');
+  for (const path of [
+    'synthetic-source-front.png', 'synthetic-source-back.png', 'synthetic-source-detail.png',
+    'preview-card.png', 'listing.txt', 'listing.json', 'inventory-row.csv',
+    'listing-package.zip', 'item.json', 'production-source-manifest.json',
+    'generate-proof.mjs', 'make_synthetic_sources.py', 'extract_package.py', 'SHA256SUMS.txt',
+  ]) assert.ok(existsSync(resolve(proofRoot, path)), `missing Listing Bot proof artifact: ${path}`);
+
+  const manifest = JSON.parse(readFileSync(resolve(proofRoot, 'production-source-manifest.json'), 'utf8'));
+  assert.equal(Object.keys(manifest.sha256).length, 6);
+  for (const hash of Object.values(manifest.sha256)) assert.match(hash, /^[a-f0-9]{64}$/);
+});
+
 function localReferences(html) {
   return [...html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)]
     .map((match) => match[1])

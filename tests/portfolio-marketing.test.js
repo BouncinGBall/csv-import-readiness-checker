@@ -57,8 +57,20 @@ test('public proof remains specific and auditable', () => {
   assert.match(html, /Пилот до 20 карточек: 5 900 ₽ и 2 рабочих дня/);
   assert.match(html, /Подлинность товара, просмотры и продажи не обещаются/);
   assert.match(html, /без входа в аккаунт/);
+  assert.match(html, /href="\.\/listing-bot-proof\.html"/);
   assert.doesNotMatch(html, /github\.com\/BouncinGBall\/csv-import-readiness-checker/);
   assert.match(html, /href="\.\/">Запустить инструмент/);
+});
+
+test('Listing Bot proof is explicit, synthetic and reproducible', () => {
+  const proof = readFileSync(resolve(root, 'listing-bot-proof.html'), 'utf8');
+  assert.match(proof, /Synthetic process proof/);
+  assert.match(proof, /все исходные данные и изображения синтетические/i);
+  assert.match(proof, /не клиентский кейс/i);
+  assert.match(proof, /не подтверждает подлинность товара, реальные просмотры, продажи/i);
+  assert.match(proof, /production-source-manifest\.json/);
+  assert.match(proof, /SHA256SUMS\.txt/);
+  assert.match(proof, /listing-package\.zip/);
 });
 
 test('legacy portfolio links with a trailing dot recover safely', () => {

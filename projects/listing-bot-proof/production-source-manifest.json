@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-08-17",
+  "statement": "Hashes identify the exact Fox Box Listing Bot production sources used for this synthetic proof run.",
+  "sha256": {
+    "src/sales_copy.mjs": "16d8d8489842f2165182455404bed7db79d03ff24ca0fcfdf33747aa0d0719ef",
+    "src/copywriter.mjs": "d8de7af7d034f6e320f1c3fdbe549ca430d1e60cd967dd2960823a16d715c2e8",
+    "src/listing_quality.mjs": "a9f1de6f9cc35072e1a013e8d0d87c49c25ca0c57f9484db27d5f5d1108fb41b",
+    "src/listing_utils.mjs": "f48c482ae71aa77f54173ca2fd7ba269df36046d3b9a1711c3a36b984893c86f",
+    "scripts/make_preview_card.py": "626a9cb108527bf29e39afb54329660351e6df07a74d6dceb1e65e36cbbf73db",
+    "scripts/package_listing.py": "d2214d5c0a577899dbdf0e09f470d2d00fb67d10c307d2534931cdd1f4727e07"
+  }
+}
