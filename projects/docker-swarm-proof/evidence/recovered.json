@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-08-16T11:20:47.030531+00:00",
+  "passed": true,
+  "conditions": {
+    "expected_managers": 3,
+    "expected_workers": 2,
+    "read_only": true
+  },
+  "nodes": [
+    {
+      "id": "k79khuq6ib3a",
+      "hostname": "manager-1",
+      "role": "manager",
+      "availability": "active",
+      "state": "ready",
+      "manager_reachability": "reachable",
+      "leader": true
+    },
+    {
+      "id": "a0fyfslwpnab",
+      "hostname": "manager-2",
+      "role": "manager",
+      "availability": "active",
+      "state": "ready",
+      "manager_reachability": "reachable",
+      "leader": false
+    },
+    {
+      "id": "xrrnfk2dovmt",
+      "hostname": "manager-3",
+      "role": "manager",
+      "availability": "active",
+      "state": "ready",
+      "manager_reachability": "reachable",
+      "leader": false
+    },
+    {
+      "id": "7ssdk64q00l5",
+      "hostname": "worker-1",
+      "role": "worker",
+      "availability": "active",
+      "state": "ready",
+      "manager_reachability": null,
+      "leader": false
+    },
+    {
+      "id": "wpy1e14s375q",
+      "hostname": "worker-2",
+      "role": "worker",
+      "availability": "active",
+      "state": "ready",
+      "manager_reachability": null,
+      "leader": false
+    }
+  ],
+  "services": [
+    {
+      "name": "proof_health",
+      "mode": "replicated",
+      "desired_replicas": 3,
+      "running_tasks": 3,
+      "task_states": [
+        "Running about a minute ago",
+        "Running about a minute ago",
+        "Running about a minute ago"
+      ]
+    },
+    {
+      "name": "proof_registry",
+      "mode": "replicated",
+      "desired_replicas": 1,
+      "running_tasks": 1,
+      "task_states": [
+        "Running about a minute ago"
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "url": "http://127.0.0.1:18080/",
+      "final_url": "http://127.0.0.1:18080/",
+      "status": 200
+    },
+    {
+      "url": "https://127.0.0.1:15000/v2/",
+      "final_url": "https://127.0.0.1:15000/v2/",
+      "status": 200
+    }
+  ],
+  "checks": [
+    {
+      "name": "manager_count",
+      "passed": true,
+      "detail": "Expected 3 manager nodes",
+      "observed": 3
+    },
+    {
+      "name": "worker_count",
+      "passed": true,
+      "detail": "Expected 2 worker nodes",
+      "observed": 2
+    },
+    {
+      "name": "nodes_ready_active",
+      "passed": true,
+      "detail": "Every node must be Ready and Active",
+      "observed": []
+    },
+    {
+      "name": "single_manager_leader",
+      "passed": true,
+      "detail": "Exactly one manager must report Leader=true",
+      "observed": [
+        "manager-1"
+      ]
+    },
+    {
+      "name": "manager_reachability",
+      "passed": true,
+      "detail": "Every manager must report Reachability=reachable",
+      "observed": []
+    },
+    {
+      "name": "service:proof_health",
+      "passed": true,
+      "detail": "All desired service tasks must be running",
+      "observed": {
+        "name": "proof_health",
+        "mode": "replicated",
+        "desired_replicas": 3,
+        "running_tasks": 3,
+        "task_states": [
+          "Running about a minute ago",
+          "Running about a minute ago",
+          "Running about a minute ago"
+        ]
+      }
+    },
+    {
+      "name": "service:proof_registry",
+      "passed": true,
+      "detail": "All desired service tasks must be running",
+      "observed": {
+        "name": "proof_registry",
+        "mode": "replicated",
+        "desired_replicas": 1,
+        "running_tasks": 1,
+        "task_states": [
+          "Running about a minute ago"
+        ]
+      }
+    },
+    {
+      "name": "health_endpoint:1",
+      "passed": true,
+      "detail": "Endpoint must return HTTP 2xx",
+      "observed": {
+        "url": "http://127.0.0.1:18080/",
+        "final_url": "http://127.0.0.1:18080/",
+        "status": 200
+      }
+    },
+    {
+      "name": "registry_https_auth",
+      "passed": true,
+      "detail": "Endpoint must return HTTP 2xx",
+      "observed": {
+        "url": "https://127.0.0.1:15000/v2/",
+        "final_url": "https://127.0.0.1:15000/v2/",
+        "status": 200
+      }
+    }
+  ]
+}

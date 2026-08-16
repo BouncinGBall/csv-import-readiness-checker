@@ -1,0 +1,10 @@
+﻿NODE_STATE_WHILE_MANAGER_2_STOPPED
+manager-1|Ready|Leader
+manager-2|Down|Unreachable
+manager-3|Ready|Reachable
+worker-1|Ready|
+worker-2|Ready|
+
+SERVICE_STATE_WHILE_MANAGER_2_STOPPED
+proof_health|3/3
+proof_registry|1/1

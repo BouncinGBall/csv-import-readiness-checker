@@ -1,0 +1,60 @@
+name: foxbox-swarm-proof
+
+x-dind: &dind
+  image: docker:27.5-dind
+  privileged: true
+  environment:
+    DOCKER_TLS_CERTDIR: ""
+  command:
+    - --host=tcp://0.0.0.0:2375
+    - --host=unix:///var/run/docker.sock
+    - --storage-driver=overlay2
+  networks:
+    lab:
+
+services:
+  manager1:
+    <<: *dind
+    hostname: manager-1
+    ports:
+      - "127.0.0.1:23750:2375"
+      - "127.0.0.1:18080:8080"
+      - "127.0.0.1:15000:5000"
+    networks:
+      lab:
+        ipv4_address: 172.31.50.11
+
+  manager2:
+    <<: *dind
+    hostname: manager-2
+    networks:
+      lab:
+        ipv4_address: 172.31.50.12
+
+  manager3:
+    <<: *dind
+    hostname: manager-3
+    networks:
+      lab:
+        ipv4_address: 172.31.50.13
+
+  worker1:
+    <<: *dind
+    hostname: worker-1
+    networks:
+      lab:
+        ipv4_address: 172.31.50.21
+
+  worker2:
+    <<: *dind
+    hostname: worker-2
+    networks:
+      lab:
+        ipv4_address: 172.31.50.22
+
+networks:
+  lab:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.31.50.0/24

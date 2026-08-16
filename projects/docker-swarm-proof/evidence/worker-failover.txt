@@ -1,0 +1,11 @@
+﻿NODE_STATE_WHILE_WORKER_1_STOPPED
+manager-1|Ready|Leader
+manager-2|Ready|Reachable
+manager-3|Ready|Reachable
+worker-1|Down|
+worker-2|Ready|
+
+DESIRED_RUNNING_TASKS_WHILE_WORKER_1_STOPPED
+proof_health.1|worker-2|Running 2 seconds ago
+proof_health.2|worker-2|Running 18 seconds ago
+proof_health.3|worker-2|Running 18 seconds ago

@@ -51,6 +51,26 @@ test('enterprise AI page has a working contact-form contract and email fallback'
   assert.equal((html.match(/mailto:uria198816@gmail\.com/g) || []).length, 1);
 });
 
+test('Docker Swarm proof is reproducible, bounded and backed by public evidence', () => {
+  const html = readFileSync(resolve(root, 'docker-swarm-proof.html'), 'utf8');
+  const proofRoot = resolve(root, 'projects', 'docker-swarm-proof');
+  assert.match(html, /9\/9/);
+  assert.match(html, /3\/3/);
+  assert.match(html, /Controlled local process proof, not a client case and not evidence about a third-party production environment/i);
+  for (const path of [
+    'docker-compose.yml', 'stack.yml', 'run-lab.ps1', 'verify_swarm.py',
+    'test_verify_swarm.py', 'README.md', 'BENCHMARK_SUMMARY.md', 'SHA256SUMS.txt',
+    'evidence/baseline.json', 'evidence/recovered.json',
+    'evidence/worker-failover.txt', 'evidence/manager-failover.txt',
+  ]) assert.ok(existsSync(resolve(proofRoot, path)), `missing Swarm proof artifact: ${path}`);
+
+  const runner = readFileSync(resolve(proofRoot, 'run-lab.ps1'), 'utf8');
+  assert.match(runner, /RandomNumberGenerator/);
+  assert.match(runner, /htpasswd -Bni proof/);
+  assert.doesNotMatch(runner, /htpasswd -Bbn proof/);
+  assert.doesNotMatch(runner, /foxbox-controlled-proof-only/);
+});
+
 function localReferences(html) {
   return [...html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)]
     .map((match) => match[1])
