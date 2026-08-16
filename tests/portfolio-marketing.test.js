@@ -38,7 +38,7 @@ test('portfolio mirrors four concrete buyer situations before presenting package
 });
 
 test('public proof remains specific and auditable', () => {
-  assert.equal((html.match(/class="work-card/g) || []).length, 6);
+  assert.equal((html.match(/class="work-card/g) || []).length, 7);
   assert.match(html, /Оплаченный этап принят/);
   assert.match(html, /Безопасная сделка/);
   assert.match(html, /Материалы и персонаж заказчика не публикуются/);
@@ -51,6 +51,11 @@ test('public proof remains specific and auditable', () => {
   assert.match(html, /6\/6 unit-тестов/i);
   assert.match(html, /контролируемый локальный process proof, не клиентский кейс/i);
   assert.match(html, /href="\.\/docker-swarm-proof\.html"/);
+  assert.match(html, /id="listing-bot"/);
+  assert.match(html, /Fox Box Listing Bot/);
+  assert.match(html, /Пилот до 20 карточек: 5 900 ₽ и 2 рабочих дня/);
+  assert.match(html, /Подлинность товара, просмотры и продажи не обещаются/);
+  assert.match(html, /без входа в аккаунт/);
   assert.doesNotMatch(html, /github\.com\/BouncinGBall\/csv-import-readiness-checker/);
   assert.match(html, /href="\.\/">Запустить инструмент/);
 });
