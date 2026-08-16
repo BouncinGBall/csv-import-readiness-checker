@@ -7,6 +7,7 @@ import test from 'node:test';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 const html = readFileSync(resolve(root, 'portfolio.html'), 'utf8');
+const notFoundHtml = readFileSync(resolve(root, '404.html'), 'utf8');
 const languageScript = readFileSync(resolve(root, 'src', 'site-language.js'), 'utf8');
 
 test('portfolio opens with a plain-language AI outcome promise', () => {
@@ -58,6 +59,13 @@ test('public proof remains specific and auditable', () => {
   assert.match(html, /без входа в аккаунт/);
   assert.doesNotMatch(html, /github\.com\/BouncinGBall\/csv-import-readiness-checker/);
   assert.match(html, /href="\.\/">Запустить инструмент/);
+});
+
+test('legacy portfolio links with a trailing dot recover safely', () => {
+  assert.match(notFoundHtml, /\/portfolio\.html\./);
+  assert.match(notFoundHtml, /pathname\.slice\(0, -1\)/);
+  assert.match(notFoundHtml, /location\.replace/);
+  assert.match(notFoundHtml, /href="\.\/portfolio\.html"/);
 });
 
 test('portfolio presents the multi-screen web concept collection honestly', () => {

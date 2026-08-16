@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Fox Box - переход к портфолио</title>
+  <script>
+    (() => {
+      const brokenSuffix = '/portfolio.html.';
+      if (window.location.pathname.endsWith(brokenSuffix)) {
+        const correctedPath = window.location.pathname.slice(0, -1);
+        window.location.replace(correctedPath + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { display: grid; min-height: 100vh; margin: 0; place-items: center; }
+    main { max-width: 38rem; padding: 2rem; text-align: center; }
+    a { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Страница не найдена</h1>
+    <p>Проверьте адрес или откройте портфолио Fox Box.</p>
+    <a href="./portfolio.html">Открыть портфолио</a>
+  </main>
+</body>
+</html>
