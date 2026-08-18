@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "comparedAt": "2026-08-16T10:17:29.106Z",
+  "passed": true,
+  "conditions": {
+    "runsPerMode": 3,
+    "waitAfterLoadMs": 900,
+    "timeoutMs": 30000,
+    "modes": [
+      {
+        "name": "mobile",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "deviceScaleFactor": 2,
+        "isMobile": true,
+        "hasTouch": true
+      },
+      {
+        "name": "desktop",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "deviceScaleFactor": 1,
+        "isMobile": false,
+        "hasTouch": false
+      }
+    ],
+    "coldContextPerRun": true,
+    "networkThrottling": "none",
+    "browserVersion": "151.0.4129.78"
+  },
+  "comparisons": [
+    {
+      "target": "hotel-home",
+      "mode": "mobile",
+      "before": {
+        "runCount": 3,
+        "completedCount": 3,
+        "httpPassRate": 1,
+        "ttfbMs": 1145,
+        "fcpMs": 1804,
+        "lcpMs": 1804,
+        "cls": 0,
+        "loadMs": 1785,
+        "transferBytes": 2944492,
+        "requestCount": 30,
+        "badResponseCount": 0,
+        "failedRequestCount": 0,
+        "pageErrorCount": 0,
+        "bnovoRate": 0,
+        "metricaRate": 0,
+        "utmPassRate": 1,
+        "selectorPassRate": 1
+      },
+      "after": {
+        "runCount": 3,
+        "completedCount": 3,
+        "httpPassRate": 1,
+        "ttfbMs": 1192,
+        "fcpMs": 1316,
+        "lcpMs": 1316,
+        "cls": 0,
+        "loadMs": 1242,
+        "transferBytes": 181133,
+        "requestCount": 6,
+        "badResponseCount": 0,
+        "failedRequestCount": 0,
+        "pageErrorCount": 0,
+        "bnovoRate": 0,
+        "metricaRate": 0,
+        "utmPassRate": 1,
+        "selectorPassRate": 1
+      },
+      "passed": true,
+      "improvement": {
+        "lcpPercent": 27.1,
+        "transferPercent": 93.8,
+        "requestPercent": 80,
+        "ttfbPercent": -4.1
+      },
+      "failures": [],
+      "warnings": []
+    },
+    {
+      "target": "hotel-home",
+      "mode": "desktop",
+      "before": {
+        "runCount": 3,
+        "completedCount": 3,
+        "httpPassRate": 1,
+        "ttfbMs": 1175,
+        "fcpMs": 1816,
+        "lcpMs": 1816,
+        "cls": 0,
+        "loadMs": 1774,
+        "transferBytes": 2944492,
+        "requestCount": 30,
+        "badResponseCount": 0,
+        "failedRequestCount": 0,
+        "pageErrorCount": 0,
+        "bnovoRate": 0,
+        "metricaRate": 0,
+        "utmPassRate": 1,
+        "selectorPassRate": 1
+      },
+      "after": {
+        "runCount": 3,
+        "completedCount": 3,
+        "httpPassRate": 1,
+        "ttfbMs": 1184,
+        "fcpMs": 1300,
+        "lcpMs": 1300,
+        "cls": 0,
+        "loadMs": 1229,
+        "transferBytes": 235516,
+        "requestCount": 7,
+        "badResponseCount": 0,
+        "failedRequestCount": 0,
+        "pageErrorCount": 0,
+        "bnovoRate": 0,
+        "metricaRate": 0,
+        "utmPassRate": 1,
+        "selectorPassRate": 1
+      },
+      "passed": true,
+      "improvement": {
+        "lcpPercent": 28.4,
+        "transferPercent": 92,
+        "requestPercent": 76.7,
+        "ttfbPercent": -0.8
+      },
+      "failures": [],
+      "warnings": []
+    }
+  ]
+}

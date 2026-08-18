@@ -1,0 +1,647 @@
+{
+  "schemaVersion": 1,
+  "label": "before",
+  "measuredAt": "2026-08-16T10:16:50.742Z",
+  "conditions": {
+    "browserVersion": "151.0.4129.78",
+    "runsPerMode": 3,
+    "waitAfterLoadMs": 900,
+    "timeoutMs": 30000,
+    "modes": [
+      {
+        "name": "mobile",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "deviceScaleFactor": 2,
+        "isMobile": true,
+        "hasTouch": true
+      },
+      {
+        "name": "desktop",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "deviceScaleFactor": 1,
+        "isMobile": false,
+        "hasTouch": false
+      }
+    ],
+    "coldContextPerRun": true,
+    "networkThrottling": "none"
+  },
+  "targets": [
+    {
+      "name": "hotel-home",
+      "url": "http://localhost:8088/",
+      "runs": [
+        {
+          "run": 1,
+          "mode": "mobile",
+          "requestedUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "httpStatus": 200,
+          "responseHeaders": {
+            "connection": "Keep-Alive",
+            "content-encoding": "gzip",
+            "content-length": "1231",
+            "content-type": "text/html; charset=UTF-8",
+            "date": "Sun, 16 Aug 2026 10:16:52 GMT",
+            "keep-alive": "timeout=5, max=100",
+            "link": "<http://localhost:8088/index.php?rest_route=/>; rel=\"https://api.w.org/\"",
+            "server": "Apache/2.4.65 (Debian)",
+            "vary": "Accept-Encoding",
+            "x-powered-by": "PHP/8.3.26"
+          },
+          "loadWallMs": 3249,
+          "screenshot": "hotel-home-mobile-run1.png",
+          "network": {
+            "responseCount": 30,
+            "badResponses": [],
+            "failedRequests": [],
+            "bnovoResponses": [],
+            "transferBytes": 2944493,
+            "responseBodyBytes": 2935139
+          },
+          "consoleErrors": [],
+          "pageErrors": [],
+          "finalUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "title": "Fox Box Proof Lab вЂ” Before",
+          "metrics": {
+            "cls": 0,
+            "lcp": 1676,
+            "fcp": 1676,
+            "longTasks": [
+              {
+                "startTime": 1145.9000000357628,
+                "duration": 420
+              },
+              {
+                "startTime": 1937.5,
+                "duration": 389
+              }
+            ]
+          },
+          "navigation": {
+            "ttfbMs": 1029,
+            "domContentLoadedMs": 2326,
+            "loadMs": 2326,
+            "transferSize": 1531,
+            "encodedBodySize": 1231,
+            "decodedBodySize": 5637
+          },
+          "resources": {
+            "count": 30,
+            "transferSize": 2944139,
+            "encodedBodySize": 2935139,
+            "decodedBodySize": 2956492
+          },
+          "images": {
+            "total": 4,
+            "lazy": 0,
+            "withSrcset": 0,
+            "missingDimensions": 4
+          },
+          "signals": {
+            "criticalSelectors": [
+              {
+                "selector": ".site-header",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".hero-copy",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".booking-cta",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".room-grid",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              }
+            ],
+            "bnovoIframe": false,
+            "yandexMetricaScript": false,
+            "yandexMetricaFunction": false,
+            "utmPreserved": {
+              "utm_source": true,
+              "utm_campaign": true
+            }
+          },
+          "longTaskCount": 2,
+          "totalBlockingApproxMs": 709
+        },
+        {
+          "run": 2,
+          "mode": "mobile",
+          "requestedUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "httpStatus": 200,
+          "responseHeaders": {
+            "connection": "Keep-Alive",
+            "content-encoding": "gzip",
+            "content-length": "1231",
+            "content-type": "text/html; charset=UTF-8",
+            "date": "Sun, 16 Aug 2026 10:16:56 GMT",
+            "keep-alive": "timeout=5, max=100",
+            "link": "<http://localhost:8088/index.php?rest_route=/>; rel=\"https://api.w.org/\"",
+            "server": "Apache/2.4.65 (Debian)",
+            "vary": "Accept-Encoding",
+            "x-powered-by": "PHP/8.3.26"
+          },
+          "loadWallMs": 2679,
+          "screenshot": "hotel-home-mobile-run2.png",
+          "network": {
+            "responseCount": 30,
+            "badResponses": [],
+            "failedRequests": [],
+            "bnovoResponses": [],
+            "transferBytes": 2944492,
+            "responseBodyBytes": 2935139
+          },
+          "consoleErrors": [],
+          "pageErrors": [],
+          "finalUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "title": "Fox Box Proof Lab вЂ” Before",
+          "metrics": {
+            "cls": 0,
+            "lcp": 1804,
+            "fcp": 1804,
+            "longTasks": [
+              {
+                "startTime": 1259,
+                "duration": 420
+              }
+            ]
+          },
+          "navigation": {
+            "ttfbMs": 1145,
+            "domContentLoadedMs": 1749,
+            "loadMs": 1752,
+            "transferSize": 1531,
+            "encodedBodySize": 1231,
+            "decodedBodySize": 5637
+          },
+          "resources": {
+            "count": 30,
+            "transferSize": 2944139,
+            "encodedBodySize": 2935139,
+            "decodedBodySize": 2956492
+          },
+          "images": {
+            "total": 4,
+            "lazy": 0,
+            "withSrcset": 0,
+            "missingDimensions": 4
+          },
+          "signals": {
+            "criticalSelectors": [
+              {
+                "selector": ".site-header",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".hero-copy",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".booking-cta",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".room-grid",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              }
+            ],
+            "bnovoIframe": false,
+            "yandexMetricaScript": false,
+            "yandexMetricaFunction": false,
+            "utmPreserved": {
+              "utm_source": true,
+              "utm_campaign": true
+            }
+          },
+          "longTaskCount": 1,
+          "totalBlockingApproxMs": 370
+        },
+        {
+          "run": 3,
+          "mode": "mobile",
+          "requestedUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "httpStatus": 200,
+          "responseHeaders": {
+            "connection": "Keep-Alive",
+            "content-encoding": "gzip",
+            "content-length": "1231",
+            "content-type": "text/html; charset=UTF-8",
+            "date": "Sun, 16 Aug 2026 10:16:59 GMT",
+            "keep-alive": "timeout=5, max=100",
+            "link": "<http://localhost:8088/index.php?rest_route=/>; rel=\"https://api.w.org/\"",
+            "server": "Apache/2.4.65 (Debian)",
+            "vary": "Accept-Encoding",
+            "x-powered-by": "PHP/8.3.26"
+          },
+          "loadWallMs": 2714,
+          "screenshot": "hotel-home-mobile-run3.png",
+          "network": {
+            "responseCount": 30,
+            "badResponses": [],
+            "failedRequests": [],
+            "bnovoResponses": [],
+            "transferBytes": 2944492,
+            "responseBodyBytes": 2935139
+          },
+          "consoleErrors": [],
+          "pageErrors": [],
+          "finalUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "title": "Fox Box Proof Lab вЂ” Before",
+          "metrics": {
+            "cls": 0,
+            "lcp": 1840,
+            "fcp": 1840,
+            "longTasks": [
+              {
+                "startTime": 1290,
+                "duration": 420
+              }
+            ]
+          },
+          "navigation": {
+            "ttfbMs": 1179,
+            "domContentLoadedMs": 1782,
+            "loadMs": 1785,
+            "transferSize": 1531,
+            "encodedBodySize": 1231,
+            "decodedBodySize": 5637
+          },
+          "resources": {
+            "count": 30,
+            "transferSize": 2944139,
+            "encodedBodySize": 2935139,
+            "decodedBodySize": 2956492
+          },
+          "images": {
+            "total": 4,
+            "lazy": 0,
+            "withSrcset": 0,
+            "missingDimensions": 4
+          },
+          "signals": {
+            "criticalSelectors": [
+              {
+                "selector": ".site-header",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".hero-copy",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".booking-cta",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".room-grid",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              }
+            ],
+            "bnovoIframe": false,
+            "yandexMetricaScript": false,
+            "yandexMetricaFunction": false,
+            "utmPreserved": {
+              "utm_source": true,
+              "utm_campaign": true
+            }
+          },
+          "longTaskCount": 1,
+          "totalBlockingApproxMs": 370
+        },
+        {
+          "run": 1,
+          "mode": "desktop",
+          "requestedUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "httpStatus": 200,
+          "responseHeaders": {
+            "connection": "Keep-Alive",
+            "content-encoding": "gzip",
+            "content-length": "1231",
+            "content-type": "text/html; charset=UTF-8",
+            "date": "Sun, 16 Aug 2026 10:17:02 GMT",
+            "keep-alive": "timeout=5, max=100",
+            "link": "<http://localhost:8088/index.php?rest_route=/>; rel=\"https://api.w.org/\"",
+            "server": "Apache/2.4.65 (Debian)",
+            "vary": "Accept-Encoding",
+            "x-powered-by": "PHP/8.3.26"
+          },
+          "loadWallMs": 2781,
+          "screenshot": "hotel-home-desktop-run1.png",
+          "network": {
+            "responseCount": 30,
+            "badResponses": [],
+            "failedRequests": [],
+            "bnovoResponses": [],
+            "transferBytes": 2944492,
+            "responseBodyBytes": 2935139
+          },
+          "consoleErrors": [],
+          "pageErrors": [],
+          "finalUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "title": "Fox Box Proof Lab вЂ” Before",
+          "metrics": {
+            "cls": 0,
+            "lcp": 1968,
+            "fcp": 1968,
+            "longTasks": [
+              {
+                "startTime": 1348.9000000357628,
+                "duration": 420
+              }
+            ]
+          },
+          "navigation": {
+            "ttfbMs": 1244,
+            "domContentLoadedMs": 1846,
+            "loadMs": 1856,
+            "transferSize": 1531,
+            "encodedBodySize": 1231,
+            "decodedBodySize": 5637
+          },
+          "resources": {
+            "count": 30,
+            "transferSize": 2944139,
+            "encodedBodySize": 2935139,
+            "decodedBodySize": 2956492
+          },
+          "images": {
+            "total": 4,
+            "lazy": 0,
+            "withSrcset": 0,
+            "missingDimensions": 4
+          },
+          "signals": {
+            "criticalSelectors": [
+              {
+                "selector": ".site-header",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".hero-copy",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".booking-cta",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".room-grid",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              }
+            ],
+            "bnovoIframe": false,
+            "yandexMetricaScript": false,
+            "yandexMetricaFunction": false,
+            "utmPreserved": {
+              "utm_source": true,
+              "utm_campaign": true
+            }
+          },
+          "longTaskCount": 1,
+          "totalBlockingApproxMs": 370
+        },
+        {
+          "run": 2,
+          "mode": "desktop",
+          "requestedUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "httpStatus": 200,
+          "responseHeaders": {
+            "connection": "Keep-Alive",
+            "content-encoding": "gzip",
+            "content-length": "1231",
+            "content-type": "text/html; charset=UTF-8",
+            "date": "Sun, 16 Aug 2026 10:17:05 GMT",
+            "keep-alive": "timeout=5, max=100",
+            "link": "<http://localhost:8088/index.php?rest_route=/>; rel=\"https://api.w.org/\"",
+            "server": "Apache/2.4.65 (Debian)",
+            "vary": "Accept-Encoding",
+            "x-powered-by": "PHP/8.3.26"
+          },
+          "loadWallMs": 2138,
+          "screenshot": "hotel-home-desktop-run2.png",
+          "network": {
+            "responseCount": 30,
+            "badResponses": [],
+            "failedRequests": [],
+            "bnovoResponses": [],
+            "transferBytes": 2944492,
+            "responseBodyBytes": 2935139
+          },
+          "consoleErrors": [],
+          "pageErrors": [],
+          "finalUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "title": "Fox Box Proof Lab вЂ” Before",
+          "metrics": {
+            "cls": 0,
+            "lcp": 1268,
+            "fcp": 1268,
+            "longTasks": [
+              {
+                "startTime": 719.9000000357628,
+                "duration": 420
+              }
+            ]
+          },
+          "navigation": {
+            "ttfbMs": 580,
+            "domContentLoadedMs": 1215,
+            "loadMs": 1218,
+            "transferSize": 1531,
+            "encodedBodySize": 1231,
+            "decodedBodySize": 5637
+          },
+          "resources": {
+            "count": 30,
+            "transferSize": 2944139,
+            "encodedBodySize": 2935139,
+            "decodedBodySize": 2956492
+          },
+          "images": {
+            "total": 4,
+            "lazy": 0,
+            "withSrcset": 0,
+            "missingDimensions": 4
+          },
+          "signals": {
+            "criticalSelectors": [
+              {
+                "selector": ".site-header",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".hero-copy",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".booking-cta",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".room-grid",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              }
+            ],
+            "bnovoIframe": false,
+            "yandexMetricaScript": false,
+            "yandexMetricaFunction": false,
+            "utmPreserved": {
+              "utm_source": true,
+              "utm_campaign": true
+            }
+          },
+          "longTaskCount": 1,
+          "totalBlockingApproxMs": 370
+        },
+        {
+          "run": 3,
+          "mode": "desktop",
+          "requestedUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "httpStatus": 200,
+          "responseHeaders": {
+            "connection": "Keep-Alive",
+            "content-encoding": "gzip",
+            "content-length": "1231",
+            "content-type": "text/html; charset=UTF-8",
+            "date": "Sun, 16 Aug 2026 10:17:08 GMT",
+            "keep-alive": "timeout=5, max=100",
+            "link": "<http://localhost:8088/index.php?rest_route=/>; rel=\"https://api.w.org/\"",
+            "server": "Apache/2.4.65 (Debian)",
+            "vary": "Accept-Encoding",
+            "x-powered-by": "PHP/8.3.26"
+          },
+          "loadWallMs": 2697,
+          "screenshot": "hotel-home-desktop-run3.png",
+          "network": {
+            "responseCount": 30,
+            "badResponses": [],
+            "failedRequests": [],
+            "bnovoResponses": [],
+            "transferBytes": 2944492,
+            "responseBodyBytes": 2935139
+          },
+          "consoleErrors": [],
+          "pageErrors": [],
+          "finalUrl": "http://localhost:8088/?utm_source=foxbox-proof&utm_campaign=wordpress-benchmark",
+          "title": "Fox Box Proof Lab вЂ” Before",
+          "metrics": {
+            "cls": 0,
+            "lcp": 1816,
+            "fcp": 1816,
+            "longTasks": [
+              {
+                "startTime": 1277.5999999642372,
+                "duration": 420
+              }
+            ]
+          },
+          "navigation": {
+            "ttfbMs": 1175,
+            "domContentLoadedMs": 1772,
+            "loadMs": 1774,
+            "transferSize": 1531,
+            "encodedBodySize": 1231,
+            "decodedBodySize": 5637
+          },
+          "resources": {
+            "count": 30,
+            "transferSize": 2944139,
+            "encodedBodySize": 2935139,
+            "decodedBodySize": 2956492
+          },
+          "images": {
+            "total": 4,
+            "lazy": 0,
+            "withSrcset": 0,
+            "missingDimensions": 4
+          },
+          "signals": {
+            "criticalSelectors": [
+              {
+                "selector": ".site-header",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".hero-copy",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".booking-cta",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              },
+              {
+                "selector": ".room-grid",
+                "present": true,
+                "count": 1,
+                "invalid": false
+              }
+            ],
+            "bnovoIframe": false,
+            "yandexMetricaScript": false,
+            "yandexMetricaFunction": false,
+            "utmPreserved": {
+              "utm_source": true,
+              "utm_campaign": true
+            }
+          },
+          "longTaskCount": 1,
+          "totalBlockingApproxMs": 370
+        }
+      ]
+    }
+  ]
+}

@@ -39,7 +39,7 @@ test('portfolio mirrors four concrete buyer situations before presenting package
 });
 
 test('public proof remains specific and auditable', () => {
-  assert.equal((html.match(/class="work-card/g) || []).length, 7);
+  assert.equal((html.match(/class="work-card/g) || []).length, 8);
   assert.match(html, /Оплаченный этап принят/);
   assert.match(html, /Безопасная сделка/);
   assert.match(html, /Материалы и персонаж заказчика не публикуются/);
@@ -58,8 +58,31 @@ test('public proof remains specific and auditable', () => {
   assert.match(html, /Подлинность товара, просмотры и продажи не обещаются/);
   assert.match(html, /без входа в аккаунт/);
   assert.match(html, /href="\.\/listing-bot-proof\.html"/);
+  assert.match(html, /id="wordpress-proof"/);
+  assert.match(html, /WordPress Performance Lab/);
+  assert.match(html, /3 прогона на режим/);
+  assert.match(html, /raw JSON опубликован/);
+  assert.match(html, /не клиентский кейс и не гарантия конкретного результата/i);
+  assert.match(html, /href="\.\/wordpress-proof\.html"/);
   assert.doesNotMatch(html, /github\.com\/BouncinGBall\/csv-import-readiness-checker/);
   assert.match(html, /href="\.\/">Запустить инструмент/);
+});
+
+test('WordPress process proof is public, bounded and auditable', () => {
+  const proof = readFileSync(resolve(root, 'wordpress-proof.html'), 'utf8');
+  assert.match(proof, /Контролируемый WordPress benchmark/);
+  assert.match(proof, /не клиентский кейс/i);
+  assert.match(proof, /не гарантия конкретного PageSpeed/i);
+  assert.match(proof, /1804 &gt; 1316 ms|1804 > 1316 ms/);
+  assert.match(proof, /1816 &gt; 1300 ms|1816 > 1300 ms/);
+  assert.match(proof, /comparison\.json/);
+  assert.match(proof, /before\.json/);
+  assert.match(proof, /after\.json/);
+  assert.ok(existsSync(resolve(root, 'projects', 'wordpress-proof', 'before-desktop.png')));
+  assert.ok(existsSync(resolve(root, 'projects', 'wordpress-proof', 'after-desktop.png')));
+  assert.ok(existsSync(resolve(root, 'projects', 'wordpress-proof', 'before-mobile.png')));
+  assert.ok(existsSync(resolve(root, 'projects', 'wordpress-proof', 'after-mobile.png')));
+  assert.ok(existsSync(resolve(root, 'projects', 'wordpress-proof', 'comparison.json')));
 });
 
 test('Listing Bot proof is explicit, synthetic and reproducible', () => {
