@@ -52,7 +52,7 @@ npm test
 
 - [Практический чек-лист и бесплатный браузерный мини-чек](https://sites.google.com/view/data-pilot-async/crm-csv-checklist)
 - [Запросить письменный scope по email](mailto:uria198816@gmail.com?subject=CRM%20data%20cleanup%20pilot)
-- [Оплата согласованного пилота](https://app.lava.top/products/3de6aa7f-0252-45db-b7d4-53a06e984e69/1a6ab36b-676b-4cc5-82e3-f42128fd7bea?currency=RUB)
+- [Оплата согласованного пилота](https://app.lava.top/products/19c77a14-77f6-454d-a57f-89947769e451)
 
 ## AI Assistant Evaluation Pack
 
