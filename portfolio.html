@@ -199,6 +199,8 @@
     .resource-card p { margin: 0; color: var(--muted); line-height: 1.58; }
     .resource-card.acid p { color: #694322; }
     .resource-card a { margin-top: auto; padding-top: 24px; color: var(--green); font-weight: 900; text-underline-offset: 4px; }
+    .resource-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: auto; padding-top: 24px; }
+    .resource-links a { margin-top: 0; padding-top: 0; }
 
     .proof-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-bottom: 20px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--line); }
     .proof-metric { padding: 18px 20px; background: var(--paper); }
@@ -356,7 +358,7 @@
 
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
-  <script src="./src/site-language.js" defer></script>
+  <script src="./src/site-language.js?v=20260926" defer></script>
 </head>
 <body>
   <header class="shell topbar">
@@ -367,6 +369,7 @@
     <nav aria-label="Основная навигация">
       <a href="#fit">Что можно внедрить</a>
       <a href="#offers">Услуги и цены</a>
+      <a href="#excel-tools">Excel-шаблоны</a>
       <a href="#web-concepts">Сайты</a>
       <a href="#works">Работы</a>
       <a class="nav-cta" href="#contact">Получить разбор</a>
@@ -492,6 +495,33 @@
       <div class="resource-grid">
         <article class="resource-card acid"><span class="offer-tag">Калькулятор</span><h3>Сколько часов в месяц съедает одна рутина?</h3><p>Посчитайте текущую ручную нагрузку — без выдуманного процента будущей экономии.</p><a href="./ai-opportunity-map.html">Посчитать в браузере →</a></article>
         <article class="resource-card"><span class="offer-tag">Антихайп-гайд</span><h3>7 случаев, когда бизнесу не нужен AI</h3><p>Как отличить полезный AI-сценарий от обычной автоматизации, плохого процесса и лишней подписки.</p><a href="./when-not-to-use-ai.html">Проверить свой сценарий →</a></article>
+      </div>
+    </section>
+
+    <section id="excel-tools">
+      <div class="section-head">
+        <div><span class="section-kicker">Для финансовых решений</span><h2>Готовые Excel-шаблоны для малого бизнеса.</h2></div>
+        <p class="section-intro">Начните с конкретного расчёта. Перед покупкой можно прочитать короткий пример и проверить состав каждого комплекта на Lava.</p>
+      </div>
+      <div class="resource-grid">
+        <article class="resource-card">
+          <span class="offer-tag">€10 · ZIP с XLSX и инструкцией</span>
+          <h3>Платёжный календарь</h3>
+          <p>Сведите планируемые поступления и выплаты, чтобы заранее увидеть дни с нехваткой денег. Лицензия — для одной компании.</p>
+          <div class="resource-links">
+            <a href="https://app.lava.top/posts/aea8d8e7-8cb2-4273-b2ef-928ce5783d4a">Пример кассового разрыва →</a>
+            <a href="https://app.lava.top/products/025b21e1-d99c-477a-accb-20caa3e54b59">Посмотреть комплект на Lava →</a>
+          </div>
+        </article>
+        <article class="resource-card">
+          <span class="offer-tag">€15 · ZIP с XLSX и инструкцией</span>
+          <h3>Юнит-экономика</h3>
+          <p>Посчитайте маржинальность, безубыточность и минимальную цену для заданной маржи по ассортименту до 30 позиций. Лицензия — для одной компании.</p>
+          <div class="resource-links">
+            <a href="https://app.lava.top/posts/4a193cb5-321e-45c6-a693-50df86a20c4d">Пример расчёта скидки →</a>
+            <a href="https://app.lava.top/products/223291eb-625d-4e0f-9264-5a3f05f50224">Посмотреть комплект на Lava →</a>
+          </div>
+        </article>
       </div>
     </section>
 

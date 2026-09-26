@@ -115,7 +115,7 @@ test('portfolio presents the multi-screen web concept collection honestly', () =
 
 test('search and sharing metadata are complete', () => {
   assert.match(html, /<title>AI Automation & Full-Stack Delivery — Fox Box<\/title>/);
-  assert.match(html, /<script src="\.\/src\/site-language\.js" defer><\/script>/);
+  assert.match(html, /<script src="\.\/src\/site-language\.js(?:\?v=\d+)?" defer><\/script>/);
   assert.match(html, /rel="canonical"/);
   assert.match(html, /property="og:title"/);
   assert.match(html, /property="og:description"/);
